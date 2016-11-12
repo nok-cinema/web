@@ -96,6 +96,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -168,6 +170,54 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CinemaModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CinemaModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CinemaModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CinemaModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CinemaModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EMPLOYEE.cs">
+      <DependentUpon>CinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FOOD.cs">
+      <DependentUpon>CinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MEMBER.cs">
+      <DependentUpon>CinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MOVIE.cs">
+      <DependentUpon>CinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PERSON.cs">
+      <DependentUpon>CinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\REVIEW.cs">
+      <DependentUpon>CinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SEAT.cs">
+      <DependentUpon>CinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SELL.cs">
+      <DependentUpon>CinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SHOWTIME.cs">
+      <DependentUpon>CinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\THEATRE.cs">
+      <DependentUpon>CinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TICKET.cs">
+      <DependentUpon>CinemaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -177,12 +227,29 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\CinemaModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CinemaModel.edmx</DependentUpon>
+      <LastGenOutput>CinemaModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\CinemaModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CinemaModel.edmx</DependentUpon>
+      <LastGenOutput>CinemaModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="Models\CinemaModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CinemaModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\CinemaModel.edmx.diagram">
+      <DependentUpon>CinemaModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -213,7 +280,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -222,6 +288,9 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

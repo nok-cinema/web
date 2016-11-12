@@ -54,7 +54,7 @@
           <Property Name="FNAME" Type="varchar2" MaxLength="35" Nullable="false" />
           <Property Name="LNAME" Type="varchar2" MaxLength="35" Nullable="false" />
           <Property Name="GENDER" Type="char" MaxLength="1" Nullable="false" />
-          <Property Name="BIRTHDATE" Type="date" Nullable="false" />
+          <Property Name="BIRTHDATE" Type="date" />
           <Property Name="ADDRESS" Type="varchar2" MaxLength="95" />
           <Property Name="EMAIL" Type="varchar2" MaxLength="62" />
           <Property Name="USERNAME" Type="varchar2" MaxLength="20" Nullable="false" />
@@ -392,7 +392,7 @@
           <Property Name="FNAME" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LNAME" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="GENDER" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="BIRTHDATE" Type="DateTime" Nullable="false" />
+          <Property Name="BIRTHDATE" Type="DateTime" />
           <Property Name="ADDRESS" Type="String" MaxLength="95" FixedLength="false" Unicode="false" />
           <Property Name="EMAIL" Type="String" MaxLength="62" FixedLength="false" Unicode="false" />
           <Property Name="USERNAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />

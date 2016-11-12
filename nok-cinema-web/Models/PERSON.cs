@@ -25,7 +25,7 @@ namespace nok_cinema_web.Models
         public string FNAME { get; set; }
         public string LNAME { get; set; }
         public string GENDER { get; set; }
-        public System.DateTime BIRTHDATE { get; set; }
+        public Nullable<System.DateTime> BIRTHDATE { get; set; }
         public string ADDRESS { get; set; }
         public string EMAIL { get; set; }
         public string USERNAME { get; set; }

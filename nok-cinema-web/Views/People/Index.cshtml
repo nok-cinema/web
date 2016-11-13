@@ -1,0 +1,83 @@
+﻿@model IEnumerable<nok_cinema_web.Models.PERSON>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FNAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LNAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GENDER)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BIRTHDATE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ADDRESS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EMAIL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.USERNAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PASSWORD)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FNAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LNAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GENDER)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BIRTHDATE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ADDRESS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMAIL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.USERNAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PASSWORD)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.CITIZENID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.CITIZENID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.CITIZENID })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

@@ -16,6 +16,7 @@ namespace nok_cinema_web.Controllers
         private CinemaEntities db = new CinemaEntities();
 
         // GET: People
+        [Authorize]
         public async Task<ActionResult> Index()
         {
             return View(await db.PERSON.ToListAsync());

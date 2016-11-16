@@ -166,6 +166,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EMPLOYEEsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
     <Compile Include="Global.asax.cs">
@@ -283,6 +284,11 @@
     <Content Include="Views\People\Details.cshtml" />
     <Content Include="Views\People\Edit.cshtml" />
     <Content Include="Views\People\Index.cshtml" />
+    <Content Include="Views\EMPLOYEEs\Create.cshtml" />
+    <Content Include="Views\EMPLOYEEs\Delete.cshtml" />
+    <Content Include="Views\EMPLOYEEs\Details.cshtml" />
+    <Content Include="Views\EMPLOYEEs\Edit.cshtml" />
+    <Content Include="Views\EMPLOYEEs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

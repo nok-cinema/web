@@ -1,0 +1,53 @@
+﻿@model IEnumerable<nok_cinema_web.Models.EMPLOYEE>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.JOBPOSITION)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SALARY)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PERSON.FNAME)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.JOBPOSITION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SALARY)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PERSON.FNAME)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.EMPID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.EMPID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.EMPID })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

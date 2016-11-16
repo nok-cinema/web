@@ -1,0 +1,50 @@
+﻿@model nok_cinema_web.Models.EMPLOYEE
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>EMPLOYEE</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.JOBPOSITION)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.JOBPOSITION)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.SALARY)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SALARY)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PERSON.FNAME)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PERSON.FNAME)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.EMPID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

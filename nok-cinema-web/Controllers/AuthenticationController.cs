@@ -16,7 +16,7 @@ namespace nok_cinema_web.Controllers
         CinemaEntities db = new CinemaEntities();
         EMPLOYEE employee = new EMPLOYEE();
         PERSON person = new PERSON();
-        NowLogin nowLogin = new NowLogin();
+        UserProfile userProfile = new UserProfile();
 
         // GET: Authentication
         public ActionResult Login()
@@ -35,9 +35,9 @@ namespace nok_cinema_web.Controllers
                 var employeesBLL = new EmployeesBLL();
                 employee = employeesBLL.GetEmployeeByCitizenId(person.CITIZENID);
 
-                nowLogin = new NowLogin(employee, person);
-                FormsAuthentication.SetAuthCookie(nowLogin.USERNAME, false);
-                TempData["ProfileDetails"] = nowLogin;
+                userProfile = new UserProfile(employee, person);
+                FormsAuthentication.SetAuthCookie(userProfile.USERNAME, false);
+                TempData["UserProfileData"] = userProfile;
                 return RedirectToAction("ShowInformation", "People");
             }
             else
@@ -50,7 +50,7 @@ namespace nok_cinema_web.Controllers
         [HttpPost]
         public ActionResult Logout()
         {
-            nowLogin.Cleanup();
+            userProfile.Cleanup();
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }

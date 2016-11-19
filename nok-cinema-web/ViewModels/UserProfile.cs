@@ -6,7 +6,7 @@ using nok_cinema_web.Models;
 
 namespace nok_cinema_web.ViewModels
 {
-    public class NowLogin
+    public class UserProfile
     {
         public string JOBPOSITION { get; set; }
         public int SALARY { get; set; }
@@ -19,11 +19,11 @@ namespace nok_cinema_web.ViewModels
         public string EMAIL { get; set; }
         public string USERNAME { get; set; }
 
-        public NowLogin()
+        public UserProfile()
         {
             this.USERNAME = null;
         }
-        public NowLogin(EMPLOYEE e, PERSON p)
+        public UserProfile(EMPLOYEE e, PERSON p)
         {
             this.CITIZENID = e.CITIZENID;
             this.JOBPOSITION = e.JOBPOSITION;

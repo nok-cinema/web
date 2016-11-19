@@ -25,7 +25,7 @@ namespace nok_cinema_web.Controllers
 
         public ActionResult ShowInformation()
         {
-            var profile = TempData["ProfileDetails"] as NowLogin;
+            var profile = TempData["UserProfileData"] as UserProfile;
             if (profile != null)
             {
                 return View("Profile", profile);

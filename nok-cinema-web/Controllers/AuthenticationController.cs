@@ -21,6 +21,7 @@ namespace nok_cinema_web.Controllers
         // GET: Authentication
         public ActionResult Login()
         {
+            HttpContext.Current.User.Identity.IsAuthenticated
             return View();
         }
 
@@ -52,6 +53,7 @@ namespace nok_cinema_web.Controllers
         {
             userProfile.Cleanup();
             FormsAuthentication.SignOut();
+
             return RedirectToAction("Index", "Home");
         }
     }

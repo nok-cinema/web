@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using System.Web.Security;
 using nok_cinema_web.Models;
 using nok_cinema_web.ViewModels;
+using nok_cinema_web.BLL;
 
 namespace nok_cinema_web.Controllers
 {
@@ -14,7 +16,7 @@ namespace nok_cinema_web.Controllers
         CinemaEntities db = new CinemaEntities();
         EMPLOYEE employee = new EMPLOYEE();
         PERSON person = new PERSON();
-        NowLogin nowlogin = new NowLogin();
+        NowLogin nowLogin = new NowLogin();
 
         // GET: Authentication
         public ActionResult Login()
@@ -23,44 +25,20 @@ namespace nok_cinema_web.Controllers
         }
 
         [HttpPost]
-        public ActionResult DoLogin(PERSON p)
+        public ActionResult DoLogin(UserDetails userDetails)
         {
-
-
-            IQueryable<PERSON> query1 = from tmp in db.PERSON
-                                        where tmp.USERNAME.Equals(p.USERNAME) & tmp.PASSWORD.Equals(p.PASSWORD)
-                                        select tmp;
-
-            foreach (PERSON temp in query1)
+            var personBLL = new PeopleBLL();
+            person = personBLL.GetPersonByUserDetails(userDetails);
+            
+            if (personBLL.Status)
             {
-                person.CITIZENID = temp.CITIZENID;
-            }
+                var employeesBLL = new EmployeesBLL();
+                employee = employeesBLL.GetEmployeeByCitizenId(person.CITIZENID);
 
-            IQueryable<EMPLOYEE> query2 = from tmp in db.EMPLOYEE
-                                          where tmp.PERSON.CITIZENID.Equals(person.CITIZENID)
-                                          select tmp;
-            if (query1.Count() == 1 && query2.Count() == 1)
-            {
-                foreach (PERSON _p in query1.ToList())
-                {
-                    person.FNAME = _p.USERNAME;
-                    person.LNAME = _p.LNAME;
-                    person.CITIZENID = _p.CITIZENID;
-                    person.GENDER = _p.GENDER;
-                    person.EMAIL = _p.EMAIL;
-                    person.USERNAME = _p.USERNAME;
-                    person.PASSWORD = _p.PASSWORD;
-                }
-                foreach (EMPLOYEE _e in query2.ToList())
-                {
-                    employee.CITIZENID = _e.CITIZENID;
-                    employee.SALARY = _e.SALARY;
-                    employee.JOBPOSITION = _e.JOBPOSITION;
-                }
-                nowlogin = new NowLogin(employee, person);
-                FormsAuthentication.SetAuthCookie(nowlogin.USERNAME, false);
-
-                return RedirectToAction("Index", "Home", nowlogin);
+                nowLogin = new NowLogin(employee, person);
+                FormsAuthentication.SetAuthCookie(nowLogin.USERNAME, false);
+                TempData["ProfileDetails"] = nowLogin;
+                return RedirectToAction("ShowInformation", "People");
             }
             else
             {
@@ -72,7 +50,7 @@ namespace nok_cinema_web.Controllers
         [HttpPost]
         public ActionResult Logout()
         {
-            nowlogin.Cleanup();
+            nowLogin.Cleanup();
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }

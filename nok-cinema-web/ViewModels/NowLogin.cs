@@ -18,7 +18,6 @@ namespace nok_cinema_web.ViewModels
         public string ADDRESS { get; set; }
         public string EMAIL { get; set; }
         public string USERNAME { get; set; }
-        public string PASSWORD { get; set; }
 
         public NowLogin()
         {
@@ -35,7 +34,6 @@ namespace nok_cinema_web.ViewModels
             this.GENDER = p.GENDER;
             this.EMAIL = p.EMAIL;
             this.USERNAME = p.USERNAME;
-            this.PASSWORD = p.PASSWORD;
         }
         public void Cleanup()
         {
@@ -48,7 +46,6 @@ namespace nok_cinema_web.ViewModels
             this.GENDER = null;
             this.EMAIL = null;
             this.USERNAME = null;
-            this.PASSWORD = null;
         }
     }
 }

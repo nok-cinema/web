@@ -1,0 +1,49 @@
+﻿@using nok_cinema_web.ViewModels
+@model NowLogin
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Profile</title>
+</head>
+<body>
+    <div>
+        <h1 style="text-align:center">Welcome to Backend-Side</h1>
+        <div style="position:center">
+            <span>@Html.ActionLink("People", "Index")</span>
+            <span>@Html.ActionLink("Employees", "Index")</span>
+        </div>
+        @{
+//if (@Model.CITIZENID != null)
+//{
+                <div>
+                    <pre>
+                        @Model.FNAME  @Model.LNAME
+                        @Model.CITIZENID  @Model.GENDER
+                        @Model.EMAIL
+                        @Model.JOBPOSITION
+                        @Model.SALARY.ToString("C")
+                        @Model.USERNAME
+                        </pre>
+                    <form action="/Authentication/Logout" method="post">
+                        <input type="submit" name="BtnSubmit" value="Logout" />
+                    </form>
+                </div>
+                //}
+                //else
+                //{
+                //    <div>
+                //        <form action="/Authentication/Login" method="post">
+                //            <input type="submit" name="BtnSubmit" value="Login" />
+                //        </form>
+                //    </div>
+                //}
+        }
+    </div>
+</body>
+</html>

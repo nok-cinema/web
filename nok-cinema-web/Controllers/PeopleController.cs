@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using nok_cinema_web.Models;
+using nok_cinema_web.ViewModels;
 
 namespace nok_cinema_web.Controllers
 {
@@ -20,6 +21,16 @@ namespace nok_cinema_web.Controllers
         public async Task<ActionResult> Index()
         {
             return View(await db.PERSON.ToListAsync());
+        }
+
+        public ActionResult ShowInformation()
+        {
+            var profile = TempData["ProfileDetails"] as NowLogin;
+            if (profile != null)
+            {
+                return View("Profile", profile);
+            }
+            return RedirectToAction("Login", "Authentication");
         }
 
         // GET: People/Details/5

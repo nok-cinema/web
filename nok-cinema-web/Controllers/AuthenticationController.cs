@@ -21,7 +21,10 @@ namespace nok_cinema_web.Controllers
         // GET: Authentication
         public ActionResult Login()
         {
-            HttpContext.Current.User.Identity.IsAuthenticated
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("ShowInformation", "People");
+            }
             return View();
         }
 

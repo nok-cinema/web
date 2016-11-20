@@ -22,11 +22,26 @@ namespace nok_cinema_web.Controllers
         // GET: Authentication
         public ActionResult Login()
         {
-            if (Request.IsAuthenticated)
+            //if (Request.IsAuthenticated)
+            //{
+            //    return RedirectToAction("ShowInformation", "People");
+            //}
+            //return View();
+            if (Request.Cookies[FormsAuthentication.FormsCookieName] == null)
+                return View();
+            else
             {
+                string userName = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+                var peopleBLL = new PeopleBLL();
+                person = peopleBLL.GetPersonByCookie(userName);
+                var employeesBLL = new EmployeesBLL();
+                employee = employeesBLL.GetEmployeeByCitizenId(person.CITIZENID);
+
+                userProfile = new UserProfile(employee, person);
+                FormsAuthentication.SetAuthCookie(userProfile.USERNAME, false);
+                TempData["UserProfileData"] = userProfile;
                 return RedirectToAction("ShowInformation", "People");
             }
-            return View();
         }
 
         [HttpPost]

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -58,6 +59,30 @@ namespace nok_cinema_web.Controllers
             FormsAuthentication.SignOut();
 
             return RedirectToAction("Index", "Home");
+        }
+
+        // GET: Authentication/Register
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        // POST: Authentication/Register
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Register([Bind(Include = "CITIZENID,FNAME,LNAME,GENDER,BIRTHDATE,ADDRESS,EMAIL,USERNAME,PASSWORD")] PERSON pERSON)
+        {
+            if (ModelState.IsValid)
+            {
+                db.PERSON.Add(pERSON);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Login");
+            }
+
+            //return View(pERSON);
+            return RedirectToAction("Login");
         }
     }
 }

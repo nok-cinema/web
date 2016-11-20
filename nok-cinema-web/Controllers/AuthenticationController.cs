@@ -86,7 +86,23 @@ namespace nok_cinema_web.Controllers
         // GET: Authentication/Register
         public ActionResult Register()
         {
-            return View();
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie == null)
+            {
+                return View();
+            }
+            else
+            {
+                string userName = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+                var peopleBLL = new PeopleBLL();
+                person = peopleBLL.GetPersonByCookie(userName);
+                var employeesBLL = new EmployeesBLL();
+                employee = employeesBLL.GetEmployeeByCitizenId(person.CITIZENID);
+
+                userProfile = new UserProfile(employee, person);
+                TempData["UserProfileData"] = userProfile;
+                return RedirectToAction("ShowInformation", "People");
+            }
         }
 
         // POST: Authentication/Register

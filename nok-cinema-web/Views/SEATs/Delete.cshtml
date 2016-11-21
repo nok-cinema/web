@@ -1,0 +1,48 @@
+﻿@model nok_cinema_web.Models.SEAT
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>SEAT</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ZONE)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ZONE)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.THEATRE.THEATREID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.THEATRE.THEATREID)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+﻿@model nok_cinema_web.Models.MEMBER
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>MEMBER</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.STARTDATE)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.STARTDATE)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EXPIRYDATE)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EXPIRYDATE)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PERSON.FNAME)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PERSON.FNAME)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.MEMBERID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

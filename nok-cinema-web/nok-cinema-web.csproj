@@ -167,8 +167,16 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EMPLOYEEsController.cs" />
+    <Compile Include="Controllers\FOODsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MEMBERsController.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
+    <Compile Include="Controllers\REVIEWsController.cs" />
+    <Compile Include="Controllers\SEATsController.cs" />
+    <Compile Include="Controllers\SELLsController.cs" />
+    <Compile Include="Controllers\SHOWTIMEsController.cs" />
+    <Compile Include="Controllers\THEATREsController.cs" />
+    <Compile Include="Controllers\TICKETsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -289,6 +297,46 @@
     <Content Include="Views\EMPLOYEEs\Details.cshtml" />
     <Content Include="Views\EMPLOYEEs\Edit.cshtml" />
     <Content Include="Views\EMPLOYEEs\Index.cshtml" />
+    <Content Include="Views\FOODs\Create.cshtml" />
+    <Content Include="Views\FOODs\Delete.cshtml" />
+    <Content Include="Views\FOODs\Details.cshtml" />
+    <Content Include="Views\FOODs\Edit.cshtml" />
+    <Content Include="Views\FOODs\Index.cshtml" />
+    <Content Include="Views\MEMBERs\Create.cshtml" />
+    <Content Include="Views\MEMBERs\Delete.cshtml" />
+    <Content Include="Views\MEMBERs\Details.cshtml" />
+    <Content Include="Views\MEMBERs\Edit.cshtml" />
+    <Content Include="Views\MEMBERs\Index.cshtml" />
+    <Content Include="Views\REVIEWs\Create.cshtml" />
+    <Content Include="Views\REVIEWs\Delete.cshtml" />
+    <Content Include="Views\REVIEWs\Details.cshtml" />
+    <Content Include="Views\REVIEWs\Edit.cshtml" />
+    <Content Include="Views\REVIEWs\Index.cshtml" />
+    <Content Include="Views\SEATs\Create.cshtml" />
+    <Content Include="Views\SEATs\Delete.cshtml" />
+    <Content Include="Views\SEATs\Details.cshtml" />
+    <Content Include="Views\SEATs\Edit.cshtml" />
+    <Content Include="Views\SEATs\Index.cshtml" />
+    <Content Include="Views\SELLs\Create.cshtml" />
+    <Content Include="Views\SELLs\Delete.cshtml" />
+    <Content Include="Views\SELLs\Details.cshtml" />
+    <Content Include="Views\SELLs\Edit.cshtml" />
+    <Content Include="Views\SELLs\Index.cshtml" />
+    <Content Include="Views\SHOWTIMEs\Create.cshtml" />
+    <Content Include="Views\SHOWTIMEs\Delete.cshtml" />
+    <Content Include="Views\SHOWTIMEs\Details.cshtml" />
+    <Content Include="Views\SHOWTIMEs\Edit.cshtml" />
+    <Content Include="Views\SHOWTIMEs\Index.cshtml" />
+    <Content Include="Views\THEATREs\Create.cshtml" />
+    <Content Include="Views\THEATREs\Delete.cshtml" />
+    <Content Include="Views\THEATREs\Details.cshtml" />
+    <Content Include="Views\THEATREs\Edit.cshtml" />
+    <Content Include="Views\THEATREs\Index.cshtml" />
+    <Content Include="Views\TICKETs\Create.cshtml" />
+    <Content Include="Views\TICKETs\Delete.cshtml" />
+    <Content Include="Views\TICKETs\Details.cshtml" />
+    <Content Include="Views\TICKETs\Edit.cshtml" />
+    <Content Include="Views\TICKETs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

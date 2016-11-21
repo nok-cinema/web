@@ -1,0 +1,59 @@
+﻿@model IEnumerable<nok_cinema_web.Models.TICKET>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EMPLOYEE.JOBPOSITION)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MEMBER.CITIZENID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SEAT.ZONE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SHOWTIME.SHOWDATE)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMPLOYEE.JOBPOSITION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MEMBER.CITIZENID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SEAT.ZONE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SHOWTIME.SHOWDATE)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.TICKETID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.TICKETID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.TICKETID })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

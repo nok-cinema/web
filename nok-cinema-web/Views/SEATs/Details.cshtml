@@ -1,0 +1,42 @@
+﻿@model nok_cinema_web.Models.SEAT
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>SEAT</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ZONE)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ZONE)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.THEATRE.THEATREID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.THEATRE.THEATREID)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

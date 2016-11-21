@@ -1,0 +1,53 @@
+﻿@model IEnumerable<nok_cinema_web.Models.SELL>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SDATE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EMPLOYEE.JOBPOSITION)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FOOD.NAME)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SDATE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMPLOYEE.JOBPOSITION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FOOD.NAME)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

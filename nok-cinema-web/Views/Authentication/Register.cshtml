@@ -13,6 +13,7 @@
 
     @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
     @Scripts.Render("~/Scripts/jquery.maskedinput.min.js")
+    
 </head>
 <body>
     @using (Html.BeginForm())
@@ -34,7 +35,7 @@
                     $("#ssn").mask("999-99-9999");
                     $("#product").mask("a*-999-a999", { placeholder: " ", completed: function () { alert("You typed the following: " + this.val()); } });
                     $("#eyescript").mask("~9.99 ~9.99 999");
-                    $("#CITIZENID").mask("9-9999-99999-99-9");
+                    //$("#CITIZENID").mask("9-9999-99999-99-9");
                 });
             </script>
 

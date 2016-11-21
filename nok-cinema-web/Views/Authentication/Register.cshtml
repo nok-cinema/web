@@ -8,36 +8,97 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Account Register</title>
+    <title>Register</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Scripts/registerstyle.css")"/>
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
     <link rel="stylesheet" href="@Url.Content("~/Scripts/bootstrap.min.css")"/>
     <script src="@Url.Content("~/Scripts/jquery-3.1.1.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery.maskedinput.min.js")" type="text/javascript"></script>
     <link rel="stylesheet" href="@Url.Content("~/Scripts/bootstrap-iso.css")"/> 
 </head>
 <body>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+    <div>
+        <div class="header">
+            <div class="menu">
+                <div class="top1"><img src="logo1.png"> NOK CINEMA</div>
+                <div class="top2">Home</div>
+                <div class="top2">ShowTime</div>
+                <div class="top2">Movies</div>
+                <div class="top3" onclick="top3()">Login </div>
 
-        <div class="form-horizontal">
-            <h4>Create a new account</h4>
-            <hr />
-            <style>
-                .bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form {
-                    font-family: Arial, Helvetica, sans-serif;
-                    color: black;
-                }
 
-                    .bootstrap-iso form button, .bootstrap-iso form button:hover {
-                        color: white !important;
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">×</span>
+                        <div class="box1">
+                            <span class="boxheader">Login</span><br /><br /><br />
+                            <span class="username">Username: <br /><input type="text" id="TxtUName" name="Username" value="" /></span><br /><br />
+                            <span class="password">Password: <br /><input type="text" id="TxtPword" name="Password" value="" /></span><br /><br /><br />
+                            <button id="BtnSave">Login</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <script>
+						// Get the modal
+						var modal = document.getElementById('myModal');
+
+						// Get the button that opens the modal
+						var btn = document.getElementById("top3");
+
+						// Get the <span> element that closes the modal
+						var span = document.getElementsByClassName("close")[0];
+
+						// When the user clicks the button, open the modal
+						function top3() {
+    						modal.style.display = "block";
+						}
+
+						// When the user clicks on <span> (x), close the modal
+						span.onclick = function() {
+   							modal.style.display = "none";
+						}
+
+						// When the user clicks anywhere outside of the modal, close it
+						window.onclick = function(event) {
+    						if (event.target == modal) {
+        						modal.style.display = "none";
+    						}
+						}
+                </script>
+                <div class="top3">Register</div>
+            </div>
+        </div>
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Create a new account</h4>
+                <hr />
+                <style>
+                    .bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form {
+                        font-family: Arial, Helvetica, sans-serif;
+                        color: black;
                     }
 
-                .asteriskField {
-                    color: red;
-                }
-            </style>
-            <script type="text/javascript">
+                        .bootstrap-iso form button, .bootstrap-iso form button:hover {
+                            color: white !important;
+                        }
+
+                    .asteriskField {
+                        color: red;
+                    }
+                </style>
+                <script type="text/javascript">
                 jQuery(function ($) {
                     $.mask.definitions['~'] = '[+-]';
                     $('#date').mask('99/99/9999', { placeholder: "mm/dd/yyyy" });
@@ -50,126 +111,144 @@
                     $("#eyescript").mask("~9.99 ~9.99 999");
                     //$("#CITIZENID").mask("9-9999-99999-99-9", { removeMaskOnSubmit: true });
                 });
-            </script>
-            <div class="bootstrap-iso">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <form class="form-horizontal" method="post">
-                              
-                                <div class="form-group ">
-                                    <label class="control-label col-sm-2" for="CITIZENID">
-                                        CITIZENID
-                                    </label>
-                                     <div class="col-sm-10">
-                                         <input class="form-control text-box single-line" id="CITIZENID" name="CITIZENID" type="text" value="">
-                                            @Html.ValidationMessageFor(model => model.CITIZENID, "", new { @class = "text-danger" })
-                                     </div>
-                                </div>
-                                <div class="form-group ">
-                                    <label class="control-label col-sm-2" for="FNAME">
-                                        FNAME
-                                    </label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control text-box single-line" id="FNAME" name="FNAME" type="text" value="">
-                                        @Html.ValidationMessageFor(model => model.FNAME, "", new { @class = "text-danger" })
+
+                </script>
+                <div class="body">
+                    <div class="greyspace"></div>
+                    <div class="back">
+                        <div class="header2"><img src=""> Register</div>
+                        <div class="bootstrap-iso">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <form class="form-horizontal" method="post">
+
+                                            <div class="form-group ">
+                                                <label class="control-label col-sm-2" for="CITIZENID">
+                                                    CITIZENID
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control text-box single-line" id="CITIZENID" name="CITIZENID" type="text" value="">
+                                                  @Html.ValidationMessageFor(model => model.CITIZENID, "", new { @class = "text-danger" })
+                                                    <br />
+                                                </div>
+                                            </div>
+                                            <div class="form-group ">
+                                                <label class="control-label col-sm-2" for="FNAME">
+                                                    FNAME
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control text-box single-line" id="FNAME" name="FNAME" type="text" value="">
+                                                    @Html.ValidationMessageFor(model => model.FNAME, "", new { @class = "text-danger" })
+                                                    <br />
+                                                </div>
+                                            </div>
+                                            <div class="form-group ">
+                                                <label class="control-label col-sm-2" for="LNAME">
+                                                    LNAME
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control text-box single-line" id="LNAME" name="LNAME" type="text" value="">
+                                                    @Html.ValidationMessageFor(model => model.LNAME, "", new { @class = "text-danger" })
+                                                    <br />
+                                                </div>
+                                            </div>
+                                            <div class="form-group ">
+                                                <label class="control-label col-sm-2" for="GENDER">
+                                                    GENDER
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control text-box single-line" id="GENDER" name="GENDER" type="text" value="">
+                                                    @Html.ValidationMessageFor(model => model.GENDER, "", new { @class = "text-danger" })
+                                                    <br />
+                                                </div>
+                                            </div>
+                                            <div class="form-group ">
+                                                <label class="control-label col-sm-2" for="BIRTHDATE">
+                                                    BIRTHDATE
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control text-box single-line" id="BIRTHDATE" name="BIRTHDATE" type="text" value="">
+                                                    @Html.ValidationMessageFor(model => model.BIRTHDATE, "", new { @class = "text-danger" })
+                                                    <br />
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group ">
+                                                <label class="control-label col-sm-2" for="ADDRESS">
+                                                    ADDRESS
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control text-box single-line" id="ADDRESS" name="ADDRESS" type="text" value="">
+                                                    @Html.ValidationMessageFor(model => model.ADDRESS, "", new { @class = "text-danger" })
+                                                    <br />
+                                                </div>
+                                            </div>
+                                            <div class="form-group ">
+                                                <label class="control-label col-sm-2" for="EMAIL">
+                                                    EMAIL
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control text-box single-line" id="EMAIL" name="EMAIL" type="text" value="">
+                                                    @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+                                                    <br />
+                                                </div>
+                                            </div>
+                                            <div class="form-group ">
+                                                <label class="control-label col-sm-2" for="USERNAME">
+                                                    USERNAME
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control text-box single-line" id="USERNAME" name="USERNAME" type="text" value="">
+                                                    @Html.ValidationMessageFor(model => model.USERNAME, "", new { @class = "text-danger" })
+                                                    <br />
+                                                </div>
+                                            </div>
+                                            <div class="form-group ">
+                                                <label class="control-label col-sm-2" for="PASSWORD">
+                                                    PASSWORD
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control text-box single-line" id="PASSWORD" name="PASSWORD" type="text" value="">
+                                                    @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
+                                                    <br />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <input type="submit" value="Create" class="btn btn-default" />
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
-                                <div class="form-group ">
-                                    <label class="control-label col-sm-2" for="LNAME">
-                                        LNAME
-                                    </label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control text-box single-line" id="LNAME" name="LNAME" type="text" value="">
-                                        @Html.ValidationMessageFor(model => model.LNAME, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group ">
-                                    <label class="control-label col-sm-2" for="GENDER">
-                                        GENDER
-                                    </label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control text-box single-line" id="GENDER" name="GENDER" type="text" value="">
-                                        @Html.ValidationMessageFor(model => model.GENDER, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group ">
-                                    <label class="control-label col-sm-2" for="BIRTHDATE">
-                                        BIRTHDATE
-                                    </label>
-                                    <div class="col-sm-10">
-                                        <input  class="form-control text-box single-line" id="BIRTHDATE" name="BIRTHDATE"  type="text" value="">
-                                        @Html.ValidationMessageFor(model => model.BIRTHDATE, "", new { @class = "text-danger" })
-                                    </div>
-                              
-                                </div>
-                                <div class="form-group ">
-                                    <label class="control-label col-sm-2" for="ADDRESS">
-                                        ADDRESS
-                                    </label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control text-box single-line" id="ADDRESS" name="ADDRESS" type="text" value="">
-                                        @Html.ValidationMessageFor(model => model.ADDRESS, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group ">
-                                    <label class="control-label col-sm-2" for="EMAIL">
-                                        EMAIL
-                                    </label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control text-box single-line" id="EMAIL" name="EMAIL" type="text" value="">
-                                        @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group ">
-                                    <label class="control-label col-sm-2" for="USERNAME">
-                                        USERNAME
-                                    </label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control text-box single-line" id="USERNAME" name="USERNAME" type="text" value="">
-                                        @Html.ValidationMessageFor(model => model.USERNAME, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group ">
-                                    <label class="control-label col-sm-2" for="PASSWORD">
-                                        PASSWORD
-                                    </label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control text-box single-line" id="PASSWORD" name="PASSWORD" type="text" value="">
-                                        @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-offset-2 col-md-10">
-                                        <input type="submit" value="Create" class="btn btn-default" />
-                                    </div>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
+                    <div class="boxbg"></div>
                 </div>
-            </div>    
+            </div>
+                <!-- Include Date Range Picker -->
+            <script type="text/javascript" src="@Url.Content("~/Scripts/bootstrap-datepicker.min.js")"></script>
+                <link rel="stylesheet" href="@Url.Content("~/Scripts/bootstrap-datepicker3.css")" />
+
+                <script>
+                    $(document).ready(function () {
+                        var date_input = $('input[name="BIRTHDATE"]'); //our date input has the name "date"
+                        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+                        date_input.datepicker({
+                            format: 'dd/mm/yyyy',
+                            container: container,
+                            todayHighlight: true,
+                            autoclose: true,
+                        })
+                    })
+                </script>
+        }
+
+        <div>
+            @Html.ActionLink("Already has an account?", "Login")
         </div>
-        <!-- Include Date Range Picker -->
-        <script type="text/javascript" src="@Url.Content("~/Scripts/bootstrap-datepicker.min.js")"></script>
-        <link rel="stylesheet" href="@Url.Content("~/Scripts/bootstrap-datepicker3.css")" /> 
 
-        <script>
-	$(document).ready(function(){
-	    var date_input = $('input[name="BIRTHDATE"]'); //our date input has the name "date"
-		var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-		date_input.datepicker({
-			format: 'dd/mm/yyyy',
-			container: container,
-			todayHighlight: true,
-			autoclose: true,
-		})
-	})
-        </script>
-    }
-
-    <div>
-        @Html.ActionLink("Already has an account?", "Login")
-    </div>
 </body>
 </html>

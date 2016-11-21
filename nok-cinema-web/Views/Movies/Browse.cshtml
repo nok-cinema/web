@@ -1,0 +1,21 @@
+﻿@model nok_cinema_web.ViewModels.MovieListViewModel
+
+@{
+    Layout = null;
+}
+
+<div class="category">
+    <h3><em>@Model.Category</em> Category</h3>
+
+    <ul id="movie-list">
+        @foreach (var movie in Model.Movies)
+        {
+            <li>
+                <a href="@Url.Action("Details", new { id = movie.MoveId })">
+                    @*<img alt="@movie.MovieName" src="@movie.AlbumArtUrl" />*@
+                    <span>@movie.MovieName</span>
+                </a>
+            </li>
+        }
+    </ul>
+</div>

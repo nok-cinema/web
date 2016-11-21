@@ -32,11 +32,11 @@ namespace nok_cinema_web.Controllers
             movieList.Movies = movieBLL.GetMovieListByCategory(category);
             if (movieList.Movies.Any())
             {
-                return this.View(movieList);
+                return View(movieList);
             }
             else
             {
-                return View("Index");
+                return RedirectToAction("Index");
             }
         }
 

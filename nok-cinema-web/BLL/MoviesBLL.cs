@@ -9,27 +9,26 @@ namespace nok_cinema_web.BLL
 {
     public class MoviesBLL
     {
-        public bool Status { get; set; }
-            
         public List<MovieViewModel> GetMovieListByCategory(string category)
         {
             var db = new CinemaEntities();
-            var movieList = new MovieListViewModel();
+            MovieListViewModel movieList = new MovieListViewModel();
+            MovieViewModel movie = new MovieViewModel();
             IQueryable<MOVIE> movieQuery = from tmp in db.MOVIE
-                                                 where tmp.CATEGORY.Equals(category)
-                                                 select tmp;
-            
+                                           where tmp.CATEGORY.Equals(category)
+                                           select tmp;
+            List<MovieViewModel> movies = new List<MovieViewModel>();
             if (movieQuery.Any())
             {
                 foreach (var movieTuple in movieQuery)
                 {
-                    MovieViewModel movie = new MovieViewModel();
                     movie.MoveId = movieTuple.MOVIEID;
                     movie.Category = movieTuple.CATEGORY;
                     movie.MovieName = movieTuple.MOVIENAME;
-                    movieList.Movies.Add(movie);
+                    movies.Add(movie);
                 }
             }
+            movieList.Movies = movies;
             movieList.Category = category;
             return movieList.Movies;
         }

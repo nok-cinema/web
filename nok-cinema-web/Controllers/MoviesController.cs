@@ -7,21 +7,40 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
+using nok_cinema_web.BLL;
 using nok_cinema_web.Models;
+using nok_cinema_web.ViewModels;
 
 namespace nok_cinema_web.Controllers
 {
-    public class MOVIEsController : Controller
+    public class MoviesController : Controller
     {
         private CinemaEntities db = new CinemaEntities();
 
-        // GET: MOVIEs
+        // GET: Movies
         public async Task<ActionResult> Index()
         {
             return View(await db.MOVIE.ToListAsync());
         }
 
-        // GET: MOVIEs/Details/5
+        public ActionResult Browse(string category)
+        {
+            var movieBLL = new MoviesBLL();
+            var movieList = new MovieListViewModel();
+            movieList.Category = category;
+            movieList.Movies = movieBLL.GetMovieListByCategory(category);
+            if (movieList.Movies.Any())
+            {
+                return View(movieList);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        // GET: Movies/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -36,13 +55,13 @@ namespace nok_cinema_web.Controllers
             return View(mOVIE);
         }
 
-        // GET: MOVIEs/Create
+        // GET: Movies/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: MOVIEs/Create
+        // POST: Movies/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -59,7 +78,7 @@ namespace nok_cinema_web.Controllers
             return View(mOVIE);
         }
 
-        // GET: MOVIEs/Edit/5
+        // GET: Movies/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,7 +93,7 @@ namespace nok_cinema_web.Controllers
             return View(mOVIE);
         }
 
-        // POST: MOVIEs/Edit/5
+        // POST: Movies/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -90,7 +109,7 @@ namespace nok_cinema_web.Controllers
             return View(mOVIE);
         }
 
-        // GET: MOVIEs/Delete/5
+        // GET: Movies/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -105,7 +124,7 @@ namespace nok_cinema_web.Controllers
             return View(mOVIE);
         }
 
-        // POST: MOVIEs/Delete/5
+        // POST: Movies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

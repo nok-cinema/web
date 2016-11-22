@@ -18,26 +18,43 @@
         <hr />
         <dl class="dl-horizontal">
             <dt>
+                @Html.DisplayNameFor(model => model.MOVIE.MOVIEID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MOVIE.MOVIEID)
+            </dd>
+
+            <dt>
                 @Html.DisplayNameFor(model => model.MOVIE.MOVIENAME)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.MOVIE.MOVIENAME)
             </dd>
-    
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SHOWDATE)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SHOWDATE)
+            </dd>
+
             <dt>
                 @Html.DisplayNameFor(model => model.THEATRE.THEATREID)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.THEATRE.THEATREID)
             </dd>
-    
+
         </dl>
-    
-        @using (Html.BeginForm()) {
+
+        @using (Html.BeginForm())
+        {
             @Html.AntiForgeryToken()
-    
+
             <div class="form-actions no-color">
                 <input type="submit" value="Delete" class="btn btn-default" /> |
                 @Html.ActionLink("Back to List", "Index")

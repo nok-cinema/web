@@ -1,0 +1,55 @@
+﻿@using nok_cinema_web.ViewModels
+@model ShowtimeListViewModel
+@{
+    ViewBag.Title = "ShowtimeBrowse";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <div>
+        <h3><em>@Model.MOVIENAME</em></h3>
+        <table class="table">
+            <tr>
+                <th>
+                    <h1>MOVIEID</h1>
+                </th>
+                <th>
+                    <h1>DATE</h1>
+                </th>
+                <th>
+                    <h1>TIME</h1>
+                </th>
+                <th>
+                    <h1>THEATREID</h1>
+                </th>
+            </tr>
+            @foreach (var item in Model.SHOWTIMES)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MOVIEID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DATES)
+                    </td>
+                    <td>
+                        @for (int i = 0; i < item.TIMES.Count(); i++)
+                        {
+                            <span>
+                                @Html.ActionLink(item.TIMES[i].ToString(), "SelectShowtime", new { m_id = item.MOVIEID, sd = item.SHOWDATES[i], t_id = item.THEATREID })
+                            </span>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.THEATREID)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

@@ -187,6 +187,7 @@
     <Compile Include="Controllers\FOODsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MEMBERsController.cs" />
+    <Compile Include="Controllers\MOVIEsController.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
     <Compile Include="Controllers\REVIEWsController.cs" />
     <Compile Include="Controllers\SEATsController.cs" />
@@ -364,6 +365,11 @@
     <Content Include="Views\Authentication\Login.cshtml" />
     <Content Include="Views\Authentication\Register.cshtml" />
     <Content Include="Views\People\Profile.cshtml" />
+    <Content Include="Views\MOVIEs\Create.cshtml" />
+    <Content Include="Views\MOVIEs\Delete.cshtml" />
+    <Content Include="Views\MOVIEs\Details.cshtml" />
+    <Content Include="Views\MOVIEs\Edit.cshtml" />
+    <Content Include="Views\MOVIEs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

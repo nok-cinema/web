@@ -153,16 +153,22 @@
                                                     <br />
                                                 </div>
                                             </div>
-                                            <div class="form-group ">
+                                            <div class="form-group" id="div_radio">
                                                 <label class="control-label col-sm-2" for="GENDER">
                                                     GENDER
                                                 </label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control text-box single-line" id="GENDER" name="GENDER" type="text" value="">
-                                                    @Html.ValidationMessageFor(model => model.GENDER, "", new { @class = "text-danger" })
-                                                    <br />
-                                                </div>
+                                                    <label class="radio-inline">
+                                                        <input name="GENDER" type="radio" value="M" />
+                                                        MAIL
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input name="GENDER" type="radio" value="F" />
+                                                        FEMAIL   
+                                                    </label>
+                                                </div>   
                                             </div>
+                                            &nbsp;
                                             <div class="form-group ">
                                                 <label class="control-label col-sm-2" for="BIRTHDATE">
                                                     BIRTHDATE

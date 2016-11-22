@@ -50,7 +50,7 @@ namespace nok_cinema_web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "FOODID,EMPID,SDATE")] SELL sELL)
+        public async Task<ActionResult> Create([Bind(Include = "FOODID,EMPID,SDATE,AMOUNT")] SELL sELL)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace nok_cinema_web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "FOODID,EMPID,SDATE")] SELL sELL)
+        public async Task<ActionResult> Edit([Bind(Include = "FOODID,EMPID,SDATE,AMOUNT")] SELL sELL)
         {
             if (ModelState.IsValid)
             {

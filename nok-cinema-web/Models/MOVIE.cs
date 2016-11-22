@@ -18,6 +18,7 @@ namespace nok_cinema_web.Models
         public MOVIE()
         {
             this.SHOWTIME = new HashSet<SHOWTIME>();
+            this.REVIEW = new HashSet<REVIEW>();
         }
     
         public int MOVIEID { get; set; }
@@ -32,5 +33,7 @@ namespace nok_cinema_web.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SHOWTIME> SHOWTIME { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<REVIEW> REVIEW { get; set; }
     }
 }

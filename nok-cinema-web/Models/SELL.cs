@@ -17,6 +17,7 @@ namespace nok_cinema_web.Models
         public int FOODID { get; set; }
         public int EMPID { get; set; }
         public System.DateTime SDATE { get; set; }
+        public int AMOUNT { get; set; }
     
         public virtual EMPLOYEE EMPLOYEE { get; set; }
         public virtual FOOD FOOD { get; set; }

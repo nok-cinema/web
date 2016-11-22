@@ -21,6 +21,9 @@
                 @Html.DisplayNameFor(model => model.SDATE)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.AMOUNT)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.EMPLOYEE.JOBPOSITION)
             </th>
             <th>
@@ -33,6 +36,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.SDATE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AMOUNT)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.EMPLOYEE.JOBPOSITION)

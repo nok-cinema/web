@@ -20,5 +20,6 @@ namespace nok_cinema_web.Models
         public string COMMENTS { get; set; }
     
         public virtual MEMBER MEMBER { get; set; }
+        public virtual MOVIE MOVIE { get; set; }
     }
 }

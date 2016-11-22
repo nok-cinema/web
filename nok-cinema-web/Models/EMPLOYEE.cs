@@ -17,8 +17,8 @@ namespace nok_cinema_web.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public EMPLOYEE()
         {
-            this.SELL = new HashSet<SELL>();
             this.TICKET = new HashSet<TICKET>();
+            this.SELL = new HashSet<SELL>();
         }
     
         public int EMPID { get; set; }
@@ -28,8 +28,8 @@ namespace nok_cinema_web.Models
     
         public virtual PERSON PERSON { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SELL> SELL { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TICKET> TICKET { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SELL> SELL { get; set; }
     }
 }

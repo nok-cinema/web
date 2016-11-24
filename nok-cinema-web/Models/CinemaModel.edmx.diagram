@@ -8,7 +8,6 @@
         <EntityTypeShape EntityType="Model.EMPLOYEE" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.FOOD" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.MEMBER" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.MOVIE" Width="1.5" PointX="3.75" PointY="13.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.PERSON" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.REVIEW" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.SEAT" Width="1.5" PointX="6" PointY="10.375" IsExpanded="true" />
@@ -20,15 +19,16 @@
         <AssociationConnector Association="Model.MEMBER_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.REVIEW_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.TICKET_FK1" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.SHOWTIME_FK2" ManuallyRouted="false" />
         <AssociationConnector Association="Model.SEAT_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.TICKET_FK2" ManuallyRouted="false" />
         <AssociationConnector Association="Model.SHOWTIME_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.TICKET_FK3" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.REVIEW_FK2" />
         <EntityTypeShape EntityType="Model.SELL" Width="1.5" PointX="5.25" PointY="2.25" />
         <AssociationConnector Association="Model.SELL_FK2" />
         <AssociationConnector Association="Model.SELL_FK1" />
+        <EntityTypeShape EntityType="Model.MOVIE" Width="1.5" PointX="8.375" PointY="9" />
+        <AssociationConnector Association="Model.REVIEW_FK2" />
+        <AssociationConnector Association="Model.SHOWTIME_FK2" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

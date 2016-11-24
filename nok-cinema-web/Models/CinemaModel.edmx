@@ -42,9 +42,10 @@
           <Property Name="DIRECTOR" Type="varchar2" MaxLength="70" />
           <Property Name="SHORTDESCRIPTION" Type="varchar2" MaxLength="255" />
           <Property Name="ACTOR" Type="varchar2" MaxLength="70" />
-          <Property Name="DURATION" Type="number" Precision="3" Scale="2" />
+          <Property Name="DURATION" Type="number" Precision="4" Scale="0" />
           <Property Name="PLAYCOUNT" Type="number" Precision="10" Scale="0" />
           <Property Name="STATUS" Type="varchar2" MaxLength="20" />
+          <Property Name="SHOWDATE" Type="date" />
         </EntityType>
         <EntityType Name="PERSON">
           <Key>
@@ -386,22 +387,6 @@
           <NavigationProperty Name="REVIEW" Relationship="Self.REVIEW_FK1" FromRole="MEMBER" ToRole="REVIEW" />
           <NavigationProperty Name="TICKET" Relationship="Self.TICKET_FK1" FromRole="MEMBER" ToRole="TICKET" />
         </EntityType>
-        <EntityType Name="MOVIE">
-          <Key>
-            <PropertyRef Name="MOVIEID" />
-          </Key>
-          <Property Name="MOVIEID" Type="Int32" Nullable="false" />
-          <Property Name="MOVIENAME" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="CATEGORY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="DIRECTOR" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="SHORTDESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="ACTOR" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="DURATION" Type="Decimal" Precision="3" Scale="2" />
-          <Property Name="PLAYCOUNT" Type="Int32" />
-          <Property Name="STATUS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="SHOWTIME" Relationship="Self.SHOWTIME_FK2" FromRole="MOVIE" ToRole="SHOWTIME" />
-          <NavigationProperty Name="REVIEW" Relationship="Model.REVIEW_FK2" FromRole="MOVIE" ToRole="REVIEW" />
-        </EntityType>
         <EntityType Name="PERSON">
           <Key>
             <PropertyRef Name="CITIZENID" />
@@ -451,9 +436,9 @@
           <Property Name="SHOWDATE" Type="DateTime" Nullable="false" />
           <Property Name="MOVIEID" Type="Int32" Nullable="false" />
           <Property Name="THEATREID" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="MOVIE" Relationship="Self.SHOWTIME_FK2" FromRole="SHOWTIME" ToRole="MOVIE" />
           <NavigationProperty Name="THEATRE" Relationship="Self.SHOWTIME_FK1" FromRole="SHOWTIME" ToRole="THEATRE" />
           <NavigationProperty Name="TICKET" Relationship="Self.TICKET_FK3" FromRole="SHOWTIME" ToRole="TICKET" />
+          <NavigationProperty Name="MOVIE" Relationship="Model.SHOWTIME_FK2" FromRole="SHOWTIME" ToRole="MOVIE" />
         </EntityType>
         <EntityType Name="THEATRE">
           <Key>
@@ -541,18 +526,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="SHOWTIME_FK2">
-          <End Role="MOVIE" Type="Self.MOVIE" Multiplicity="1" />
-          <End Role="SHOWTIME" Type="Self.SHOWTIME" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MOVIE">
-              <PropertyRef Name="MOVIEID" />
-            </Principal>
-            <Dependent Role="SHOWTIME">
-              <PropertyRef Name="MOVIEID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="SEAT_FK1">
           <End Role="THEATRE" Type="Self.THEATRE" Multiplicity="1" />
           <End Role="SEAT" Type="Self.SEAT" Multiplicity="*" />
@@ -611,7 +584,6 @@
           <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" />
           <EntitySet Name="FOOD" EntityType="Self.FOOD" />
           <EntitySet Name="MEMBER" EntityType="Self.MEMBER" />
-          <EntitySet Name="MOVIE" EntityType="Self.MOVIE" />
           <EntitySet Name="PERSON" EntityType="Self.PERSON" />
           <EntitySet Name="REVIEW" EntityType="Self.REVIEW" />
           <EntitySet Name="SEAT" EntityType="Self.SEAT" />
@@ -638,10 +610,6 @@
             <End Role="MEMBER" EntitySet="MEMBER" />
             <End Role="TICKET" EntitySet="TICKET" />
           </AssociationSet>
-          <AssociationSet Name="SHOWTIME_FK2" Association="Self.SHOWTIME_FK2">
-            <End Role="MOVIE" EntitySet="MOVIE" />
-            <End Role="SHOWTIME" EntitySet="SHOWTIME" />
-          </AssociationSet>
           <AssociationSet Name="SEAT_FK1" Association="Self.SEAT_FK1">
             <End Role="THEATRE" EntitySet="THEATRE" />
             <End Role="SEAT" EntitySet="SEAT" />
@@ -658,10 +626,6 @@
             <End Role="SHOWTIME" EntitySet="SHOWTIME" />
             <End Role="TICKET" EntitySet="TICKET" />
           </AssociationSet>
-          <AssociationSet Name="REVIEW_FK2" Association="Model.REVIEW_FK2">
-            <End Role="MOVIE" EntitySet="MOVIE" />
-            <End Role="REVIEW" EntitySet="REVIEW" />
-          </AssociationSet>
           <EntitySet Name="SELL" EntityType="Model.SELL" />
           <AssociationSet Name="SELL_FK2" Association="Model.SELL_FK2">
             <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
@@ -671,19 +635,16 @@
             <End Role="FOOD" EntitySet="FOOD" />
             <End Role="SELL" EntitySet="SELL" />
           </AssociationSet>
+          <EntitySet Name="MOVIE" EntityType="Model.MOVIE" />
+          <AssociationSet Name="REVIEW_FK2" Association="Model.REVIEW_FK2">
+            <End Role="MOVIE" EntitySet="MOVIE" />
+            <End Role="REVIEW" EntitySet="REVIEW" />
+          </AssociationSet>
+          <AssociationSet Name="SHOWTIME_FK2" Association="Model.SHOWTIME_FK2">
+            <End Role="MOVIE" EntitySet="MOVIE" />
+            <End Role="SHOWTIME" EntitySet="SHOWTIME" />
+          </AssociationSet>
         </EntityContainer>
-        <Association Name="REVIEW_FK2">
-          <End Type="Model.MOVIE" Role="MOVIE" Multiplicity="1" />
-          <End Type="Model.REVIEW" Role="REVIEW" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MOVIE">
-              <PropertyRef Name="MOVIEID" />
-            </Principal>
-            <Dependent Role="REVIEW">
-              <PropertyRef Name="MOVIEID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="SELL">
           <Key>
             <PropertyRef Name="FOODID" />
@@ -721,6 +682,47 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="MOVIE">
+          <Key>
+            <PropertyRef Name="MOVIEID" />
+          </Key>
+          <Property Name="MOVIEID" Type="Int32" Nullable="false" />
+          <Property Name="MOVIENAME" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="CATEGORY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECTOR" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="SHORTDESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ACTOR" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="DURATION" Type="Int16" />
+          <Property Name="PLAYCOUNT" Type="Int32" />
+          <Property Name="STATUS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SHOWDATE" Type="DateTime" />
+          <NavigationProperty Name="REVIEW" Relationship="Model.REVIEW_FK2" FromRole="MOVIE" ToRole="REVIEW" />
+          <NavigationProperty Name="SHOWTIME" Relationship="Model.SHOWTIME_FK2" FromRole="MOVIE" ToRole="SHOWTIME" />
+        </EntityType>
+        <Association Name="REVIEW_FK2">
+          <End Type="Model.MOVIE" Role="MOVIE" Multiplicity="1" />
+          <End Type="Model.REVIEW" Role="REVIEW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MOVIE">
+              <PropertyRef Name="MOVIEID" />
+            </Principal>
+            <Dependent Role="REVIEW">
+              <PropertyRef Name="MOVIEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SHOWTIME_FK2">
+          <End Type="Model.MOVIE" Role="MOVIE" Multiplicity="1" />
+          <End Type="Model.SHOWTIME" Role="SHOWTIME" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MOVIE">
+              <PropertyRef Name="MOVIEID" />
+            </Principal>
+            <Dependent Role="SHOWTIME">
+              <PropertyRef Name="MOVIEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -754,21 +756,6 @@
                 <ScalarProperty Name="STARTDATE" ColumnName="STARTDATE" />
                 <ScalarProperty Name="EXPIRYDATE" ColumnName="EXPIRYDATE" />
                 <ScalarProperty Name="CITIZENID" ColumnName="CITIZENID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MOVIE">
-            <EntityTypeMapping TypeName="Model.MOVIE">
-              <MappingFragment StoreEntitySet="MOVIE">
-                <ScalarProperty Name="MOVIEID" ColumnName="MOVIEID" />
-                <ScalarProperty Name="MOVIENAME" ColumnName="MOVIENAME" />
-                <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
-                <ScalarProperty Name="DIRECTOR" ColumnName="DIRECTOR" />
-                <ScalarProperty Name="SHORTDESCRIPTION" ColumnName="SHORTDESCRIPTION" />
-                <ScalarProperty Name="ACTOR" ColumnName="ACTOR" />
-                <ScalarProperty Name="DURATION" ColumnName="DURATION" />
-                <ScalarProperty Name="PLAYCOUNT" ColumnName="PLAYCOUNT" />
-                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -845,6 +832,22 @@
                 <ScalarProperty Name="SDATE" ColumnName="SDATE" />
                 <ScalarProperty Name="EMPID" ColumnName="EMPID" />
                 <ScalarProperty Name="FOODID" ColumnName="FOODID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MOVIE">
+            <EntityTypeMapping TypeName="Model.MOVIE">
+              <MappingFragment StoreEntitySet="MOVIE">
+                <ScalarProperty Name="SHOWDATE" ColumnName="SHOWDATE" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="PLAYCOUNT" ColumnName="PLAYCOUNT" />
+                <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+                <ScalarProperty Name="ACTOR" ColumnName="ACTOR" />
+                <ScalarProperty Name="SHORTDESCRIPTION" ColumnName="SHORTDESCRIPTION" />
+                <ScalarProperty Name="DIRECTOR" ColumnName="DIRECTOR" />
+                <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+                <ScalarProperty Name="MOVIENAME" ColumnName="MOVIENAME" />
+                <ScalarProperty Name="MOVIEID" ColumnName="MOVIEID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

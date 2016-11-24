@@ -9,26 +9,55 @@ namespace nok_cinema_web.BLL
 {
     public class MoviesBLL
     {
-        public List<MovieViewModel> GetMovieListByCategory(string category)
+        public List<MovieViewModel> GetMovieListByNowShowing()
         {
             var db = new CinemaEntities();
-            MovieListViewModel movieList = new MovieListViewModel();
-            MovieViewModel movie = new MovieViewModel();
+            var movieList = new MovieListViewModel();
             IQueryable<MOVIE> movieQuery = from tmp in db.MOVIE
-                                           where tmp.CATEGORY.Equals(category)
+                                           where tmp.STATUS.Equals(true)
                                            select tmp;
-            List<MovieViewModel> movies = new List<MovieViewModel>();
+            movieList.Movies = new List<MovieViewModel>();
             if (movieQuery.Any())
             {
                 foreach (var movieTuple in movieQuery)
                 {
-                    movie.MoveId = movieTuple.MOVIEID;
-                    movie.Category = movieTuple.CATEGORY;
-                    movie.MovieName = movieTuple.MOVIENAME;
-                    movies.Add(movie);
+                    var movie = new MovieViewModel
+                    {
+                        MovieId = movieTuple.MOVIEID,
+                        Category = movieTuple.CATEGORY,
+                        MovieName = movieTuple.MOVIENAME,
+                        ShowDate = movieTuple.SHOWDATE
+                    };
+                    movieList.Movies.Add(movie);
                 }
             }
-            movieList.Movies = movies;
+            movieList.Movies = movieList.Movies;
+            return movieList.Movies;
+        }
+
+        public List<MovieViewModel> GetMovieListByCategory(string category)
+        {
+            var db = new CinemaEntities();
+            var movieList = new MovieListViewModel();
+            //MovieViewModel movie = new MovieViewModel();
+            IQueryable<MOVIE> movieQuery = from tmp in db.MOVIE
+                                           where tmp.CATEGORY.Equals(category)
+                                           select tmp;
+            movieList.Movies = new List<MovieViewModel>();
+            if (movieQuery.Any())
+            {
+                foreach (var movieTuple in movieQuery)
+                {
+                    var movie = new MovieViewModel
+                    {
+                        MovieId = movieTuple.MOVIEID,
+                        Category = movieTuple.CATEGORY,
+                        MovieName = movieTuple.MOVIENAME,
+                        ShowDate = movieTuple.SHOWDATE
+                    };
+                    movieList.Movies.Add(movie);
+                }
+            }
             movieList.Category = category;
             return movieList.Movies;
         }

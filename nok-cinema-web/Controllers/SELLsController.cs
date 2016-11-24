@@ -23,18 +23,20 @@ namespace nok_cinema_web.Controllers
         }
 
         // GET: SELLs/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public async Task<ActionResult> Details(int? foodId, int? empId, System.DateTime? sDateTime)
         {
-            if (id == null)
+            SELL sell =
+                db.SELL.FirstOrDefault(p => p.FOODID == foodId && p.EMPID == empId && p.SDATE == sDateTime);
+            if (sell == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SELL sELL = await db.SELL.FindAsync(id);
-            if (sELL == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sELL);
+            //SELL sELL = await db.SELL.FindAsync(sell);
+            //if (sELL == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            return View(sell);
         }
 
         // GET: SELLs/Create

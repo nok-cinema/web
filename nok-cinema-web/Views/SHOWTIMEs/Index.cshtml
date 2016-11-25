@@ -15,33 +15,49 @@
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
+    <p>
+        @Html.ActionLink("Action category", "Browse", new { movieid = 1 })
+    </p>
     <table class="table">
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.MOVIE.MOVIEID)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.MOVIE.MOVIENAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SHOWDATE)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.THEATRE.THEATREID)
             </th>
             <th></th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MOVIE.MOVIENAME)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.THEATRE.THEATREID)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MOVIE.MOVIEID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MOVIE.MOVIENAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SHOWDATE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.THEATRE.THEATREID)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id1 = item.SHOWDATE, id2 = item.MOVIEID }) |
+                    @Html.ActionLink("Details", "Details", new { id1 = item.SHOWDATE, id2 = item.MOVIEID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id1 = item.SHOWDATE, id2 = item.MOVIEID })
+                </td>
+            </tr>
+        }
+
     </table>
 </body>
 </html>

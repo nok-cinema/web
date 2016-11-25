@@ -1,0 +1,29 @@
+﻿@using nok_cinema_web.ViewModels
+@model ShowtimeViewModel
+@{
+    ViewBag.Title = "SelectShowtime";
+}
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SelectShowtime</title>
+</head>
+<body>
+    <div>
+        <h2>SelectShowtime</h2>
+<pre>
+    @Model.MOVIEID
+    @Model.SHOWDATES[0]
+    @Model.THEATREID
+</pre>
+    </div>
+</body>
+</html>
+
+

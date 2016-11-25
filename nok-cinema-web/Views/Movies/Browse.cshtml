@@ -10,12 +10,15 @@
     <ul id="movie-list">
         @foreach (var movie in Model.Movies)
         {
-            <li>
-                <a href="@Url.Action("Details", new { id = movie.MoveId })">
-                    @*<img alt="@movie.MovieName" src="@movie.AlbumArtUrl" />*@
-                    <span>@movie.MovieName</span>
+            <div class="poster">
+                <a href="@Url.Action("Details", new { id = movie.MovieId })">
+                    <img alt="@movie.MovieName" src="@Url.Content(String.Format("~/Content/Images/{0}.jpg", movie.MovieId))"/>
                 </a>
-            </li>
+            </div>
+            <div class="movieDetails">
+                <span>@movie.MovieName</span>
+                <span>@movie.MovieId</span>
+            </div>
         }
     </ul>
 </div>

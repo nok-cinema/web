@@ -16,7 +16,9 @@
         @Html.ActionLink("Create New", "Create")
     </p>
     <br />
-    @Html.ActionLink("Action category", "Browse", new { category = "Action" })
+    @Html.ActionLink("Music category", "Browse", new { category = "Music" })
+    @Html.ActionLink("Romantic category", "Browse", new { category = "Romantic" })
+    @Html.ActionLink("Fantasy category", "Browse", new { category = "Fantasy" })
     <table class="table">
         <tr>
             <th>
@@ -42,6 +44,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.STATUS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SHOWDATE)
             </th>
             <th></th>
         </tr>
@@ -72,6 +77,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.STATUS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SHOWDATE)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.MOVIEID }) |

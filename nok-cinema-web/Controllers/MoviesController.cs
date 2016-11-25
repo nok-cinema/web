@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.Ajax.Utilities;
 using nok_cinema_web.BLL;
 using nok_cinema_web.Models;
 using nok_cinema_web.ViewModels;
@@ -66,7 +65,7 @@ namespace nok_cinema_web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "MOVIEID,MOVIENAME,CATEGORY,DIRECTOR,SHORTDESCRIPTION,ACTOR,DURATION,PLAYCOUNT,STATUS")] MOVIE mOVIE)
+        public async Task<ActionResult> Create([Bind(Include = "MOVIEID,MOVIENAME,CATEGORY,DIRECTOR,SHORTDESCRIPTION,ACTOR,DURATION,PLAYCOUNT,STATUS,SHOWDATE")] MOVIE mOVIE)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +97,7 @@ namespace nok_cinema_web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "MOVIEID,MOVIENAME,CATEGORY,DIRECTOR,SHORTDESCRIPTION,ACTOR,DURATION,PLAYCOUNT,STATUS")] MOVIE mOVIE)
+        public async Task<ActionResult> Edit([Bind(Include = "MOVIEID,MOVIENAME,CATEGORY,DIRECTOR,SHORTDESCRIPTION,ACTOR,DURATION,PLAYCOUNT,STATUS,SHOWDATE")] MOVIE mOVIE)
         {
             if (ModelState.IsValid)
             {

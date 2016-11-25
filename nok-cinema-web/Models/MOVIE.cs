@@ -17,8 +17,8 @@ namespace nok_cinema_web.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MOVIE()
         {
-            this.SHOWTIME = new HashSet<SHOWTIME>();
             this.REVIEW = new HashSet<REVIEW>();
+            this.SHOWTIME = new HashSet<SHOWTIME>();
         }
     
         public int MOVIEID { get; set; }
@@ -27,13 +27,14 @@ namespace nok_cinema_web.Models
         public string DIRECTOR { get; set; }
         public string SHORTDESCRIPTION { get; set; }
         public string ACTOR { get; set; }
-        public Nullable<decimal> DURATION { get; set; }
+        public Nullable<short> DURATION { get; set; }
         public Nullable<int> PLAYCOUNT { get; set; }
         public string STATUS { get; set; }
+        public System.DateTime SHOWDATE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SHOWTIME> SHOWTIME { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<REVIEW> REVIEW { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SHOWTIME> SHOWTIME { get; set; }
     }
 }

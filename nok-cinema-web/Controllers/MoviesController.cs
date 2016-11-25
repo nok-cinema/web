@@ -25,18 +25,18 @@ namespace nok_cinema_web.Controllers
 
         public ActionResult Browse(string category)
         {
-            //var movieBLL = new MoviesBLL();
-            //var movieList = new MovieListViewModel();
-            //movieList.Category = category;
-            //movieList.Movies = movieBLL.GetMovieListByCategory(category);
-            //if (movieList.Movies.Any())
-            //{
-            //    return View(movieList);
-            //}
-            //else
-            //{
-            return RedirectToAction("Index");
-            //}
+            var movieBLL = new MoviesBLL();
+            var movieList = new MovieListViewModel();
+            movieList.Category = category;
+            movieList.Movies = movieBLL.GetMovieListByCategory(category);
+            if (movieList.Movies.Any())
+            {
+                return View(movieList);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
 
         // GET: Movies/Details/5

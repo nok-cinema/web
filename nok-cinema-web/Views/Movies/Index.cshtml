@@ -45,6 +45,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.STATUS)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SHOWDATE)
+            </th>
             <th></th>
         </tr>
 
@@ -74,6 +77,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.STATUS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SHOWDATE)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.MOVIEID }) |

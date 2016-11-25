@@ -30,7 +30,7 @@ namespace nok_cinema_web.Models
         public Nullable<short> DURATION { get; set; }
         public Nullable<int> PLAYCOUNT { get; set; }
         public string STATUS { get; set; }
-        public Nullable<System.DateTime> SHOWDATE { get; set; }
+        public System.DateTime SHOWDATE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<REVIEW> REVIEW { get; set; }

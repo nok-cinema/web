@@ -45,7 +45,7 @@
           <Property Name="DURATION" Type="number" Precision="4" Scale="0" />
           <Property Name="PLAYCOUNT" Type="number" Precision="10" Scale="0" />
           <Property Name="STATUS" Type="varchar2" MaxLength="20" />
-          <Property Name="SHOWDATE" Type="date" />
+          <Property Name="SHOWDATE" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="PERSON">
           <Key>
@@ -644,7 +644,7 @@
             <End Role="MOVIE" EntitySet="MOVIE" />
             <End Role="SHOWTIME" EntitySet="SHOWTIME" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="SELL">
           <Key>
             <PropertyRef Name="FOODID" />
@@ -695,7 +695,7 @@
           <Property Name="DURATION" Type="Int16" />
           <Property Name="PLAYCOUNT" Type="Int32" />
           <Property Name="STATUS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="SHOWDATE" Type="DateTime" />
+          <Property Name="SHOWDATE" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="REVIEW" Relationship="Model.REVIEW_FK2" FromRole="MOVIE" ToRole="REVIEW" />
           <NavigationProperty Name="SHOWTIME" Relationship="Model.SHOWTIME_FK2" FromRole="MOVIE" ToRole="SHOWTIME" />
         </EntityType>
@@ -723,7 +723,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>

@@ -183,6 +183,7 @@
     <Compile Include="BLL\EmployeesBLL.cs" />
     <Compile Include="BLL\MoviesBLL.cs" />
     <Compile Include="BLL\PeopleBLL.cs" />
+    <Compile Include="BLL\SeatsBLL.cs" />
     <Compile Include="BLL\ShowtimeBLL.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\EMPLOYEEsController.cs" />

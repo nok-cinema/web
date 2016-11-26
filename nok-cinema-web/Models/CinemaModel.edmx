@@ -78,7 +78,7 @@
             <PropertyRef Name="THEATREID" />
           </Key>
           <Property Name="SEATROW" Type="varchar2" MaxLength="1" Nullable="false" />
-          <Property Name="SEATNUMBER" Type="varchar2" MaxLength="2" Nullable="false" />
+          <Property Name="SEATNUMBER" Type="number" Precision="4" Scale="0" Nullable="false" />
           <Property Name="ZONE" Type="varchar2" MaxLength="20" Nullable="false" />
           <Property Name="THEATREID" Type="number" Precision="2" Scale="0" Nullable="false" />
         </EntityType>
@@ -116,7 +116,7 @@
           <Property Name="TICKETID" Type="number" Precision="10" Scale="0" Nullable="false" />
           <Property Name="MEMBERID" Type="number" Precision="10" Scale="0" Nullable="false" />
           <Property Name="SEATROW" Type="varchar2" MaxLength="1" Nullable="false" />
-          <Property Name="SEATNUMBER" Type="varchar2" MaxLength="2" Nullable="false" />
+          <Property Name="SEATNUMBER" Type="number" Precision="4" Scale="0" Nullable="false" />
           <Property Name="THEATREID" Type="number" Precision="2" Scale="0" Nullable="false" />
           <Property Name="SHOWDATE" Type="date" Nullable="false" />
           <Property Name="MOVIEID" Type="number" Precision="10" Scale="0" Nullable="false" />
@@ -362,8 +362,8 @@
           <Property Name="SALARY" Type="Int32" Nullable="false" />
           <Property Name="CITIZENID" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="PERSON" Relationship="Self.EMPLOYEE_FK1" FromRole="EMPLOYEE" ToRole="PERSON" />
-          <NavigationProperty Name="TICKET" Relationship="Self.TICKET_FK4" FromRole="EMPLOYEE" ToRole="TICKET" />
           <NavigationProperty Name="SELL" Relationship="Model.SELL_FK2" FromRole="EMPLOYEE" ToRole="SELL" />
+          <NavigationProperty Name="TICKET" Relationship="Model.TICKET_FK4" FromRole="EMPLOYEE" ToRole="TICKET" />
         </EntityType>
         <EntityType Name="FOOD">
           <Key>
@@ -385,7 +385,7 @@
           <Property Name="CITIZENID" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="PERSON" Relationship="Self.MEMBER_FK1" FromRole="MEMBER" ToRole="PERSON" />
           <NavigationProperty Name="REVIEW" Relationship="Self.REVIEW_FK1" FromRole="MEMBER" ToRole="REVIEW" />
-          <NavigationProperty Name="TICKET" Relationship="Self.TICKET_FK1" FromRole="MEMBER" ToRole="TICKET" />
+          <NavigationProperty Name="TICKET" Relationship="Model.TICKET_FK1" FromRole="MEMBER" ToRole="TICKET" />
         </EntityType>
         <EntityType Name="PERSON">
           <Key>
@@ -415,19 +415,6 @@
           <NavigationProperty Name="MEMBER" Relationship="Self.REVIEW_FK1" FromRole="REVIEW" ToRole="MEMBER" />
           <NavigationProperty Name="MOVIE" Relationship="Model.REVIEW_FK2" FromRole="REVIEW" ToRole="MOVIE" />
         </EntityType>
-        <EntityType Name="SEAT">
-          <Key>
-            <PropertyRef Name="SEATROW" />
-            <PropertyRef Name="SEATNUMBER" />
-            <PropertyRef Name="THEATREID" />
-          </Key>
-          <Property Name="SEATROW" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="SEATNUMBER" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ZONE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="THEATREID" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="THEATRE" Relationship="Self.SEAT_FK1" FromRole="SEAT" ToRole="THEATRE" />
-          <NavigationProperty Name="TICKET" Relationship="Self.TICKET_FK2" FromRole="SEAT" ToRole="TICKET" />
-        </EntityType>
         <EntityType Name="SHOWTIME">
           <Key>
             <PropertyRef Name="SHOWDATE" />
@@ -437,8 +424,8 @@
           <Property Name="MOVIEID" Type="Int32" Nullable="false" />
           <Property Name="THEATREID" Type="Byte" Nullable="false" />
           <NavigationProperty Name="THEATRE" Relationship="Self.SHOWTIME_FK1" FromRole="SHOWTIME" ToRole="THEATRE" />
-          <NavigationProperty Name="TICKET" Relationship="Self.TICKET_FK3" FromRole="SHOWTIME" ToRole="TICKET" />
           <NavigationProperty Name="MOVIE" Relationship="Model.SHOWTIME_FK2" FromRole="SHOWTIME" ToRole="MOVIE" />
+          <NavigationProperty Name="TICKET" Relationship="Model.TICKET_FK3" FromRole="SHOWTIME" ToRole="TICKET" />
         </EntityType>
         <EntityType Name="THEATRE">
           <Key>
@@ -446,25 +433,8 @@
           </Key>
           <Property Name="THEATREID" Type="Byte" Nullable="false" />
           <Property Name="SEATCAPACITY" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="SEAT" Relationship="Self.SEAT_FK1" FromRole="THEATRE" ToRole="SEAT" />
           <NavigationProperty Name="SHOWTIME" Relationship="Self.SHOWTIME_FK1" FromRole="THEATRE" ToRole="SHOWTIME" />
-        </EntityType>
-        <EntityType Name="TICKET">
-          <Key>
-            <PropertyRef Name="TICKETID" />
-          </Key>
-          <Property Name="TICKETID" Type="Int32" Nullable="false" />
-          <Property Name="MEMBERID" Type="Int32" Nullable="false" />
-          <Property Name="SEATROW" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="SEATNUMBER" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="THEATREID" Type="Byte" Nullable="false" />
-          <Property Name="SHOWDATE" Type="DateTime" Nullable="false" />
-          <Property Name="MOVIEID" Type="Int32" Nullable="false" />
-          <Property Name="EMPID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="EMPLOYEE" Relationship="Self.TICKET_FK4" FromRole="TICKET" ToRole="EMPLOYEE" />
-          <NavigationProperty Name="MEMBER" Relationship="Self.TICKET_FK1" FromRole="TICKET" ToRole="MEMBER" />
-          <NavigationProperty Name="SEAT" Relationship="Self.TICKET_FK2" FromRole="TICKET" ToRole="SEAT" />
-          <NavigationProperty Name="SHOWTIME" Relationship="Self.TICKET_FK3" FromRole="TICKET" ToRole="SHOWTIME" />
+          <NavigationProperty Name="SEAT" Relationship="Model.SEAT_FK1" FromRole="THEATRE" ToRole="SEAT" />
         </EntityType>
         <Association Name="EMPLOYEE_FK1">
           <End Role="PERSON" Type="Self.PERSON" Multiplicity="1" />
@@ -475,18 +445,6 @@
             </Principal>
             <Dependent Role="EMPLOYEE">
               <PropertyRef Name="CITIZENID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="TICKET_FK4">
-          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
-          <End Role="TICKET" Type="Self.TICKET" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EMPLOYEE">
-              <PropertyRef Name="EMPID" />
-            </Principal>
-            <Dependent Role="TICKET">
-              <PropertyRef Name="EMPID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -514,46 +472,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="TICKET_FK1">
-          <End Role="MEMBER" Type="Self.MEMBER" Multiplicity="1" />
-          <End Role="TICKET" Type="Self.TICKET" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MEMBER">
-              <PropertyRef Name="MEMBERID" />
-            </Principal>
-            <Dependent Role="TICKET">
-              <PropertyRef Name="MEMBERID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="SEAT_FK1">
-          <End Role="THEATRE" Type="Self.THEATRE" Multiplicity="1" />
-          <End Role="SEAT" Type="Self.SEAT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="THEATRE">
-              <PropertyRef Name="THEATREID" />
-            </Principal>
-            <Dependent Role="SEAT">
-              <PropertyRef Name="THEATREID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="TICKET_FK2">
-          <End Role="SEAT" Type="Self.SEAT" Multiplicity="1" />
-          <End Role="TICKET" Type="Self.TICKET" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SEAT">
-              <PropertyRef Name="SEATROW" />
-              <PropertyRef Name="SEATNUMBER" />
-              <PropertyRef Name="THEATREID" />
-            </Principal>
-            <Dependent Role="TICKET">
-              <PropertyRef Name="SEATROW" />
-              <PropertyRef Name="SEATNUMBER" />
-              <PropertyRef Name="THEATREID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="SHOWTIME_FK1">
           <End Role="THEATRE" Type="Self.THEATRE" Multiplicity="1" />
           <End Role="SHOWTIME" Type="Self.SHOWTIME" Multiplicity="*" />
@@ -566,37 +484,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="TICKET_FK3">
-          <End Role="SHOWTIME" Type="Self.SHOWTIME" Multiplicity="1" />
-          <End Role="TICKET" Type="Self.TICKET" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SHOWTIME">
-              <PropertyRef Name="SHOWDATE" />
-              <PropertyRef Name="MOVIEID" />
-            </Principal>
-            <Dependent Role="TICKET">
-              <PropertyRef Name="SHOWDATE" />
-              <PropertyRef Name="MOVIEID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="CinemaEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" />
           <EntitySet Name="FOOD" EntityType="Self.FOOD" />
           <EntitySet Name="MEMBER" EntityType="Self.MEMBER" />
           <EntitySet Name="PERSON" EntityType="Self.PERSON" />
           <EntitySet Name="REVIEW" EntityType="Self.REVIEW" />
-          <EntitySet Name="SEAT" EntityType="Self.SEAT" />
           <EntitySet Name="SHOWTIME" EntityType="Self.SHOWTIME" />
           <EntitySet Name="THEATRE" EntityType="Self.THEATRE" />
-          <EntitySet Name="TICKET" EntityType="Self.TICKET" />
           <AssociationSet Name="EMPLOYEE_FK1" Association="Self.EMPLOYEE_FK1">
             <End Role="PERSON" EntitySet="PERSON" />
             <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
-          </AssociationSet>
-          <AssociationSet Name="TICKET_FK4" Association="Self.TICKET_FK4">
-            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
-            <End Role="TICKET" EntitySet="TICKET" />
           </AssociationSet>
           <AssociationSet Name="MEMBER_FK1" Association="Self.MEMBER_FK1">
             <End Role="PERSON" EntitySet="PERSON" />
@@ -606,25 +504,9 @@
             <End Role="MEMBER" EntitySet="MEMBER" />
             <End Role="REVIEW" EntitySet="REVIEW" />
           </AssociationSet>
-          <AssociationSet Name="TICKET_FK1" Association="Self.TICKET_FK1">
-            <End Role="MEMBER" EntitySet="MEMBER" />
-            <End Role="TICKET" EntitySet="TICKET" />
-          </AssociationSet>
-          <AssociationSet Name="SEAT_FK1" Association="Self.SEAT_FK1">
-            <End Role="THEATRE" EntitySet="THEATRE" />
-            <End Role="SEAT" EntitySet="SEAT" />
-          </AssociationSet>
-          <AssociationSet Name="TICKET_FK2" Association="Self.TICKET_FK2">
-            <End Role="SEAT" EntitySet="SEAT" />
-            <End Role="TICKET" EntitySet="TICKET" />
-          </AssociationSet>
           <AssociationSet Name="SHOWTIME_FK1" Association="Self.SHOWTIME_FK1">
             <End Role="THEATRE" EntitySet="THEATRE" />
             <End Role="SHOWTIME" EntitySet="SHOWTIME" />
-          </AssociationSet>
-          <AssociationSet Name="TICKET_FK3" Association="Self.TICKET_FK3">
-            <End Role="SHOWTIME" EntitySet="SHOWTIME" />
-            <End Role="TICKET" EntitySet="TICKET" />
           </AssociationSet>
           <EntitySet Name="SELL" EntityType="Model.SELL" />
           <AssociationSet Name="SELL_FK2" Association="Model.SELL_FK2">
@@ -643,6 +525,28 @@
           <AssociationSet Name="SHOWTIME_FK2" Association="Model.SHOWTIME_FK2">
             <End Role="MOVIE" EntitySet="MOVIE" />
             <End Role="SHOWTIME" EntitySet="SHOWTIME" />
+          </AssociationSet>
+          <EntitySet Name="SEAT" EntityType="Model.SEAT" />
+          <EntitySet Name="TICKET" EntityType="Model.TICKET" />
+          <AssociationSet Name="TICKET_FK4" Association="Model.TICKET_FK4">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="TICKET" EntitySet="TICKET" />
+          </AssociationSet>
+          <AssociationSet Name="TICKET_FK1" Association="Model.TICKET_FK1">
+            <End Role="MEMBER" EntitySet="MEMBER" />
+            <End Role="TICKET" EntitySet="TICKET" />
+          </AssociationSet>
+          <AssociationSet Name="SEAT_FK1" Association="Model.SEAT_FK1">
+            <End Role="THEATRE" EntitySet="THEATRE" />
+            <End Role="SEAT" EntitySet="SEAT" />
+          </AssociationSet>
+          <AssociationSet Name="TICKET_FK2" Association="Model.TICKET_FK2">
+            <End Role="SEAT" EntitySet="SEAT" />
+            <End Role="TICKET" EntitySet="TICKET" />
+          </AssociationSet>
+          <AssociationSet Name="TICKET_FK3" Association="Model.TICKET_FK3">
+            <End Role="SHOWTIME" EntitySet="SHOWTIME" />
+            <End Role="TICKET" EntitySet="TICKET" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="SELL">
@@ -723,6 +627,102 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SEAT">
+          <Key>
+            <PropertyRef Name="SEATROW" />
+            <PropertyRef Name="SEATNUMBER" />
+            <PropertyRef Name="THEATREID" />
+          </Key>
+          <Property Name="SEATROW" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="SEATNUMBER" Type="Int16" Nullable="false" />
+          <Property Name="ZONE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="THEATREID" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="THEATRE" Relationship="Model.SEAT_FK1" FromRole="SEAT" ToRole="THEATRE" />
+          <NavigationProperty Name="TICKET" Relationship="Model.TICKET_FK2" FromRole="SEAT" ToRole="TICKET" />
+        </EntityType>
+        <EntityType Name="TICKET">
+          <Key>
+            <PropertyRef Name="TICKETID" />
+          </Key>
+          <Property Name="TICKETID" Type="Int32" Nullable="false" />
+          <Property Name="MEMBERID" Type="Int32" Nullable="false" />
+          <Property Name="SEATROW" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="SEATNUMBER" Type="Int16" Nullable="false" />
+          <Property Name="THEATREID" Type="Byte" Nullable="false" />
+          <Property Name="SHOWDATE" Type="DateTime" Nullable="false" />
+          <Property Name="MOVIEID" Type="Int32" Nullable="false" />
+          <Property Name="EMPID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="Model.TICKET_FK4" FromRole="TICKET" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="MEMBER" Relationship="Model.TICKET_FK1" FromRole="TICKET" ToRole="MEMBER" />
+          <NavigationProperty Name="SEAT" Relationship="Model.TICKET_FK2" FromRole="TICKET" ToRole="SEAT" />
+          <NavigationProperty Name="SHOWTIME" Relationship="Model.TICKET_FK3" FromRole="TICKET" ToRole="SHOWTIME" />
+        </EntityType>
+        <Association Name="TICKET_FK4">
+          <End Type="Model.EMPLOYEE" Role="EMPLOYEE" Multiplicity="1" />
+          <End Type="Model.TICKET" Role="TICKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EMPID" />
+            </Principal>
+            <Dependent Role="TICKET">
+              <PropertyRef Name="EMPID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TICKET_FK1">
+          <End Type="Model.MEMBER" Role="MEMBER" Multiplicity="1" />
+          <End Type="Model.TICKET" Role="TICKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEMBER">
+              <PropertyRef Name="MEMBERID" />
+            </Principal>
+            <Dependent Role="TICKET">
+              <PropertyRef Name="MEMBERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SEAT_FK1">
+          <End Type="Model.THEATRE" Role="THEATRE" Multiplicity="1" />
+          <End Type="Model.SEAT" Role="SEAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THEATRE">
+              <PropertyRef Name="THEATREID" />
+            </Principal>
+            <Dependent Role="SEAT">
+              <PropertyRef Name="THEATREID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TICKET_FK2">
+          <End Type="Model.SEAT" Role="SEAT" Multiplicity="1" />
+          <End Type="Model.TICKET" Role="TICKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEAT">
+              <PropertyRef Name="SEATROW" />
+              <PropertyRef Name="SEATNUMBER" />
+              <PropertyRef Name="THEATREID" />
+            </Principal>
+            <Dependent Role="TICKET">
+              <PropertyRef Name="SEATROW" />
+              <PropertyRef Name="SEATNUMBER" />
+              <PropertyRef Name="THEATREID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TICKET_FK3">
+          <End Type="Model.SHOWTIME" Role="SHOWTIME" Multiplicity="1" />
+          <End Type="Model.TICKET" Role="TICKET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SHOWTIME">
+              <PropertyRef Name="SHOWDATE" />
+              <PropertyRef Name="MOVIEID" />
+            </Principal>
+            <Dependent Role="TICKET">
+              <PropertyRef Name="SHOWDATE" />
+              <PropertyRef Name="MOVIEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -784,16 +784,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SEAT">
-            <EntityTypeMapping TypeName="Model.SEAT">
-              <MappingFragment StoreEntitySet="SEAT">
-                <ScalarProperty Name="SEATROW" ColumnName="SEATROW" />
-                <ScalarProperty Name="SEATNUMBER" ColumnName="SEATNUMBER" />
-                <ScalarProperty Name="ZONE" ColumnName="ZONE" />
-                <ScalarProperty Name="THEATREID" ColumnName="THEATREID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SHOWTIME">
             <EntityTypeMapping TypeName="Model.SHOWTIME">
               <MappingFragment StoreEntitySet="SHOWTIME">
@@ -808,20 +798,6 @@
               <MappingFragment StoreEntitySet="THEATRE">
                 <ScalarProperty Name="THEATREID" ColumnName="THEATREID" />
                 <ScalarProperty Name="SEATCAPACITY" ColumnName="SEATCAPACITY" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TICKET">
-            <EntityTypeMapping TypeName="Model.TICKET">
-              <MappingFragment StoreEntitySet="TICKET">
-                <ScalarProperty Name="TICKETID" ColumnName="TICKETID" />
-                <ScalarProperty Name="MEMBERID" ColumnName="MEMBERID" />
-                <ScalarProperty Name="SEATROW" ColumnName="SEATROW" />
-                <ScalarProperty Name="SEATNUMBER" ColumnName="SEATNUMBER" />
-                <ScalarProperty Name="THEATREID" ColumnName="THEATREID" />
-                <ScalarProperty Name="SHOWDATE" ColumnName="SHOWDATE" />
-                <ScalarProperty Name="MOVIEID" ColumnName="MOVIEID" />
-                <ScalarProperty Name="EMPID" ColumnName="EMPID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -848,6 +824,30 @@
                 <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
                 <ScalarProperty Name="MOVIENAME" ColumnName="MOVIENAME" />
                 <ScalarProperty Name="MOVIEID" ColumnName="MOVIEID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SEAT">
+            <EntityTypeMapping TypeName="Model.SEAT">
+              <MappingFragment StoreEntitySet="SEAT">
+                <ScalarProperty Name="THEATREID" ColumnName="THEATREID" />
+                <ScalarProperty Name="ZONE" ColumnName="ZONE" />
+                <ScalarProperty Name="SEATNUMBER" ColumnName="SEATNUMBER" />
+                <ScalarProperty Name="SEATROW" ColumnName="SEATROW" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TICKET">
+            <EntityTypeMapping TypeName="Model.TICKET">
+              <MappingFragment StoreEntitySet="TICKET">
+                <ScalarProperty Name="EMPID" ColumnName="EMPID" />
+                <ScalarProperty Name="MOVIEID" ColumnName="MOVIEID" />
+                <ScalarProperty Name="SHOWDATE" ColumnName="SHOWDATE" />
+                <ScalarProperty Name="THEATREID" ColumnName="THEATREID" />
+                <ScalarProperty Name="SEATNUMBER" ColumnName="SEATNUMBER" />
+                <ScalarProperty Name="SEATROW" ColumnName="SEATROW" />
+                <ScalarProperty Name="MEMBERID" ColumnName="MEMBERID" />
+                <ScalarProperty Name="TICKETID" ColumnName="TICKETID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

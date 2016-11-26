@@ -25,8 +25,8 @@ namespace nok_cinema_web.Models
         public byte THEATREID { get; set; }
     
         public virtual THEATRE THEATRE { get; set; }
+        public virtual MOVIE MOVIE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TICKET> TICKET { get; set; }
-        public virtual MOVIE MOVIE { get; set; }
     }
 }

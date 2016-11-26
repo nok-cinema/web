@@ -12,7 +12,7 @@
         {
             <div class="poster">
                 <a href="@Url.Action("Details", new { id = movie.MovieId })">
-                    <img alt="@movie.MovieName" src="@Url.Content(String.Format("~/Content/Images/{0}.jpg", movie.MovieId))"/>
+                    <img alt="@movie.MovieName" src="@Url.Content(String.Format("~/Content/Images/Movies/Thumbnails/{0}.jpg", movie.MovieId))"/>
                 </a>
             </div>
             <div class="movieDetails">

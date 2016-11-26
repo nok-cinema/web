@@ -1,0 +1,77 @@
+﻿@model nok_cinema_web.ViewModels.SeatListViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Theatre</title>
+    <style>
+        div.theatre_seats {
+            display: inline-block;
+        }
+        div.screen_label {
+            background: url(@Url.Content("~/Content/Images/bg_screen_header.jpg")) repeat-x top left;
+            width: 100%;
+            height: 55px;
+            padding-top: 10px;
+            text-align: center;
+            font-size: 30px;
+            border-radius: 5px 5px 0px 0px;
+        }
+         table {
+             margin: 0 auto; /* or margin: 0 auto 0 auto */
+         }
+        td.row_label {
+            padding: 0 20px 0 20px;
+            font-weight: bold;
+        }
+        td.seat_space {
+            padding: 25px 30px 0 0;
+        }
+    </style>
+</head>
+<body>
+<div class="theatre_seats">
+    <div class="screen_label">
+        -- SCREEN --
+    </div>
+    <div class="screen_theatre">
+        <img alt="screen" src="~/Content/Images/screen.png"/>
+    </div>
+    <div class="seat_table">
+        <table class="seat">
+            <tbody>
+            @foreach (var seat in Model.Seats)
+            {
+                if (seat.SeatNumber == 1)
+                {
+                    @:<tr class="seatrow">
+                    @: <td class="row_label">
+                    @: @seat.SeatRow
+                    @: </td>
+                }
+                <td class="seatnumber">
+                    <img alt="@(seat.SeatRow + seat.SeatNumber)" src="@Url.Content(seat.SeatUrl)"/>
+                </td>
+                if (seat.SeatNumber == 10)
+                {
+                    @:<td class="seat_space"></td>
+                }
+                if (seat.SeatNumber == 20)
+                {
+                    @:<td class="row_label">
+                    @: @seat.SeatRow
+                    @:</td>
+                    @Html.Raw("</tr>")
+                }
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

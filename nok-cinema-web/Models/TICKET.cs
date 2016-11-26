@@ -17,7 +17,7 @@ namespace nok_cinema_web.Models
         public int TICKETID { get; set; }
         public int MEMBERID { get; set; }
         public string SEATROW { get; set; }
-        public string SEATNUMBER { get; set; }
+        public short SEATNUMBER { get; set; }
         public byte THEATREID { get; set; }
         public System.DateTime SHOWDATE { get; set; }
         public int MOVIEID { get; set; }

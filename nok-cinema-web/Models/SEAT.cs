@@ -21,7 +21,7 @@ namespace nok_cinema_web.Models
         }
     
         public string SEATROW { get; set; }
-        public string SEATNUMBER { get; set; }
+        public short SEATNUMBER { get; set; }
         public string ZONE { get; set; }
         public byte THEATREID { get; set; }
     

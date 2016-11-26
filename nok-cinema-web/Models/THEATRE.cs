@@ -17,16 +17,16 @@ namespace nok_cinema_web.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public THEATRE()
         {
-            this.SEAT = new HashSet<SEAT>();
             this.SHOWTIME = new HashSet<SHOWTIME>();
+            this.SEAT = new HashSet<SEAT>();
         }
     
         public byte THEATREID { get; set; }
         public byte SEATCAPACITY { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SEAT> SEAT { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SHOWTIME> SHOWTIME { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SEAT> SEAT { get; set; }
     }
 }

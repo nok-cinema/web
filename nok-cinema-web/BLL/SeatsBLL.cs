@@ -32,16 +32,39 @@ namespace nok_cinema_web.BLL
                         seatTuple.SEATROW == "C")
                     {
                         seat.SeatUrl = "~/Content/Images/seat-purple.png";
+                        seat.Class = "S";
                     }
                     else
                     {
                         seat.SeatUrl = "~/Content/Images/seat-red.png";
+                        seat.Class =  "N";
                     }
                     seatList.Seats.Add(seat);
                 }
             }
             seatList.TheatreId = theatreId;
+            seatList.SeatArray = GetSeatListForJavascriptArray(seatList);
             return seatList;
+        }
+
+        public List<string> GetSeatListForJavascriptArray(SeatListViewModel seatListViewModel)
+        {
+            var seatArray = new List<string>();
+            string seatFormat = string.Empty;
+            foreach (var seat in seatListViewModel.Seats)
+            {
+                seatFormat += seat.Class;
+                if (seat.SeatNumber == 10)
+                {
+                    seatFormat += "_";
+                }
+                else if (seat.SeatNumber == 20)
+                {
+                    seatArray.Add(seatFormat);
+                    seatFormat = string.Empty;
+                }
+            }
+            return seatArray;
         }
     }
 }

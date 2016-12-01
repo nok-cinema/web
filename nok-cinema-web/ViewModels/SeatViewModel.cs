@@ -10,5 +10,6 @@ namespace nok_cinema_web.ViewModels
         public string SeatRow { get; set; }
         public short SeatNumber { get; set; }
         public string SeatUrl { get; set; }
+        public string Class { get; set; }
     }
 }

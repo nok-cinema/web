@@ -30,5 +30,21 @@ namespace nok_cinema_web.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        public ActionResult Seat(byte theatreId)
+        {
+            var seatsBLL = new SeatsBLL();
+            var seatList = new SeatListViewModel();
+            seatList = seatsBLL.GetSeatListByTheatreId(theatreId);
+            
+            if (seatList.Seats.Any())
+            {
+                return View(seatList);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
     }
 }

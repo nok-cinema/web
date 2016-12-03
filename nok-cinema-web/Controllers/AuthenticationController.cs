@@ -9,6 +9,7 @@ using System.Web.Security;
 using nok_cinema_web.Models;
 using nok_cinema_web.ViewModels;
 using nok_cinema_web.BLL;
+using System.Data;
 
 namespace nok_cinema_web.Controllers
 {
@@ -112,6 +113,7 @@ namespace nok_cinema_web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register([Bind(Include = "CITIZENID,FNAME,LNAME,GENDER,BIRTHDATE,ADDRESS,EMAIL,USERNAME,PASSWORD")] PERSON pERSON)
         {
+
             if (ModelState.IsValid)
             {
                 db.PERSON.Add(pERSON);
@@ -119,8 +121,8 @@ namespace nok_cinema_web.Controllers
                 return RedirectToAction("Login");
             }
 
-            //return View(pERSON);
-            return RedirectToAction("Login");
+            return View("Register");
         }
+
     }
 }

@@ -8,74 +8,12 @@
 
 <html>
 <head>
-    <title>Register</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Scripts/registerstyle.css")"/>
-    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
     <link rel="stylesheet" href="@Url.Content("~/Scripts/bootstrap.min.css")"/>
     <script src="@Url.Content("~/Scripts/jquery-3.1.1.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery.maskedinput.min.js")" type="text/javascript"></script>
     <link rel="stylesheet" href="@Url.Content("~/Scripts/bootstrap-iso.css")"/> 
 </head>
 <body>
-    <div>
-        <div class="header">
-            <div class="menu">
-                <div class="top1"><img src="logo1.png"> NOK CINEMA</div>
-                <div class="top2">Home</div>
-                <div class="top2">ShowTime</div>
-                <div class="top2">Movies</div>
-                <div class="top3" onclick="top3()">Login </div>
-
-
-                <!-- The Modal -->
-                <div id="myModal" class="modal">
-
-                    <!-- Modal content -->
-                    <div class="modal-content">
-                        <span class="close">×</span>
-                        <div class="box1">
-                            <span class="boxheader">Login</span><br /><br /><br />
-                            <span class="username">Username: <br /><input type="text" id="TxtUName" name="Username" value="" /></span><br /><br />
-                            <span class="password">Password: <br /><input type="text" id="TxtPword" name="Password" value="" /></span><br /><br /><br />
-                            <button id="BtnSave">Login</button>
-                        </div>
-                    </div>
-
-                </div>
-
-                <script>
-						// Get the modal
-						var modal = document.getElementById('myModal');
-
-						// Get the button that opens the modal
-						var btn = document.getElementById("top3");
-
-						// Get the <span> element that closes the modal
-						var span = document.getElementsByClassName("close")[0];
-
-						// When the user clicks the button, open the modal
-						function top3() {
-    						modal.style.display = "block";
-						}
-
-						// When the user clicks on <span> (x), close the modal
-						span.onclick = function() {
-   							modal.style.display = "none";
-						}
-
-						// When the user clicks anywhere outside of the modal, close it
-						window.onclick = function(event) {
-    						if (event.target == modal) {
-        						modal.style.display = "none";
-    						}
-						}
-                </script>
-                <div class="top3">Register</div>
-            </div>
-        </div>
-        </div>
 
         @using (Html.BeginForm())
         {
@@ -114,9 +52,6 @@
 
                 </script>
                 <div class="body">
-                    <div class="greyspace"></div>
-                    <div class="back">
-                        <div class="header2"><img src=""> Register</div>
                         <div class="bootstrap-iso">
                             <div class="container-fluid">
                                 <div class="row">
@@ -233,7 +168,7 @@
                     </div>
                     <div class="boxbg"></div>
                 </div>
-            </div>
+      
                 <!-- Include Date Range Picker -->
             <script type="text/javascript" src="@Url.Content("~/Scripts/bootstrap-datepicker.min.js")"></script>
                 <link rel="stylesheet" href="@Url.Content("~/Scripts/bootstrap-datepicker3.css")" />

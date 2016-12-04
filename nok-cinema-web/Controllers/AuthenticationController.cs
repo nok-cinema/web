@@ -113,22 +113,14 @@ namespace nok_cinema_web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register([Bind(Include = "CITIZENID,FNAME,LNAME,GENDER,BIRTHDATE,ADDRESS,EMAIL,USERNAME,PASSWORD")] PERSON pERSON)
         {
-            try
-            { 
+            
                 if (ModelState.IsValid)
                 {
                     db.PERSON.Add(pERSON);
                     await db.SaveChangesAsync();
                     return RedirectToAction("Login");
                 }
-            }
-             catch (DataException /* dex */)
-            {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
-            }
-
-            return View(pERSON);
+            return View("Register");
         }
 
     }

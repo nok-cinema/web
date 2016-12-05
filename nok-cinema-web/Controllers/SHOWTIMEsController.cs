@@ -60,6 +60,37 @@ namespace nok_cinema_web.Controllers
             return View(sHOWTIME);
         }
 
+        // GET: SHOWTIMEs/Details/5
+        public async Task<ActionResult> Seats(DateTime id1, int? id2)
+        {
+            if (id1 == null | id2 == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SHOWTIME sHOWTIME = await db.SHOWTIME.FindAsync(id1, id2);
+            if (sHOWTIME == null)
+            {
+                return HttpNotFound();
+            }
+            return View(sHOWTIME);
+        }
+
+        public ActionResult Seats(DateTime id1, int id2)
+        {
+            var seatsBLL = new SeatsBLL();
+            var seatList = new SeatListViewModel();
+            seatList = seatsBLL.GetSeatListByShowtime(id1, id2);
+
+            if (seatList.Seats.Any())
+            {
+                return View(seatList);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
         // GET: SHOWTIMEs/Create
         public ActionResult Create()
         {

@@ -16,26 +16,26 @@ namespace nok_cinema_web.Controllers
             return View();
         }
 
-        public ActionResult Theatre(byte theatreId)
-        {
-            var seatsBLL = new SeatsBLL();
-            var seatList = new SeatListViewModel();
-            seatList = seatsBLL.GetSeatListByTheatreId(theatreId);
-            if (seatList.Seats.Any())
-            {
-                return View(seatList);
-            }
-            else
-            {
-                return RedirectToAction("Index");
-            }
-        }
+        //public ActionResult Theatre(byte theatreId)
+        //{
+        //    var seatsBLL = new SeatsBLL();
+        //    var seatList = new SeatListViewModel();
+        //    seatList = seatsBLL.GetSeatListByTheatreId(theatreId);
+        //    if (seatList.Seats.Any())
+        //    {
+        //        return View(seatList);
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Index");
+        //    }
+        //}
 
-        public ActionResult Seat(byte theatreId)
+        public ActionResult Seat(DateTime id1, int id2)
         {
             var seatsBLL = new SeatsBLL();
             var seatList = new SeatListViewModel();
-            seatList = seatsBLL.GetSeatListByTheatreId(theatreId);
+            seatList = seatsBLL.GetSeatListByShowtime(id1, id2);
             
             if (seatList.Seats.Any())
             {

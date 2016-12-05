@@ -318,8 +318,11 @@
 		//Generate default row ids unless user passed his own
 		settings.naming.rows = settings.naming.rows || (function (length) {
 			var rows = [];
-			for (var i = 1; i <= length; i++) {
-				rows.push(i);
+			//for (var i = 1; i <= length; i++) {
+			//	rows.push(i);
+		    //}
+			for (var i = (64 + length); i >= 65; --i) {
+			    rows.push(String.fromCharCode(i));
 			}
 			return rows;
 		})(settings.map.length);

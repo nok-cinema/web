@@ -11,8 +11,7 @@ namespace nok_cinema_web.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class PERSON
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,21 +20,15 @@ namespace nok_cinema_web.Models
             this.EMPLOYEE = new HashSet<EMPLOYEE>();
             this.MEMBER = new HashSet<MEMBER>();
         }
-
-        [Required]
+    
         public string CITIZENID { get; set; }
-        [Required]
         public string FNAME { get; set; }
-        [Required]
         public string LNAME { get; set; }
-        [Required]
         public string GENDER { get; set; }
         public Nullable<System.DateTime> BIRTHDATE { get; set; }
         public string ADDRESS { get; set; }
         public string EMAIL { get; set; }
-        [Required]
         public string USERNAME { get; set; }
-        [Required]
         public string PASSWORD { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

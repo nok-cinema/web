@@ -15,6 +15,8 @@
     <script src="@Url.Content("~/Scripts/jquery.maskedinput.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jqBootstrapValidation.js")" type="text/javascript"></script>
      <link rel="stylesheet" href="@Url.Content("~/Scripts/bootstrap-iso.css")"/> 
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 </head>
 <body>
 
@@ -68,7 +70,8 @@
                         CITIZENID
                     </label>
                     <div class="col-sm-10">
-                        <input class="form-control text-box single-line" id="CITIZENID" name="CITIZENID" type="number" value="" required>
+                        @Html.TextBoxFor(m => m.CITIZENID, new { @class = "form-control text-box single-line" })
+                        @Html.ValidationMessageFor(m => m.CITIZENID, null, new { @class = "text-danger" })
                         <br />
                     </div>
                 </div>
@@ -88,7 +91,7 @@
                     </label>
                     <div class="col-sm-10">
                         <input class="form-control text-box single-line" id="LNAME" name="LNAME" type="text" value="" required>
-
+                        <p class="help-block"></p>
                         <br />
                     </div>
                 </div>
@@ -114,6 +117,7 @@
                     </label>
                     <div class="col-sm-10">
                         <input class="form-control text-box single-line" id="BIRTHDATE" name="BIRTHDATE" type="text" value="" required>
+                        <p class="help-block"></p>
                         <br />
                     </div>
 
@@ -133,10 +137,9 @@
                     <label class="control-label col-sm-2" for="EMAIL">
                         EMAIL
                     </label>
-                    <div class="control col-sm-10">
-                        <input class="form-control text-box single-line" id="EMAIL" name="EMAIL" type="email" value="" required>
-                        <p class="help-block"></p>
-
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(m => m.EMAIL, new { @class = "form-control text-box single-line" })
+                        @Html.ValidationMessageFor(m => m.EMAIL, null, new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="control-group ">
@@ -144,8 +147,8 @@
                         USERNAME
                     </label>
                     <div class="col-sm-10">
-                        <p id="demo"></p>
-                        <input class="form-control text-box single-line" id="USERNAME" name="USERNAME" type="text" value="" required>
+                        @Html.TextBoxFor(m => m.USERNAME,new { @class = "form-control text-box single-line"})
+                        @Html.ValidationMessageFor(m => m.USERNAME , null, new { @class = "text-danger" })
                         <br />
                     </div>
                 </div>
@@ -155,7 +158,8 @@
                         PASSWORD
                     </label>
                     <div class="col-sm-10">
-                        <input class="form-control text-box single-line" id="PASSWORD" name="PASSWORD" type="password" value="" data-minlength="6" required>
+                        <input class="form-control text-box single-line" id="PASSWORD" name="PASSWORD" type="password" value="" required>
+                        <p class="help-block"></p>
                         <br />
                     </div>
                 </div>
@@ -164,7 +168,8 @@
                         PASSWORD AGAIN
                     </label>
                     <div class="col-sm-10">
-                        <input class="form-control text-box single-line" type="password" data-validation-match-match="PASSWORD" name="checkpassword" />
+                        <input class="form-control text-box single-line" type="password" data-validation-match-match="PASSWORD" name="checkpassword" data-validation-match-message ="The password and its confirm are not the same" />
+                        <p class="help-block"></p>
                         <br />
                     </div>
                 </div>

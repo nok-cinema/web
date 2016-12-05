@@ -120,8 +120,25 @@ namespace nok_cinema_web.Controllers
                     await db.SaveChangesAsync();
                     return RedirectToAction("Login");
                 }
+            
             return View("Register");
         }
+        [HttpPost]
+        public JsonResult doesUSERNAMEExist(string USERNAME)
+        {
+            return Json(!db.PERSON.Any(x => x.USERNAME == USERNAME), JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult doesEMAILExist(string EMAIL)
+        {
+            return Json(!db.PERSON.Any(x => x.EMAIL == EMAIL), JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult CITIZENID(string CITIZENID)
+        {
+            return Json(!db.PERSON.Any(x => x.CITIZENID == CITIZENID), JsonRequestBehavior.AllowGet);
+        }
+
 
     }
 }

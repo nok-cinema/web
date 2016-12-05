@@ -10,6 +10,32 @@ namespace nok_cinema_web.BLL
 {
     public class SeatsBLL
     {
+        public BookingShowtimeViewModel GetBookingShowtimeViewModelByShowtime(DateTime showdate, int movieid)
+        {
+            var bookingShowtime = new BookingShowtimeViewModel();
+            SHOWTIME showtime = new SHOWTIME {SHOWDATE = showdate, MOVIEID = movieid};
+            bookingShowtime.Movie = GetMovieByShowTime(showtime);
+            bookingShowtime.DateTime = GetDateTimeStringByDateTime(showdate);
+            bookingShowtime.Seats = GetSeatListByShowtime(showdate, movieid);
+            bookingShowtime.SeatArray = GetSeatListForJavascriptArray(bookingShowtime.Seats);
+            bookingShowtime.UnavailableSeatArray =
+                GetUnavailableSeatListForJavascriptArray(showtime);
+            return bookingShowtime;
+        }
+
+        public MOVIE GetMovieByShowTime(SHOWTIME showtime)
+        {
+            var movieDAL = new MovieDAL();
+            var movie = movieDAL.GetMovieByShowtime(showtime);
+            return movie;
+        }
+
+        public string GetDateTimeStringByDateTime(DateTime datetime)
+        {
+            string datetimeString = datetime.ToString("f");
+            return datetimeString;
+        }
+
         public SeatListViewModel GetSeatListByShowtime(DateTime showdate, int movieid)
         {
             var theatreBLL = new TheatreBLL();
@@ -41,9 +67,6 @@ namespace nok_cinema_web.BLL
                 seatListViewModel.Seats.Add(seat);
             }
             seatListViewModel.TheatreId = theatreId;
-            seatListViewModel.SeatArray = GetSeatListForJavascriptArray(seatListViewModel);
-            seatListViewModel.UnavailableSeatArray =
-                GetUnavailableSeatListForJavascriptArray(new SHOWTIME { SHOWDATE = showdate, MOVIEID = movieid });
             return seatListViewModel;
         }
 

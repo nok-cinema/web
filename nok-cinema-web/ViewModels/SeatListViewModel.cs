@@ -9,7 +9,5 @@ namespace nok_cinema_web.ViewModels
     {
         public List<SeatViewModel> Seats { get; set; }
         public byte TheatreId { get; set; }
-        public List<string> SeatArray { get; set; }
-        public List<string> UnavailableSeatArray { get; set; }
     }
 }

@@ -200,6 +200,7 @@
     <Compile Include="Controllers\SHOWTIMEsController.cs" />
     <Compile Include="Controllers\THEATREsController.cs" />
     <Compile Include="Controllers\TICKETsController.cs" />
+    <Compile Include="DAL\MovieDAL.cs" />
     <Compile Include="DAL\SeatDAL.cs" />
     <Compile Include="DAL\ShowtimeDAL.cs" />
     <Compile Include="Global.asax.cs">
@@ -256,6 +257,7 @@
     </Compile>
     <Compile Include="Models\UserDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BookingShowtimeViewModel.cs" />
     <Compile Include="ViewModels\MovieListViewModel.cs" />
     <Compile Include="ViewModels\MovieViewModel.cs" />
     <Compile Include="ViewModels\SeatListViewModel.cs" />

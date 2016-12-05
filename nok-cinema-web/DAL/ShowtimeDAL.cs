@@ -8,6 +8,23 @@ namespace nok_cinema_web.DAL
 {
     public class ShowtimeDAL
     {
+        public int GetMovieIdByShowdate(DateTime showdate)
+        {
+            var db = new CinemaEntities();
+            IQueryable<SHOWTIME> moviesQuery = (from showtimeTmp in db.SHOWTIME
+                                               where showtimeTmp.SHOWDATE.Equals(showdate)
+                                               select showtimeTmp);
+            int movieid = 0;
+            if (moviesQuery.Any())
+            {
+                foreach (var movieTuple in moviesQuery)
+                {
+                    movieid = movieTuple.MOVIEID;
+                }
+            }
+            return movieid;
+        }
+
         public List<TICKET> GetTicketsByShowtime(SHOWTIME showtime)
         {
             var db = new CinemaEntities();

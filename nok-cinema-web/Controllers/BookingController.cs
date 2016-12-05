@@ -34,12 +34,11 @@ namespace nok_cinema_web.Controllers
         public ActionResult Seat(DateTime id1, int id2)
         {
             var seatsBLL = new SeatsBLL();
-            var seatList = new SeatListViewModel();
-            seatList = seatsBLL.GetSeatListByShowtime(id1, id2);
+            var bookingShowtime = seatsBLL.GetBookingShowtimeViewModelByShowtime(id1, id2);
             
-            if (seatList.Seats.Any())
+            if (bookingShowtime.Seats.Seats.Any())
             {
-                return View(seatList);
+                return View(bookingShowtime);
             }
             else
             {

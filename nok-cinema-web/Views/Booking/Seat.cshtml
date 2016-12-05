@@ -1,4 +1,4 @@
-﻿@model nok_cinema_web.ViewModels.SeatListViewModel
+﻿@model nok_cinema_web.ViewModels.BookingShowtimeViewModel
 @{
     Layout = null;
 }
@@ -63,8 +63,8 @@ span.seatCharts-legendDescription {margin-left: 5px;line-height: 30px;}
             <div class="front">SCREEN</div>
         </div>
         <div class="booking-details">
-            <p>Movie: <span> Gingerclown</span></p>
-            <p>Time: <span>November 3, 21:00</span></p>
+            <p>Movie: <span>@Model.Movie.MOVIENAME</span></p>
+            <p>Time: <span>@Model.DateTime</span></p>
             <p>Seat: </p>
             <ul id="selected-seats"></ul>
             <p>Tickets: <span id="counter">0</span></p>
@@ -86,7 +86,7 @@ span.seatCharts-legendDescription {margin-left: 5px;line-height: 30px;}
     <div class="seat_table">
         <table class="seat">
             <tbody>
-            @foreach (var seat in Model.Seats)
+            @foreach (var seat in Model.Seats.Seats)
             {
                 if (seat.SeatNumber == 1)
                 {

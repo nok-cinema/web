@@ -27,5 +27,31 @@ namespace nok_cinema_web.DAL
             }
             return movie;
         }
+
+        public List<MOVIE> GetMovieBySearch(string searchstr)
+        {
+            var db = new CinemaEntities();
+            var movieList = new List<MOVIE>();            
+            var movies = from m in db.MOVIE
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchstr))
+            {
+                movies = movies.Where(s => s.MOVIENAME.Contains(searchstr));
+                foreach(var _movie in movies)
+                {
+                    var movie = new MOVIE();
+                    movie.MOVIENAME = _movie.MOVIENAME;
+                    movie.MOVIEID = _movie.MOVIEID;
+                    movie.SHORTDESCRIPTION = _movie.SHORTDESCRIPTION;
+                    movie.DIRECTOR = _movie.DIRECTOR;
+                    movie.ACTOR = _movie.ACTOR;
+                    movie.CATEGORY = _movie.CATEGORY;
+                    movie.SHOWDATE = _movie.SHOWDATE;
+                    movieList.Add(movie);
+                }
+            }
+            return movieList;
+        }
     }
 }

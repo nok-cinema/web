@@ -10,6 +10,9 @@ namespace nok_cinema_web.ViewModels
         public int MovieId { get; set; }
         public string MovieName { get; set; }
         public string Category { get; set; }
+        public string Director { get; set; }
+        public string Actor { get; set; } 
+        public string ShortDiscription { get; set; }           
         public DateTime? ShowDate { get; set; }
     }
 }

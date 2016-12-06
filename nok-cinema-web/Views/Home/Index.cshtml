@@ -23,5 +23,12 @@
             </li>
         }*@
     </div>
+    @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+    {
+        <p>
+            Title: @Html.TextBox("searchstr") <br/>
+            <input type="submit" value="Search"/>
+        </p>
+    }
 </body>
 </html>

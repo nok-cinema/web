@@ -416,6 +416,7 @@
     <Content Include="Views\Booking\Index.cshtml" />
     <Content Include="Views\Booking\Seat.cshtml" />
     <Content Include="Views\SHOWTIMEs\Seats.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

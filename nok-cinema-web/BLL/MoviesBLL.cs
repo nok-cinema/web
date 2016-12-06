@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using nok_cinema_web.Models;
 using nok_cinema_web.ViewModels;
+using nok_cinema_web.DAL;
 
 namespace nok_cinema_web.BLL
 {
@@ -60,6 +61,28 @@ namespace nok_cinema_web.BLL
             }
             movieList.Category = category;
             return movieList.Movies;
+        }
+
+        public List<MovieViewModel> GetMovieListBySearch(string searchstr)
+        {
+            var movieDAL = new MovieDAL();
+            var movieListViewModel = new MovieListViewModel();           
+
+            var movieList = movieDAL.GetMovieBySearch(searchstr);
+            var movies = new List<MovieViewModel>();
+            foreach(var _movie in movieList)
+            {
+                var movie = new MovieViewModel();
+                movie.MovieId = _movie.MOVIEID;
+                movie.MovieName = _movie.MOVIENAME;
+                movie.Director = _movie.DIRECTOR;
+                movie.Actor = _movie.ACTOR;
+                movie.ShortDiscription = _movie.SHORTDESCRIPTION;
+                movie.ShowDate = _movie.SHOWDATE;
+                movies.Add(movie);
+            }
+            movieListViewModel.Movies = movies;
+            return movieListViewModel.Movies;
         }
     }
 }

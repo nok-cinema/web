@@ -23,13 +23,13 @@ namespace nok_cinema_web.Controllers
         }
 
         // GET: SELLs/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public async Task<ActionResult> Details(int? id1, int? id2, DateTime id3)
         {
-            if (id == null)
+            if (id1 == null | id2 == null | id3 == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SELL sELL = await db.SELL.FindAsync(id);
+            SELL sELL = await db.SELL.FindAsync(id1,id2,id3);
             if (sELL == null)
             {
                 return HttpNotFound();
@@ -65,13 +65,13 @@ namespace nok_cinema_web.Controllers
         }
 
         // GET: SELLs/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> Edit(int? id1, int? id2, DateTime id3)
         {
-            if (id == null)
+            if (id1 == null | id2 == null | id3 == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SELL sELL = await db.SELL.FindAsync(id);
+            SELL sELL = await db.SELL.FindAsync(id1, id2, id3);
             if (sELL == null)
             {
                 return HttpNotFound();
@@ -100,13 +100,13 @@ namespace nok_cinema_web.Controllers
         }
 
         // GET: SELLs/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public async Task<ActionResult> Delete(int? id1, int? id2, DateTime id3)
         {
-            if (id == null)
+            if (id1 == null | id2 == null | id3 == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SELL sELL = await db.SELL.FindAsync(id);
+            SELL sELL = await db.SELL.FindAsync(id1, id2, id3);
             if (sELL == null)
             {
                 return HttpNotFound();
@@ -117,9 +117,9 @@ namespace nok_cinema_web.Controllers
         // POST: SELLs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id1, int id2, DateTime id3)
         {
-            SELL sELL = await db.SELL.FindAsync(id);
+            SELL sELL = await db.SELL.FindAsync(id1, id2, id3);
             db.SELL.Remove(sELL);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");

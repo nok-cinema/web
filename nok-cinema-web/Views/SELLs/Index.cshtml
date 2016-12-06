@@ -47,9 +47,9 @@
                 @Html.DisplayFor(modelItem => item.FOOD.NAME)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new { id1 = item.FOODID, id2 = item.EMPID, id3 = item.SDATE }) |
+                @Html.ActionLink("Details", "Details", new { id1 = item.FOODID, id2 = item.EMPID, id3 = item.SDATE }) |
+                @Html.ActionLink("Delete", "Delete", new { id1 = item.FOODID, id2 = item.EMPID, id3 = item.SDATE })
             </td>
         </tr>
     }

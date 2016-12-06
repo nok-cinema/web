@@ -16,7 +16,7 @@ namespace nok_cinema_web.BLL
             var showtimeList = new ShowtimeListViewModel();
             var showtime = new ShowtimeViewModel();
             IQueryable<SHOWTIME> showtimeQuery = from tmp in db.SHOWTIME
-                                                 where tmp.MOVIEID.Equals(id)
+                                                 where tmp.MOVIEID.Equals(id) & tmp.SHOWDATE >= System.DateTime.Now
                                                  select tmp;
             List<ShowtimeViewModel> showtimes = new List<ShowtimeViewModel>();
             if (showtimeQuery.Any())

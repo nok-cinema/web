@@ -1,0 +1,21 @@
+--------------------------------------------------------
+--  File created - Sunday-December-04-2016   
+--------------------------------------------------------
+REM INSERTING into SHOWTIME
+SET DEFINE OFF;
+Insert into SHOWTIME (SHOWDATE,MOVIEID,THEATREID) values (to_date('04-DEC-16 15:00:00','DD-MON-RR HH24:MI:SS'),1,1);
+Insert into SHOWTIME (SHOWDATE,MOVIEID,THEATREID) values (to_date('04-DEC-16 17:00:00','DD-MON-RR HH24:MI:SS'),1,1);
+Insert into SHOWTIME (SHOWDATE,MOVIEID,THEATREID) values (to_date('04-DEC-16 19:00:00','DD-MON-RR HH24:MI:SS'),1,1);
+Insert into SHOWTIME (SHOWDATE,MOVIEID,THEATREID) values (to_date('04-DEC-16 21:00:00','DD-MON-RR HH24:MI:SS'),1,1);
+Insert into SHOWTIME (SHOWDATE,MOVIEID,THEATREID) values (to_date('05-DEC-16 15:00:00','DD-MON-RR HH24:MI:SS'),1,1);
+Insert into SHOWTIME (SHOWDATE,MOVIEID,THEATREID) values (to_date('05-DEC-16 17:00:00','DD-MON-RR HH24:MI:SS'),1,1);
+Insert into SHOWTIME (SHOWDATE,MOVIEID,THEATREID) values (to_date('05-DEC-16 19:00:00','DD-MON-RR HH24:MI:SS'),1,1);
+Insert into SHOWTIME (SHOWDATE,MOVIEID,THEATREID) values (to_date('05-DEC-16 21:00:00','DD-MON-RR HH24:MI:SS'),1,1);
+Insert into SHOWTIME (SHOWDATE,MOVIEID,THEATREID) values (to_date('04-DEC-16 15:00:00','DD-MON-RR HH24:MI:SS'),2,2);
+Insert into SHOWTIME (SHOWDATE,MOVIEID,THEATREID) values (to_date('04-DEC-16 17:00:00','DD-MON-RR HH24:MI:SS'),2,2);
+Insert into SHOWTIME (SHOWDATE,MOVIEID,THEATREID) values (to_date('04-DEC-16 19:00:00','DD-MON-RR HH24:MI:SS'),2,2);
+Insert into SHOWTIME (SHOWDATE,MOVIEID,THEATREID) values (to_date('04-DEC-16 21:00:00','DD-MON-RR HH24:MI:SS'),2,2);
+Insert into SHOWTIME (SHOWDATE,MOVIEID,THEATREID) values (to_date('05-DEC-16 15:00:00','DD-MON-RR HH24:MI:SS'),2,2);
+Insert into SHOWTIME (SHOWDATE,MOVIEID,THEATREID) values (to_date('05-DEC-16 17:00:00','DD-MON-RR HH24:MI:SS'),2,2);
+Insert into SHOWTIME (SHOWDATE,MOVIEID,THEATREID) values (to_date('05-DEC-16 19:00:00','DD-MON-RR HH24:MI:SS'),2,2);
+Insert into SHOWTIME (SHOWDATE,MOVIEID,THEATREID) values (to_date('05-DEC-16 21:00:00','DD-MON-RR HH24:MI:SS'),2,2);

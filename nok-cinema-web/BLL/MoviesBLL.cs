@@ -41,7 +41,7 @@ namespace nok_cinema_web.BLL
             var movieList = new MovieListViewModel();
             //MovieViewModel movie = new MovieViewModel();
             IQueryable<MOVIE> movieQuery = from tmp in db.MOVIE
-                                           where tmp.CATEGORY.Equals(category)
+                                           where tmp.CATEGORY.Any(c => c.CATEGORYNAME == category)
                                            select tmp;
             movieList.Movies = new List<MovieViewModel>();
             if (movieQuery.Any())
@@ -58,7 +58,7 @@ namespace nok_cinema_web.BLL
                     movieList.Movies.Add(movie);
                 }
             }
-            movieList.Category = category;
+            movieList.Category = new CATEGORY {CATEGORYNAME = category};
             return movieList.Movies;
         }
     }

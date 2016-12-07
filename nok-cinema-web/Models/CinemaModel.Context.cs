@@ -25,16 +25,18 @@ namespace nok_cinema_web.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<ACTOR> ACTOR { get; set; }
+        public virtual DbSet<CATEGORY> CATEGORY { get; set; }
         public virtual DbSet<EMPLOYEE> EMPLOYEE { get; set; }
         public virtual DbSet<FOOD> FOOD { get; set; }
         public virtual DbSet<MEMBER> MEMBER { get; set; }
+        public virtual DbSet<MOVIE> MOVIE { get; set; }
         public virtual DbSet<PERSON> PERSON { get; set; }
         public virtual DbSet<REVIEW> REVIEW { get; set; }
+        public virtual DbSet<SEAT> SEAT { get; set; }
+        public virtual DbSet<SELL> SELL { get; set; }
         public virtual DbSet<SHOWTIME> SHOWTIME { get; set; }
         public virtual DbSet<THEATRE> THEATRE { get; set; }
-        public virtual DbSet<SELL> SELL { get; set; }
-        public virtual DbSet<MOVIE> MOVIE { get; set; }
-        public virtual DbSet<SEAT> SEAT { get; set; }
         public virtual DbSet<TICKET> TICKET { get; set; }
     }
 }

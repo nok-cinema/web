@@ -206,6 +206,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ACTOR.cs">
+      <DependentUpon>CinemaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CATEGORY.cs">
+      <DependentUpon>CinemaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CinemaModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -314,6 +320,10 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery.seat-charts.css" />
+    <Content Include="Scripts\jquery.seat-charts.js" />
+    <Content Include="Scripts\jquery.seat-charts.min.js" />
     <EntityDeploy Include="Models\CinemaModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CinemaModel.Designer.cs</LastGenOutput>
@@ -321,10 +331,6 @@
     <Content Include="Models\CinemaModel.edmx.diagram">
       <DependentUpon>CinemaModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Scripts\jquery-3.1.1.min.js" />
-    <Content Include="Scripts\jquery.seat-charts.css" />
-    <Content Include="Scripts\jquery.seat-charts.js" />
-    <Content Include="Scripts\jquery.seat-charts.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

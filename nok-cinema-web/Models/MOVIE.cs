@@ -19,14 +19,14 @@ namespace nok_cinema_web.Models
         {
             this.REVIEW = new HashSet<REVIEW>();
             this.SHOWTIME = new HashSet<SHOWTIME>();
+            this.ACTOR = new HashSet<ACTOR>();
+            this.CATEGORY = new HashSet<CATEGORY>();
         }
     
         public int MOVIEID { get; set; }
         public string MOVIENAME { get; set; }
-        public string CATEGORY { get; set; }
         public string DIRECTOR { get; set; }
         public string SHORTDESCRIPTION { get; set; }
-        public string ACTOR { get; set; }
         public Nullable<short> DURATION { get; set; }
         public Nullable<int> PLAYCOUNT { get; set; }
         public string STATUS { get; set; }
@@ -36,5 +36,9 @@ namespace nok_cinema_web.Models
         public virtual ICollection<REVIEW> REVIEW { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SHOWTIME> SHOWTIME { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ACTOR> ACTOR { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CATEGORY> CATEGORY { get; set; }
     }
 }

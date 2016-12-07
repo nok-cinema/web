@@ -4,31 +4,35 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4d460887bf3740b4925101ffb7fe7635" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.EMPLOYEE" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.FOOD" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.MEMBER" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.PERSON" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.REVIEW" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.SHOWTIME" Width="1.5" PointX="6" PointY="13.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.THEATRE" Width="1.5" PointX="3.75" PointY="10.5" IsExpanded="true" />
+      <Diagram DiagramId="56632dd3c9a74929b6fdd13ece46d701" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.ACTOR" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CATEGORY" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.EMPLOYEE" Width="1.5" PointX="6" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.FOOD" Width="1.5" PointX="6" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.MEMBER" Width="1.5" PointX="6" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.MOVIE" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PERSON" Width="1.5" PointX="3.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.REVIEW" Width="1.5" PointX="6" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SEAT" Width="1.5" PointX="6" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SELL" Width="1.5" PointX="8.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SHOWTIME" Width="1.5" PointX="6" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.THEATRE" Width="1.5" PointX="3.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TICKET" Width="1.5" PointX="8.25" PointY="2.125" IsExpanded="true" />
         <AssociationConnector Association="Model.EMPLOYEE_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SELL_FK2" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TICKET_FK4" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SELL_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.MEMBER_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.REVIEW_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TICKET_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.REVIEW_FK2" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SHOWTIME_FK2" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SEAT_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TICKET_FK2" ManuallyRouted="false" />
         <AssociationConnector Association="Model.SHOWTIME_FK1" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Model.SELL" Width="1.5" PointX="5.25" PointY="2.25" />
-        <AssociationConnector Association="Model.SELL_FK2" />
-        <AssociationConnector Association="Model.SELL_FK1" />
-        <EntityTypeShape EntityType="Model.MOVIE" Width="1.5" PointX="8.375" PointY="9" />
-        <AssociationConnector Association="Model.REVIEW_FK2" />
-        <AssociationConnector Association="Model.SHOWTIME_FK2" />
-        <EntityTypeShape EntityType="Model.SEAT" Width="1.5" PointX="9" PointY="5.625" />
-        <EntityTypeShape EntityType="Model.TICKET" Width="1.5" PointX="11.25" PointY="8" />
-        <AssociationConnector Association="Model.TICKET_FK4" />
-        <AssociationConnector Association="Model.TICKET_FK1" />
-        <AssociationConnector Association="Model.SEAT_FK1" />
-        <AssociationConnector Association="Model.TICKET_FK2" />
-        <AssociationConnector Association="Model.TICKET_FK3" />
+        <AssociationConnector Association="Model.TICKET_FK3" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.MOVIE_ACTOR" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.MOVIE_CATEGORY" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

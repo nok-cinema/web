@@ -16,9 +16,9 @@
         @Html.ActionLink("Create New", "Create")
     </p>
     <br />
-    @Html.ActionLink("Music category", "Browse", new { category = "Music" })
-    @Html.ActionLink("Romantic category", "Browse", new { category = "Romantic" })
-    @Html.ActionLink("Fantasy category", "Browse", new { category = "Fantasy" })
+    @Html.ActionLink("Action category", "Browse", new { category = "action" })
+    @Html.ActionLink("Drama category", "Browse", new { category = "drama" })
+    @Html.ActionLink("Comedy category", "Browse", new { category = "comedy" })
     <table class="table">
         <tr>
             <th>
@@ -28,13 +28,13 @@
                 @Html.DisplayNameFor(model => model.CATEGORY)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.ACTOR)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.DIRECTOR)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.SHORTDESCRIPTION)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ACTOR)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DURATION)
@@ -58,16 +58,26 @@
                     @Html.DisplayFor(modelItem => item.MOVIENAME)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CATEGORY)
+                    <ul>
+                        @foreach (var eachCategory in item.CATEGORY)
+                        {
+                            <li>@Html.DisplayFor(modelItem => eachCategory.CATEGORYNAME)</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var eachActor in item.ACTOR)
+                        {
+                            <li>@Html.DisplayFor(modelItem => eachActor.ACTORNAME)</li>
+                        }
+                    </ul>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DIRECTOR)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.SHORTDESCRIPTION)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ACTOR)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DURATION)

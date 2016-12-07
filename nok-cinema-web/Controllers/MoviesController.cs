@@ -27,7 +27,7 @@ namespace nok_cinema_web.Controllers
         {
             var movieBLL = new MoviesBLL();
             var movieList = new MovieListViewModel();
-            movieList.Category = category;
+            movieList.Category = new CATEGORY {CATEGORYNAME = category};
             movieList.Movies = movieBLL.GetMovieListByCategory(category);
             if (movieList.Movies.Any())
             {
@@ -65,7 +65,7 @@ namespace nok_cinema_web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "MOVIEID,MOVIENAME,CATEGORY,DIRECTOR,SHORTDESCRIPTION,ACTOR,DURATION,PLAYCOUNT,STATUS,SHOWDATE")] MOVIE mOVIE)
+        public async Task<ActionResult> Create([Bind(Include = "MOVIEID,MOVIENAME,DIRECTOR,SHORTDESCRIPTION,DURATION,PLAYCOUNT,STATUS,SHOWDATE")] MOVIE mOVIE)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace nok_cinema_web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "MOVIEID,MOVIENAME,CATEGORY,DIRECTOR,SHORTDESCRIPTION,ACTOR,DURATION,PLAYCOUNT,STATUS,SHOWDATE")] MOVIE mOVIE)
+        public async Task<ActionResult> Edit([Bind(Include = "MOVIEID,MOVIENAME,DIRECTOR,SHORTDESCRIPTION,DURATION,PLAYCOUNT,STATUS,SHOWDATE")] MOVIE mOVIE)
         {
             if (ModelState.IsValid)
             {

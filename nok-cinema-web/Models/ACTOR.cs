@@ -12,21 +12,18 @@ namespace nok_cinema_web.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SHOWTIME
+    public partial class ACTOR
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SHOWTIME()
+        public ACTOR()
         {
-            this.TICKET = new HashSet<TICKET>();
+            this.MOVIE = new HashSet<MOVIE>();
         }
     
-        public System.DateTime SHOWDATE { get; set; }
-        public int MOVIEID { get; set; }
-        public byte THEATREID { get; set; }
+        public int ACTORID { get; set; }
+        public string ACTORNAME { get; set; }
     
-        public virtual MOVIE MOVIE { get; set; }
-        public virtual THEATRE THEATRE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TICKET> TICKET { get; set; }
+        public virtual ICollection<MOVIE> MOVIE { get; set; }
     }
 }

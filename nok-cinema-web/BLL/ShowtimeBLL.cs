@@ -16,7 +16,7 @@ namespace nok_cinema_web.BLL
             var showtimeList = new ShowtimeListViewModel();
             var showtime = new ShowtimeViewModel();
             IQueryable<SHOWTIME> showtimeQuery = from tmp in db.SHOWTIME
-                                                 where tmp.MOVIEID.Equals(id)
+                                                 where tmp.MOVIEID.Equals(id) & tmp.SHOWDATE >= System.DateTime.Now
                                                  select tmp;
             List<ShowtimeViewModel> showtimes = new List<ShowtimeViewModel>();
             if (showtimeQuery.Any())
@@ -45,7 +45,7 @@ namespace nok_cinema_web.BLL
                     if (same)
                     {
                         showtime.SHOWDATES.Add(showtimeTuple.SHOWDATE);
-                        showtime.DATES = showtimeTuple.SHOWDATE.ToShortDateString();
+                        showtime.DATES = showtimeTuple.SHOWDATE.ToString("dd/MM/yyyy");
                         showtime.TIMES.Add(showtimeTuple.SHOWDATE.ToShortTimeString());
                         showtime.MOVIEID = showtimeTuple.MOVIEID;
                         showtime.THEATREID = showtimeTuple.THEATREID;
@@ -56,7 +56,7 @@ namespace nok_cinema_web.BLL
 
                         showtime = new ShowtimeViewModel();
                         showtime.SHOWDATES.Add(showtimeTuple.SHOWDATE);
-                        showtime.DATES = showtimeTuple.SHOWDATE.ToShortDateString();
+                        showtime.DATES = showtimeTuple.SHOWDATE.ToString("dd/MM/yyyy");
                         showtime.TIMES.Add(showtimeTuple.SHOWDATE.ToShortTimeString());
                         showtime.MOVIEID = showtimeTuple.MOVIEID;
                         showtime.THEATREID = showtimeTuple.THEATREID;
@@ -64,7 +64,7 @@ namespace nok_cinema_web.BLL
 
                     if (i == showtimeQuery.Count())
                     {
-                        showtime.DATES = showtimeTuple.SHOWDATE.ToShortDateString();
+                        showtime.DATES = showtimeTuple.SHOWDATE.ToString("dd/MM/yyyy");
                         showtimes.Add(showtime);
                     }
 

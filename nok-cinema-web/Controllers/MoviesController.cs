@@ -39,6 +39,11 @@ namespace nok_cinema_web.Controllers
             }
         }
 
+        public ActionResult BrowseShowtimes(int movieid)
+        {
+            return RedirectToAction("Browse", "SHOWTIMEs", new { movieid });
+        }
+
         // GET: Movies/Details/5
         public async Task<ActionResult> Details(int? id)
         {

@@ -92,9 +92,10 @@
                     @Html.DisplayFor(modelItem => item.SHOWDATE)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.MOVIEID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.MOVIEID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.MOVIEID })
+                    @Html.ActionLink("Showtimes", "BrowseShowtimes", new {movieid=item.MOVIEID}) |
+                    @Html.ActionLink("Edit", "Edit", new {id = item.MOVIEID}) |
+                    @Html.ActionLink("Details", "Details", new {id = item.MOVIEID}) |
+                    @Html.ActionLink("Delete", "Delete", new {id = item.MOVIEID})
                 </td>
             </tr>
         }

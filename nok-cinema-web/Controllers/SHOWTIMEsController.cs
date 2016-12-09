@@ -41,8 +41,9 @@ namespace nok_cinema_web.Controllers
 
         public ActionResult SelectShowtime(int m_id, DateTime sd, byte t_id)
         {
-            var select = new ShowtimeViewModel(m_id, sd, t_id);
-            return View("SelectShowtime", select);
+            return RedirectToAction("Seat", "Booking", new {id1=sd, id2=m_id});
+            //var select = new ShowtimeViewModel(m_id, sd, t_id);
+            //return View("SelectShowtime", select);
         }
 
         // GET: SHOWTIMEs/Details/5

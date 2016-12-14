@@ -143,6 +143,7 @@ namespace nok_cinema_web.Controllers
         {
             return Json(!db.PERSON.Any(x => x.CITIZENID == CITIZENID), JsonRequestBehavior.AllowGet);
         }
+        
 
 
     }

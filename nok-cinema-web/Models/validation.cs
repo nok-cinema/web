@@ -30,7 +30,7 @@ namespace nok_cinema_web.Models
         [Remote("doesEMAILExist", "Authentication", HttpMethod = "POST", ErrorMessage = "EMAIL already exists. Please enter a different EMAIL.")]
         public string EMAIL { get; set; }
         [Required]
-       [Remote("doesUSERNAMEExist", "Authentication", HttpMethod = "POST", ErrorMessage = "Username already exists. Please enter a different username.")]
+        [Remote("doesUSERNAMEExist", "Authentication", HttpMethod = "POST", ErrorMessage = "Username already exists. Please enter a different username.")]
         public string USERNAME { get; set; }
         [Required]
         public string PASSWORD { get; set; }

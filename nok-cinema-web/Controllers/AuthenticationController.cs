@@ -116,8 +116,6 @@ namespace nok_cinema_web.Controllers
             
                 if (ModelState.IsValid)
                 {
-                    MEMBER mem = new MEMBER();
-                    db.MEMBER.Add(mem);
                     db.PERSON.Add(pERSON);
                     await db.SaveChangesAsync();
                     return RedirectToAction("Login");

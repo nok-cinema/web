@@ -52,7 +52,7 @@ namespace nok_cinema_web.Controllers
             //return Json(Url.Action("Index", "Movies"));
             if (true)
             {
-                return RedirectToAction("Payment");
+                return RedirectToAction("Index", "Movies");
             }
             return Json("pending");
         }

@@ -118,16 +118,41 @@ span.seatCharts-legendDescription {margin-left: 5px;line-height: 30px;}
     $('#checkout-button')
         .click(function() {
             var x = document.getElementsByName("seatText");
-            var text = 'Seat: ';
-            var seats = [];
+            var selectingSeats = {
+                seatRows: [],
+                seatNumbers: [],
+                text: "Seats: "
+            };
             var i;
             for (i = 0; i < x.length; i++) {
                 //text += (x[i].innerHTML + ' ');
-                seats.push(x[i].innerHTML);
+                selectingSeats.seatRows.push(x[i].innerHTML.substr(0, 1));
+                selectingSeats.seatNumbers.push(x[i].innerHTML.substr(1));
+                selectingSeats.text += (selectingSeats.seatRows[i] + selectingSeats.seatNumbers[i] + ", ");
             }
-            alert(text + seats);
+            alert(selectingSeats.text);
             //alert(str.join(','));
+
+            $.ajax({
+                url: "@Url.Action("ProcessData", "Booking")",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({ selectedSeatList: selectingSeats }),
+                //success: function(response) {
+                complete: function(result) {
+                    if (result.responseText == 'pending') {
+                        //$('body').html(result.responseText);
+                        //window.location.href = result.responseText;
+                        setTimeout(function () { ajaxRequest(); }, 5000);   
+                    }
+                    else {
+                        window.location = '@Url.Action("Index", "Movies")';
+                    }
+                    //response ? alert("It worked!") : alert("It didn't work.");
+            }
+        }   );
         });
+
 
     var price = 10; //price
     var firstSeatLabel = 1;

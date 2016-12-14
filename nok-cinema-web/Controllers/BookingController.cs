@@ -45,6 +45,21 @@ namespace nok_cinema_web.Controllers
                 return RedirectToAction("Index");
             }
         }
-        
+
+        [HttpPost]
+        public ActionResult ProcessData(SelectedSeatListViewModel selectedSeatList)
+        {
+            //return Json(Url.Action("Index", "Movies"));
+            if (true)
+            {
+                return RedirectToAction("Payment");
+            }
+            return Json("pending");
+        }
+
+        public ActionResult Payment()
+        {
+            return;
+        }
     }
 }

@@ -1,0 +1,14 @@
+--------------------------------------------------------
+--  File created - Tuesday-December-13-2016   
+--------------------------------------------------------
+REM INSERTING into EMPLOYEE
+SET DEFINE OFF;
+Insert into EMPLOYEE (EMPID,JOBPOSITION,SALARY,CITIZENID) values (1,'Manager',2500,'1208412802272');
+Insert into EMPLOYEE (EMPID,JOBPOSITION,SALARY,CITIZENID) values (2,'Accountant',1500,'1212425406260');
+Insert into EMPLOYEE (EMPID,JOBPOSITION,SALARY,CITIZENID) values (3,'Satff',1000,'1276431783219');
+Insert into EMPLOYEE (EMPID,JOBPOSITION,SALARY,CITIZENID) values (4,'Satff',1000,'1428877531783');
+Insert into EMPLOYEE (EMPID,JOBPOSITION,SALARY,CITIZENID) values (5,'Satff',1000,'1468335868683');
+Insert into EMPLOYEE (EMPID,JOBPOSITION,SALARY,CITIZENID) values (6,'Satff',1000,'1828253141115');
+Insert into EMPLOYEE (EMPID,JOBPOSITION,SALARY,CITIZENID) values (7,'Cleaner',500,'2816463207348');
+Insert into EMPLOYEE (EMPID,JOBPOSITION,SALARY,CITIZENID) values (8,'Cleaner',500,'3041255857816');
+commit;

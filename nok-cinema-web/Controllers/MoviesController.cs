@@ -27,7 +27,7 @@ namespace nok_cinema_web.Controllers
         {
             var movieBLL = new MoviesBLL();
             var movieList = new MovieListViewModel();
-            movieList.Category = new CATEGORY {CATEGORYNAME = category};
+            movieList.Category = new CATEGORY { CATEGORYNAME = category };
             movieList.Movies = movieBLL.GetMovieListByCategory(category);
             if (movieList.Movies.Any())
             {

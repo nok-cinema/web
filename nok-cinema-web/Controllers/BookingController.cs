@@ -57,9 +57,9 @@ namespace nok_cinema_web.Controllers
             return Json("pending");
         }
 
-        public ActionResult Payment()
-        {
-            return;
-        }
+        //public ActionResult Payment()
+        //{
+        //    return;
+        //}
     }
 }

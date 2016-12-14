@@ -8,8 +8,8 @@
 
 <html>
 <head>
-    <link rel="stylesheet" href="@Url.Content("~/Scripts/bootstrap.min.css")"/>
-    <script type="text/javascript" src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/bootstrap.css")"/>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/bootstrap.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery-3.1.1.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery.maskedinput.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jqBootstrapValidation.js")" type="text/javascript"></script>
@@ -63,43 +63,43 @@
                         <div class="bootstrap-iso">
                             <div class="container-fluid">
     <div class="row">
-        <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="col-md-6 col-md-6 col-xs-12">
             <form class="form-horizontal" method="post">
                 <div class="form-group ">
-                    <label class="control-label col-sm-2" for="CITIZENID">
+                    <label class="control-label col-md-6" for="CITIZENID">
                         CITIZENID
                     </label>
-                    <div class="col-sm-10">
-                        @Html.TextBoxFor(m => m.CITIZENID, new { @class = "form-control text-box single-line" })
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(m => m.CITIZENID, new { @class = "form-control text-box single-line",@maxlength = "13"})
                         @Html.ValidationMessageFor(m => m.CITIZENID, null, new { @class = "text-danger" })
                         <br />
                     </div>
                 </div>
-                <div class="form-group ">
-                    <label class="control-label col-sm-2" for="FNAME">
+                <div class="control-group ">
+                    <label class="control-label col-md-6" for="FNAME">
                         FNAME
                     </label>
-                    <div class="col-sm-10">
-                        @Html.TextBoxFor(m => m.FNAME, new { @class = "form-control text-box single-line" })
-                        @Html.ValidationMessageFor(m => m.FNAME, null, new { @class = "text-danger" })
+                    <div class="col-md-6">
+                        <input class="form-control text-box single-line" id="FNAME" name="FNAME" type="text" value="" required>
+                        <p class="help-block"></p>
                         <br />
                     </div>
                 </div>
-                <div class="form-group ">
-                    <label class="control-label col-sm-2" for="LNAME">
+                <div class="control-group ">
+                    <label class="control-label col-md-6" for="LNAME">
                         LNAME
                     </label>
-                    <div class="col-sm-10">
-                        @Html.TextBoxFor(m => m.LNAME, new { @class = "form-control text-box single-line" })
-                        @Html.ValidationMessageFor(m => m.LNAME, null, new { @class = "text-danger" })
+                    <div class="col-md-6">
+                        <input class="form-control text-box single-line" id="LNAME" name="LNAME" type="text" value="" required>
+                        <p class="help-block"></p>
                         <br />
                     </div>
                 </div>
                 <div class="form-group" id="div_radio">
-                    <label class="control-label col-sm-2" for="GENDER">
+                    <label class="control-label col-md-6" for="GENDER">
                         GENDER
                     </label>
-                    <div class="col-sm-10">
+                    <div class="col-md-6">
                         <label class="radio-inline">
                             <input name="GENDER" type="radio" value="M" required />
                             MALE
@@ -112,41 +112,42 @@
                 </div>
                 &nbsp;
                 <div class="control-group ">
-                    <label class="control-label col-sm-2" for="BIRTHDATE">
+                    <label class="control-label col-md-6" for="BIRTHDATE">
                         BIRTHDATE
                     </label>
-                    <div class="col-sm-10">
+                    <div class="col-md-6">
                         <input class="form-control text-box single-line" id="BIRTHDATE" name="BIRTHDATE" type="text" value="" required>
                         <p class="help-block"></p>
                         <br />
                     </div>
 
                 </div>
-                <div class="form-group ">
-                    <label class="control-label col-sm-2" for="ADDRESS">
+                <div class="control-group ">
+                    <label class="control-label col-md-6" for="ADDRESS">
                         ADDRESS
                     </label>
-                    <div class="col-sm-10">
-                       @Html.TextBoxFor(m => m.ADDRESS, new { @class = "form-control text-box single-line" })
+                    <div class="col-md-6">
+                        <input class="form-control text-box single-line" id="ADDRESS" name="ADDRESS" type="text" value="">
+                        <p class="help-block"></p>
                         <br />
                     </div>
                 </div>
 
                 <div class="form-group ">
-                    <label class="control-label col-sm-2" for="EMAIL">
+                    <label class="control-label col-md-6" for="EMAIL">
                         EMAIL
                     </label>
-                    <div class="col-sm-10">
-                        @Html.TextBoxFor(m => m.EMAIL, new { @class = "form-control text-box single-line" })
-                        @Html.ValidationMessageFor(m => m.EMAIL, null, new { @class = "text-danger" })
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(m => m.EMAIL, new { @class = "form-control text-box single-line", @type = "email" })
+                        @Html.ValidationMessageFor(m => m.EMAIL, null, new { @class = "text-danger"})
                         <br />
                     </div>
                 </div>
                 <div class="form-group ">
-                    <label class="control-label col-sm-2" for="USERNAME">
+                    <label class="control-label col-md-6" for="USERNAME">
                         USERNAME
                     </label>
-                    <div class="col-sm-10">
+                    <div class="col-md-6">
                         @Html.TextBoxFor(m => m.USERNAME,new { @class = "form-control text-box single-line"})
                         @Html.ValidationMessageFor(m => m.USERNAME , null, new { @class = "text-danger" })
                         <br />
@@ -154,26 +155,26 @@
                 </div>
 
                 <div class="control-group ">
-                    <label class="control-label col-sm-2" for="PASSWORD">
+                    <label class="control-label col-md-6" for="PASSWORD">
                         PASSWORD
                     </label>
-                    <div class="col-sm-10">
+                    <div class="col-md-6">
                         <input class="form-control text-box single-line" id="PASSWORD" name="PASSWORD" type="password" value="" required>
                         <p class="help-block"></p>
                         <br />
                     </div>
                 </div>
                 <div class="control-group ">
-                    <label class="control-label col-sm-2" for="PASSWORDAGAIN">
+                    <label class="control-label col-md-6" for="PASSWORDAGAIN">
                         PASSWORD AGAIN
                     </label>
-                    <div class="col-sm-10">
-                        <input class="form-control text-box single-line" type="password" data-validation-match-match="PASSWORD" name="checkpassword" data-validation-match-message ="The password and its confirm are not the same" />
+                    <div class="col-md-6">
+                        <input class="form-control text-box single-line" type="password" data-validation-match-match="PASSWORD" name="checkpassword" data-validation-match-message ="The password and its confirm are not the same" required/>
                         <p class="help-block"></p>
                         <br />
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="control-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Create" class="btn btn-default" />
                     </div>

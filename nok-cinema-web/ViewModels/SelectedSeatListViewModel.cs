@@ -9,6 +9,9 @@ namespace nok_cinema_web.ViewModels
     {
         public string[] SeatRows { get; set; }
         public string[] SeatNumbers { get; set; }
-        public string[] Price { get; set; }
+        public int Price { get; set; }
+        public int MovieId { get; set; }
+        public string MovieName { get; set; }
+        public string Showtime { get; set; }
     }
 }

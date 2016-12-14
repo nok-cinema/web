@@ -264,6 +264,7 @@
     <Compile Include="Models\UserDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BookingShowtimeViewModel.cs" />
+    <Compile Include="ViewModels\BookingTicketViewModel.cs" />
     <Compile Include="ViewModels\MovieListViewModel.cs" />
     <Compile Include="ViewModels\MovieViewModel.cs" />
     <Compile Include="ViewModels\SeatListViewModel.cs" />
@@ -423,6 +424,7 @@
     <Content Include="Views\Booking\Index.cshtml" />
     <Content Include="Views\Booking\Seat.cshtml" />
     <Content Include="Views\SHOWTIMEs\Seats.cshtml" />
+    <Content Include="Views\Booking\Payment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

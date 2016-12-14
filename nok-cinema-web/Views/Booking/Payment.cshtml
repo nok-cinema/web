@@ -1,0 +1,31 @@
+﻿@model nok_cinema_web.ViewModels.BookingShowtimeViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Payment</title>
+</head>
+<body>
+    <div>
+        <div class="booking-details">
+            <p>Movie: <span>@Model.Movie.MOVIENAME</span></p>
+            <p>Time: <span>@Model.DateTime</span></p>
+            <p>Seat: </p>
+            <ul id="selected-seats">
+                <li></li>
+            </ul>
+            <p>Tickets: <span id="counter">0</span></p>
+            <p>
+                Total: <b>$<span id="total">0</span></b>
+            </p>
+
+            <div id="legend"></div>
+        </div>
+    </div>
+</body>
+</html>

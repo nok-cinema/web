@@ -121,6 +121,10 @@ span.seatCharts-legendDescription {margin-left: 5px;line-height: 30px;}
             var selectingSeats = {
                 seatRows: [],
                 seatNumbers: [],
+                price: Number($('#total').text()),
+                movieId: @Model.Movie.MOVIEID,
+                movieName: "@Model.Movie.MOVIENAME",
+                showtime: "@Model.DateTime",
                 text: "Seats: "
             };
             var i;

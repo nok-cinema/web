@@ -116,6 +116,11 @@ namespace nok_cinema_web.Controllers
             
                 if (ModelState.IsValid)
                 {
+                MEMBER member = new MEMBER();
+                member.CITIZENID = pERSON.CITIZENID;
+                member.STARTDATE = DateTime.Now;
+                member.EXPIRYDATE = DateTime.Now.AddYears(1);
+                db.MEMBER.Add(member);
                     db.PERSON.Add(pERSON);
                     await db.SaveChangesAsync();
                     return RedirectToAction("Login");

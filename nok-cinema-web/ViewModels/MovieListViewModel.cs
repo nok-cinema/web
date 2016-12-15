@@ -9,6 +9,6 @@ namespace nok_cinema_web.ViewModels
     public class MovieListViewModel
     {
         public List<MovieViewModel> Movies { get; set; }
-        public CATEGORY Category { get; set; }
+        public CATEGORY Category { get; set; }        
     }
 }

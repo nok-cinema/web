@@ -1,0 +1,35 @@
+﻿@using nok_cinema_web.ViewModels
+@model MovieStatisticListViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Statistic</title>
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <th>MovieName</th>
+                <th>TotalCount</th>
+                <th>TotalIncome</th>
+            </tr>
+
+            @foreach (var item in Model.MoviesStatistic)
+            {
+                <tr>
+                    <td>@item.Moviename</td>
+                    <td>@item.Totalcount</td>
+                    <td>@item.Totalincom</td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</body>
+</html>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ACTOR">
           <Key>
             <PropertyRef Name="ACTORID" />
@@ -142,13 +142,13 @@
             <PropertyRef Name="TICKETID" />
           </Key>
           <Property Name="TICKETID" Type="number" Precision="10" Scale="0" Nullable="false" />
-          <Property Name="MEMBERID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="MEMBERID" Type="number" Precision="10" Scale="0" />
           <Property Name="SEATROW" Type="varchar2" MaxLength="1" Nullable="false" />
           <Property Name="SEATNUMBER" Type="number" Precision="4" Scale="0" Nullable="false" />
           <Property Name="THEATREID" Type="number" Precision="2" Scale="0" Nullable="false" />
           <Property Name="SHOWDATE" Type="date" Nullable="false" />
           <Property Name="MOVIEID" Type="number" Precision="10" Scale="0" Nullable="false" />
-          <Property Name="EMPID" Type="number" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="EMPID" Type="number" Precision="10" Scale="0" />
         </EntityType>
         <Association Name="EMPLOYEE_FK1">
           <End Role="PERSON" Type="Self.PERSON" Multiplicity="1" />
@@ -307,7 +307,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="TICKET_FK1">
-          <End Role="MEMBER" Type="Self.MEMBER" Multiplicity="1" />
+          <End Role="MEMBER" Type="Self.MEMBER" Multiplicity="0..1" />
           <End Role="TICKET" Type="Self.TICKET" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MEMBER">
@@ -349,7 +349,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="TICKET_FK4">
-          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
           <End Role="TICKET" Type="Self.TICKET" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EMPLOYEE">
@@ -445,8 +445,7 @@
             <End Role="TICKET" EntitySet="TICKET" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">

@@ -60,7 +60,7 @@ body {
 .dropbtn {
     background-color: #4CAF50;
     color: white;
-    padding: 16px;
+    padding: 15px;
     font-size: 23px;
     border: none;
     /*cursor: pointer;*/
@@ -99,7 +99,7 @@ body {
 .type3 {
 	padding-top: 2px;
 	float: left;
-	width: 57.4%;
+	width: 55.5%;
 	color: white;
 	font-size: 20px;
 }

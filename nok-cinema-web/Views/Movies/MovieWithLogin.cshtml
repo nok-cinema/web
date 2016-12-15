@@ -45,6 +45,39 @@
         <div class="body">
             <div class="greyspace"></div>
             <div class="back">
+                <div class="mid">
+                    @using (Html.BeginForm("Search", "Movies", FormMethod.Post))
+                    {
+                        <div class="search">
+                            Name: @Html.TextBox("searchstr") <input type="submit" value="Search" />
+                        </div>
+                    }
+
+                    @using (Html.BeginForm("Browse", "Movies", FormMethod.Post))
+                    {
+                        <div class="category">
+                            Category:
+                            <select class="form-control" id="category" name="category" style="width: 50%;">
+                                <option>action</option>
+                                <option>adventure</option>
+                                <option>animation</option>
+                                <option>comedy</option>
+                                <option>crime</option>
+                                <option>documentary</option>
+                                <option>drama</option>
+                                <option>horror</option>
+                                <option>musical</option>
+                                <option>mystery</option>
+                                <option>romance</option>
+                                <option>sci-fi</option>
+                                <option>thriller</option>
+                                <option>fantasy</option>
+                            </select>
+                            <input type="submit" value="Search" />
+                        </div>
+                    }
+                </div>
+                <div class="greyspace"></div>
                 <div class="header3"><img src="~/Content/Images/logo14.png" style="width: 1.8%; height: 1.8%;"> Now Showing</div>
                 <div class="box3">
                     <div class="box4">
@@ -69,44 +102,13 @@
                             </div>
                         }
                     </div>
-                    @using (Html.BeginForm("Search", "Movies", FormMethod.Post))
-                    {
-                        <div>
-                            Name: @Html.TextBox("searchstr") <input type="submit" value="Search" />
-                        </div>
-                    }
-
-                    @using (Html.BeginForm("Browse", "Movies", FormMethod.Post))
-                    {
-                        <div>
-                            Category:
-                            <select class="form-control" id="category" name="category">
-                                <option>action</option>
-                                <option>adventure</option>
-                                <option>animation</option>
-                                <option>comedy</option>
-                                <option>crime</option>
-                                <option>documentary</option>
-                                <option>drama</option>
-                                <option>horror</option>
-                                <option>musical</option>
-                                <option>mystery</option>
-                                <option>romance</option>
-                                <option>sci-fi</option>
-                                <option>thriller</option>
-                                <option>fantasy</option>
-                            </select>
-                            <input type="submit" value="Search" />
-                        </div>
-                    }
-
                 </div>
-            </div>
 
-        </div>
-        <div class="content3">
-            <div class="deep">
-                <div class="copyr"><img src="~/Content/Images/logo3.png"> <img src="~/Content/Images/logo4.png"> <img src="~/Content/Images/logo5.png"> 02-222-2222 Copyright<img src="~/Content/Images/logo6.png"> 2016 By NOKCINEMA</div>
+            </div>
+            <div class="content3">
+                <div class="deep">
+                    <div class="copyr"><img src="~/Content/Images/logo3.png"> <img src="~/Content/Images/logo4.png"> <img src="~/Content/Images/logo5.png"> 02-222-2222 Copyright<img src="~/Content/Images/logo6.png"> 2016 By NOKCINEMA</div>
+                </div>
             </div>
         </div>
     </div>

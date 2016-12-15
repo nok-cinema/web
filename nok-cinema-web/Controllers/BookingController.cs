@@ -6,8 +6,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Script.Serialization;
+using System.Web.Security;
 using Microsoft.Ajax.Utilities;
 using nok_cinema_web.BLL;
+using nok_cinema_web.DAL;
 using nok_cinema_web.Models;
 using nok_cinema_web.ViewModels;
 
@@ -90,9 +92,56 @@ namespace nok_cinema_web.Controllers
         }
 
         [HttpPost]
-        public ActionResult OnlinePay(string bookedSeatRows, string bookedseatNumber, string cardId, string movieName, string datetime, int totalPrice = 0)
+        public ActionResult Ticket(string seatRows, string seatNumbers, string cardId, int movieId, string movieName, string dateTime, int totalPrice = 0)
         {
-            return View("Ticket");
+            List<string> seatRowData;
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            seatRowData = jss.Deserialize<List<string>>(seatRows);
+            List<short> seatNumberData;
+            seatNumberData = jss.Deserialize<List<short>>(seatNumbers);
+            var booking = new BookingTicketViewModel
+            {
+                Movie = new MOVIE()
+                {
+                    MOVIEID = movieId,
+                    MOVIENAME = movieName
+                },
+                DateTime = dateTime,
+                BookingSeats = new SeatListViewModel(),
+                NormalCount = 0,
+                SofaCount = 0,
+            };
+            booking.BookingSeats.Seats = new List<SeatViewModel>();
+            for (int i = 0; i < seatNumberData.Count; i++)
+            {
+                booking.BookingSeats.Seats.Add(new SeatViewModel
+                {
+                    SeatRow = seatRowData[i],
+                    SeatNumber = seatNumberData[i]
+                });
+                if (seatRowData[i] == "A" || seatRowData[i] == "B" || seatRowData[i] == "C") ++booking.SofaCount;
+                else ++booking.NormalCount;
+            }
+            booking.TotalPrice = totalPrice;
+            var ticketsBLL = new TicketsBLL();
+            int empId, memberId;
+
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie == null)
+            {
+                return View();
+            }
+            else
+            {
+                string userName = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+                var employeeDAL = new EmployeeDAL();
+                empId = employeeDAL.GetEmployeeIdByUsername(userName);
+                var memberDAL = new MemberDAL();
+                memberId = memberDAL.GetMemberIdByUsername(userName);
+            }
+
+            ticketsBLL.InsertTickets(booking, empId, memberId);
+            return View("Ticket", booking);
         }
     }
 }

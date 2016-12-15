@@ -10,6 +10,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Payment</title>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-3.1.1.min.js")"></script>
 </head>
 <body>
     <div>
@@ -33,12 +34,12 @@
             </p>
 
             <div id="payment">
-                @using (Html.BeginForm("OnlinePay", "Booking", FormMethod.Post))
+                @using (Html.BeginForm("Ticket", "Booking", FormMethod.Post))
                 {
                     @Html.Label("Card ID: ")
                     @Html.TextBox("cardid")
-                    <input type="hidden" name="bookedseatrows" id="bookedseatrows"/>
-                    <input type="hidden" name="bookedseatnumbers" id="bookedseatnumbers"/>
+                    <input type="hidden" name="seatrows" id="seatrows"/>
+                    <input type="hidden" name="seatnumbers" id="seatnumbers"/>
                     <input type="hidden" name="totalprice" id="totalprice" value="@Model.TotalPrice"/>
                     <input type="hidden" name="movieid" id="movieid" value="@Model.Movie.MOVIEID"/>
                     <input type="hidden" name="moviename" id="moviename" value="@Model.Movie.MOVIENAME"/>
@@ -52,19 +53,15 @@
     <script>
         $('#checkout-button')
             .click(function() {
-                var selectingSeats = {
-                    seatRows: [],
-                    seatNumbers: []
-                };
-                var ROWS = [];
-                var NUMBERS = [];
+                var seatRows = [];
+                var seatNumbers = [];
                 @foreach (SeatViewModel t in Model.BookingSeats.Seats)
                 {
-                    <text>NUMBERS.push('@t.SeatNumber');
-                ROWS.push('@t.SeatRow');</text>
+                    <text>seatNumbers.push('@t.SeatNumber');
+                    seatRows.push('@t.SeatRow');</text>
                 }
-                $('#bookedseatrows').val("test");
-                $('#bookedseatnumbers').val(JSON.stringify(NUMBERS));
+                $('#seatrows').val(JSON.stringify(seatRows));
+                $('#seatnumbers').val(JSON.stringify(seatNumbers));
             });
     </script>
 </body>

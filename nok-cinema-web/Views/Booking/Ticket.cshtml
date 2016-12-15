@@ -1,4 +1,5 @@
-﻿
+﻿@using nok_cinema_web.ViewModels
+@model nok_cinema_web.ViewModels.TicketListViewModel
 @{
     Layout = null;
 }
@@ -9,9 +10,18 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Ticket</title>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-3.1.1.min.js")"></script>
 </head>
 <body>
-    <div> 
-    </div>
+<div>
+    @foreach (var ticketViewModel in Model.Tickets)
+    {
+        <div class="booking-details">
+            <p>Movie: <span>@Model.MovieName</span></p>
+            <p>Time: <span>@Model.DateTime</span></p>
+            <div style="clear: both"></div>
+        </div>
+    }
+</div>
 </body>
 </html>

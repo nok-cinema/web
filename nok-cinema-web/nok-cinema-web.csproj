@@ -510,6 +510,12 @@
     <Content Include="Views\Home\IndexMember.cshtml" />
     <Content Include="Views\Statistics\Statistic.cshtml" />
     <Content Include="Views\Booking\Ticket.cshtml" />
+    <Content Include="Views\MOVIEs\Movie.cshtml" />
+    <Content Include="Views\MOVIEs\MovieDetail.cshtml" />
+    <Content Include="Views\MOVIEs\MovieDetailWithLogin.cshtml" />
+    <Content Include="Views\MOVIEs\MovieWithLogin.cshtml" />
+    <Content Include="Views\MOVIEs\Search.cshtml" />
+    <Content Include="Views\MOVIEs\SearchWithLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

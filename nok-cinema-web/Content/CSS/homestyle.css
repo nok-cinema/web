@@ -18,7 +18,7 @@ body {
 }
 
 .top1 img {
-	width: 12%;
+	width: 12%;,d
 	height: 12%;
 }
 
@@ -61,7 +61,7 @@ body {
     background-color: #4CAF50;
     color: white;
     padding: 15px;
-    font-size: 23px;
+    font-size: 24px;
     border: none;
     /*cursor: pointer;*/
 }
@@ -99,7 +99,7 @@ body {
 .type3 {
 	padding-top: 2px;
 	float: left;
-	width: 55.5%;
+	/*width: 55.5%;*/
 	color: white;
 	font-size: 20px;
 }

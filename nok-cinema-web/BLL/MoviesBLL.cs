@@ -26,7 +26,7 @@ namespace nok_cinema_web.BLL
                     {
                         MovieId = movieTuple.MOVIEID,
                         //Category = movieTuple.CATEGORY,
-                        //MovieName = movieTuple.MOVIENAME,
+                        MovieName = movieTuple.MOVIENAME,
                         //ShowDate = movieTuple.SHOWDATE
                     };
                     movieList.Movies.Add(movie);

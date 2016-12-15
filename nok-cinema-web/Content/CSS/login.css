@@ -1,86 +1,3 @@
-body {
-	margin: 0;
-}
-
-.header {
-	background: #ff6624;
-	width: 100%;
-	height: 65px;
-	z-index: 1;
-	position: fixed;
-}
-
-.menu {
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	position: absolute;
-}
-
-.menu div {
-	display: inline-block;
-}
-
-.top1 img {
-	width: 12%;
-	height: 12%;
-}
-
-.top1 {
-	padding-top: 14px;
-	padding-bottom: 14px;
-	width: 20%;
-	font-size: 25px;
-	color: black;
-	background-color: white;
-	text-align: center;
-	text-decoration: none;
-	float: left;
-    border: none;
-}
-
-.top2 {
-	padding-top: 17.5px;
-	padding-bottom: 17.5px;
-	width: 12%;
-	font-size: 20px;
-	color: #606060;
-	background-color: #cccccc;
-	text-align: center;
-	text-decoration: none;
-	float: left;
-    border: none;
-}
-
-.top2:hover {
-	color: #898989;
-	background-color: #333333;
-    border: none;
-}
-
-.content1 {
-	padding-right: 3.5%;
-	float: right;
-}
-
-.top3 {
-	padding-top: 17.5px;
-	padding-bottom: 17.5px;
-	width: 10%;
-	font-size: 20px;
-	background-color: #4CAF50;
-    color: white;
-	text-align: center;
-	text-decoration: none;
-	float: right;
-    border: none;
-}
-
-.top3:hover {
-	background-color: #3e8e41;
-    border: none;
-}
-
 .boxheader {
 	padding-left: 64px;
 	font-size: 20pt;
@@ -108,16 +25,7 @@ body {
 	text-align: center;
 	text-decoration: none;
 	border-radius: 4px;
-/*	border-color: #8f6311;
-	border-style: solid;
-    border-width: 2px 2px 2px 2px;*/
 }
-
-/*input.BtnSave  {
-  width: 60px;
-  margin: 0 auto;
-  display: block;
-}*/
 
 .body {
 	padding-top: 64px;
@@ -126,14 +34,14 @@ body {
 
 .back {
 	background-color: #ebebeb;
-	width: 95%;
-	height: 490px;
+	width: 90%;
+	height: 100%;
 	margin: 0 auto;
 }
 
 .greyspace {
 	background-color: #ebebeb;
-	width: 95%;
+	width: 90%;
 	height: 30px;
 	margin: 0 auto;
 }
@@ -146,6 +54,11 @@ body {
 	width: 90%;
 	font-size: 20pt;
 	margin: 0 auto;
+}
+
+.header2 img {
+	width: 3.5%;
+	height: 3.5%;
 }
 
 .box2 {
@@ -162,14 +75,9 @@ body {
 	background-color: white;
 	padding-left: 20px;
 	width: 90%;
-	height: 400px;
+	height: 100%;
 	margin: 0 auto;
 	z-index: 1;
-}
-
-.header2 img {
-	width: 2.5%;
-	height: 2.5%;
 }
 
 .darkgreyspace {

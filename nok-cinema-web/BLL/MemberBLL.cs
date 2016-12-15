@@ -12,11 +12,9 @@ namespace nok_cinema_web.BLL
         {
             var db = new CinemaEntities();
             var member = new MEMBER();
-            var merberQuery = from tmp in db.MEMBER
-                                                 where tmp.CITIZENID.Equals(citizenid)
-                                                 select tmp;
+            var memberQuery = db.MEMBER.Where(m => m.PERSON.CITIZENID.Equals(citizenid));
 
-            foreach (var memberTuple in merberQuery)
+            foreach (var memberTuple in memberQuery)
             {
                 member.CITIZENID = memberTuple.CITIZENID;
                 member.MEMBERID = memberTuple.MEMBERID;

@@ -12,12 +12,12 @@ using nok_cinema_web.Models;
 using nok_cinema_web.ViewModels;
 using System.Globalization;
 using System.Web.Security;
-
+using nok_cinema_web.DAL;
 
 namespace nok_cinema_web.Controllers
 {
     public class MoviesController : Controller
-    {       
+    {
         EMPLOYEE employee = new EMPLOYEE();
         MEMBER member = new MEMBER();
         PERSON person = new PERSON();
@@ -30,7 +30,7 @@ namespace nok_cinema_web.Controllers
         public async Task<ActionResult> Index()
         {
             return View(await db.MOVIE.ToListAsync());
-        }        
+        }
 
         public ActionResult BrowseShowtimes(int movieid)
         {
@@ -145,7 +145,7 @@ namespace nok_cinema_web.Controllers
         {
             var movieBLL = new MoviesBLL();
             var movielist = new MovieListViewModel();
-            movielist.Movies = movieBLL.GetMovieListByNowShowing();            
+            movielist.Movies = movieBLL.GetMovieListByNowShowing();
 
             HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             if (authCookie == null)
@@ -162,12 +162,12 @@ namespace nok_cinema_web.Controllers
                     var peopleBLL = new PeopleBLL();
                     person = peopleBLL.GetPersonByCookie(userName);
 
-                    var membersBLL = new MemberBLL();
-                    member = membersBLL.GetMerberByCitizenId(person.CITIZENID);
+                    var memberDAL = new MemberDAL();
+                    member = memberDAL.GetMemberByCitizenId(person.CITIZENID);
                     if (member.EXPIRYDATE > DateTime.Now)
                     {
                         memberuserProfile = new MemberUserProfile(member, person);
-                        TempData["UserProfileData"] = memberuserProfile;                        
+                        TempData["UserProfileData"] = memberuserProfile;
                         return View("MovieWithLogin", movielist);
                     }
                     return RedirectToAction("Index", "Home");
@@ -180,7 +180,7 @@ namespace nok_cinema_web.Controllers
         {
             TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
             searchstr = textInfo.ToTitleCase(searchstr);
-            
+
             var movieBLL = new MoviesBLL();
             var movieList = new MovieListViewModel();
             movieList.Movies = movieBLL.GetMovieListBySearch(searchstr);
@@ -201,8 +201,8 @@ namespace nok_cinema_web.Controllers
                         var peopleBLL = new PeopleBLL();
                         person = peopleBLL.GetPersonByCookie(userName);
 
-                        var membersBLL = new MemberBLL();
-                        member = membersBLL.GetMerberByCitizenId(person.CITIZENID);
+                        var memberDAL = new MemberDAL();
+                        member = memberDAL.GetMemberByCitizenId(person.CITIZENID);
                         if (member.EXPIRYDATE > DateTime.Now)
                         {
                             memberuserProfile = new MemberUserProfile(member, person);
@@ -216,7 +216,7 @@ namespace nok_cinema_web.Controllers
             else
             {
                 return RedirectToAction("Movie");
-            }            
+            }
         }
 
         [HttpPost]
@@ -243,8 +243,8 @@ namespace nok_cinema_web.Controllers
                         var peopleBLL = new PeopleBLL();
                         person = peopleBLL.GetPersonByCookie(userName);
 
-                        var membersBLL = new MemberBLL();
-                        member = membersBLL.GetMerberByCitizenId(person.CITIZENID);
+                        var memberDAL = new MemberDAL();
+                        member = memberDAL.GetMemberByCitizenId(person.CITIZENID);
                         if (member.EXPIRYDATE > DateTime.Now)
                         {
                             memberuserProfile = new MemberUserProfile(member, person);
@@ -266,7 +266,7 @@ namespace nok_cinema_web.Controllers
             var movieBLL = new MoviesBLL();
             var movie = new MovieViewModel();
             movie = movieBLL.GetMovieByMovieID(id);
-            
+
             HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             if (authCookie == null)
                 return View(movie);
@@ -282,8 +282,8 @@ namespace nok_cinema_web.Controllers
                     var peopleBLL = new PeopleBLL();
                     person = peopleBLL.GetPersonByCookie(userName);
 
-                    var membersBLL = new MemberBLL();
-                    member = membersBLL.GetMerberByCitizenId(person.CITIZENID);
+                    var memberDAL = new MemberDAL();
+                    member = memberDAL.GetMemberByCitizenId(person.CITIZENID);
                     if (member.EXPIRYDATE > DateTime.Now)
                     {
                         memberuserProfile = new MemberUserProfile(member, person);
@@ -291,6 +291,49 @@ namespace nok_cinema_web.Controllers
                         return View("MovieDetailWithLogin", movie);
                     }
                     return RedirectToAction("Movie");
+                }
+            }
+        }
+        
+        public ActionResult SelectMovie()
+        {
+            var movieBLL = new MoviesBLL();
+            var movielist = new MovieListViewModel();
+            movielist.Movies = movieBLL.GetMovieListByNowShowing();
+
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie == null)
+                return View(movielist);
+            else
+            {
+                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                DateTime expiration = ticket.Expiration;
+                if (expiration < System.DateTime.Now)
+                    return RedirectToAction("Index", "Home");
+                else
+                {
+                    string userName = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+                    var peopleBLL = new PeopleBLL();
+                    person = peopleBLL.GetPersonByCookie(userName);
+
+                    var memberDAL = new MemberDAL();
+                    member = memberDAL.GetMemberByCitizenId(person.CITIZENID);
+                    if (member.EXPIRYDATE > DateTime.Now)
+                    {
+                        memberuserProfile = new MemberUserProfile(member, person);
+                        TempData["UserProfileData"] = memberuserProfile;
+                        return View("SelectMovieByMember", movielist);
+                    }
+
+                    var employeeDAL = new EmployeeDAL();
+                    employee = employeeDAL.GetEmployeeByCitizenId(person.CITIZENID);
+                    if (employee.JOBPOSITION != null)
+                    {
+                        employeeuserProfile = new EmployeeUserProfile(employee, person);
+                        TempData["UserProfileData"] = employeeuserProfile;
+                        return View("SelectMovieByEmployee", movielist);
+                    }
+                    return RedirectToAction("Index", "Home");
                 }
             }
         }

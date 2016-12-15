@@ -1,0 +1,77 @@
+﻿@using nok_cinema_web.ViewModels
+@model EmployeeUserProfile
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manager_home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/CSS/manager.css">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+</head>
+<body>
+    <div>
+        <div class="header">
+            <div class="menu">
+                @using (Html.BeginForm("Index", "Home"))
+                {<button class="top1" type="submit"><img src="~/Content/Images/logo1.png"> NOK CINEMA</button>}
+                @using (Html.BeginForm("Index", "Home"))
+                {<button class="top2" type="submit">Home</button>}
+                @using (Html.BeginForm("Statistic", "Statistics"))
+                {<button class="top2" type="submit">Statistics</button>}
+                @using (Html.BeginForm("Index", "Home"))
+                {<button class="top2" type="submit">Income</button>}
+                <div class="content1">
+                    <div class="dropdown">
+                        <button class="dropbtn">Management</button>
+                        <div class="dropdown-content">
+                            <a>Profile</a>
+                            <a>Setting</a>
+                            @Html.ActionLink("Logout", "Logout", "Authentication")
+                        </div>
+                    </div>
+                    <div class="top3">Manager: @Model.USERNAME <img src="~/Content/Images/logo2.png"></div>
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="greyspace"></div>
+            <div class="back">
+                <div class="box2">
+                    <div class="bot1">
+                        <ul>
+                            <div class="bot11">Statistics</div>
+                            <br />
+                            <div class="bot12">Today</div>
+                            <br />
+                            <div class="bot12">Month</div>
+                            <br />
+                            <div class="bot12">Year</div>
+                            <br />
+                            <div class="bot12">Movie categories</div>
+                            <br />
+                            <div class="bot12">Rating</div>
+                        </ul>
+                    </div>
+                    <div class="bot2">
+                        <ul>
+                            <div class="bot21">Income</div>
+                            <br />
+                            <div class="bot22">Today</div>
+                            <br />
+                            <div class="bot22">Month</div>
+                            <br />
+                            <div class="bot22">Year</div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</html>

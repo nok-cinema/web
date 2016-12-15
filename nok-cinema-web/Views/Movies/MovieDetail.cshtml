@@ -1,0 +1,100 @@
+﻿@using nok_cinema_web.ViewModels
+@model MovieViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Description</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/CSS/description.css">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+</head>
+<body>
+    <div>
+        <div class="header">
+            <div class="menu">
+                @using (Html.BeginForm("Index", "Home"))
+                {<button class="top1" type="submit"><img src="~/Content/Images/logo1.png"> NOK CINEMA</button>}
+                @using (Html.BeginForm("Index", "Home"))
+                {<button class="top2" type="submit">Home</button>}
+                @using (Html.BeginForm("Index", "Home"))
+                {<button class="top2" type="submit">ShowTime</button>}
+                @using (Html.BeginForm("Movie", "Movies"))
+                {<button class="top2" type="submit">Movies</button>}
+                @using (Html.BeginForm("Index", "Home"))
+                {<button class="top2" type="submit">Food & Drink</button>}
+                @using (Html.BeginForm("Login", "Authentication"))
+                {<button class="top3" type="submit">Login</button>}
+                @using (Html.BeginForm("Register", "Authentication"))
+                {<button class="top3" type="submit">Register</button>}
+            </div>
+        </div>
+        <div class="body">
+            <div class="greyspace"></div>
+            <div class="back">
+                <div class="header2"><img src="~/Content/Images/logo8.png"> Description</div>
+                <div class="box2">
+                    <div class="bot1"><img src="@Url.Content(String.Format("~/Content/Movie/{0}.jpg", Model.MovieId))" style="width: 80%; height: 80%;" /></div>
+                    <div class="bot2">@Model.MovieName</div>
+                    <div class="bot3">
+                        <table>
+                            <tr>
+                                <th>Category</th>
+                                <td>
+                                    <ul>
+                                        @foreach (var item in Model.Category)
+                                        {
+                                            <li>@item.CATEGORYNAME</li>
+                                        }
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Actor</th>
+                                <td>
+                                    <ul>
+                                        @foreach (var item in Model.Actor)
+                                        {
+                                            <li>@item.ACTORNAME</li>
+                                        }
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Director</th>
+                                <td>@Model.Director</td>
+                            </tr>
+                            <tr>
+                                <th>Duration</th>
+                                <td>@Model.Duration</td>
+                            </tr>
+                            <tr>
+                                <th>ShowDate</th>
+                                <td>@Model.ShowDate</td>
+                            </tr>
+                            <tr>
+                                <th>Description</th>
+                                <td>@Model.ShortDiscription</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="box3">
+                        <div class="reserve">Get ticket</div>
+                    </div>
+                </div>
+                <div class="darkgreyspace"></div>
+            </div>
+        </div>
+        <div class="content3">
+            <div class="deep">
+                <div class="copyr"><img src="~/Content/Images/logo3.png"> <img src="~/Content/Images/logo4.png"> <img src="~/Content/Images/logo5.png"> 02-222-2222 Copyright<img src="~/Content/Images/logo6.png"> 2016 By NOKCINEMA</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

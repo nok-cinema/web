@@ -1,0 +1,96 @@
+﻿@using nok_cinema_web.ViewModels
+@model MovieListViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/CSS/boxofficestyle.css">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+</head>
+<body>
+    <div>
+        <div class="header">
+            <div class="menu">
+                @using (Html.BeginForm("Index", "Home"))
+                {<button class="top1" type="submit"><img src="~/Content/Images/logo1.png"> NOK CINEMA</button>}
+                @using (Html.BeginForm("Index", "Home"))
+            {<button class="top2" type="submit">Home</button>}
+                @using (Html.BeginForm("Index", "Home"))
+            {<button class="top2" type="submit">ShowTime</button>}
+                @using (Html.BeginForm("Movie", "Movies"))
+            {<button class="top2" type="submit">Movies</button>}
+                @using (Html.BeginForm("Index", "Home"))
+            {<button class="top2" type="submit">Food & Drink</button>}
+                <div class="content1">
+                    <div class="dropdown">
+                        <button class="dropbtn">Management</button>
+                        <div class="dropdown-content">
+                            @Html.ActionLink("Profile", "Edit", "People")
+                            <a>Setting</a>
+                            @Html.ActionLink("Logout", "Logout", "Authentication")
+                        </div>
+                    </div>
+                    @{ MemberUserProfile user = (MemberUserProfile)TempData["UserProfileData"];}
+                    <div class="type3">Welcome, @user.USERNAME <img src="~/Content/Images/logo2.png"></div>
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="greyspace"></div>
+            <div class="back">
+                <div class="header3"><img src="~/Content/Images/logo14.png" style="width: 1.8%; height: 1.8%;"> Movies</div>
+                <div class="box3">
+                    <div class="box4">
+                        @*<div class="movie1">
+                                <img src="theseven.jpg" style="width: 100%; height: 395px;">
+                            </div>
+                            <div class="movie2">
+                                <img src="theac.jpg" style="width: 100%; height: 395px;">
+                            </div>
+                            <div class="movie3">
+                                <img src="pokemonxyz.jpg" style="width: 100%; height: 395px;">
+                            </div>
+                            <div class="movie4">
+                                <img src="snowden.jpg" style="width: 100%; height: 395px;">
+                            </div>*@
+                        @foreach (var movie in Model.Movies)
+                        {
+                            <div class="movie4">
+                                <a href="@Url.Action("MovieDetail", "Movies", new { id = movie.MovieId })">
+                                    <img alt="@movie.MovieName" src="@Url.Content(String.Format("~/Content/Movie/{0}.jpg", movie.MovieId))" />
+                                </a>
+                            </div>
+                        }
+                    </div>
+                    @*@using (Html.BeginForm("Search", "Movies", FormMethod.Post))
+                    {
+                        <p>
+                            Name: @Html.TextBox("searchstr") <input type="submit" value="Search" />
+                        </p>
+                    }
+
+                    @using (Html.BeginForm("Browse", "Movies", FormMethod.Post))
+                    {
+                        <p>
+                            Category: @Html.TextBox("category") <input type="submit" value="Search" />
+                        </p>
+                    }*@
+                </div>
+            </div>
+
+        </div>
+        <div class="content3">
+            <div class="deep">
+                <div class="copyr"><img src="~/Content/Images/logo3.png"> <img src="~/Content/Images/logo4.png"> <img src="~/Content/Images/logo5.png"> 02-222-2222 Copyright<img src="~/Content/Images/logo6.png"> 2016 By NOKCINEMA</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

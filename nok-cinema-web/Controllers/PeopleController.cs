@@ -9,11 +9,18 @@ using System.Web;
 using System.Web.Mvc;
 using nok_cinema_web.Models;
 using nok_cinema_web.ViewModels;
+using nok_cinema_web.BLL;
+using System.Web.Security;
+
 
 namespace nok_cinema_web.Controllers
 {
     public class PeopleController : Controller
     {
+        MEMBER member = new MEMBER();
+        PERSON person = new PERSON();
+        MemberUserProfile memberuserProfile = new MemberUserProfile();
+
         private CinemaEntities db = new CinemaEntities();
 
         // GET: People
@@ -25,7 +32,7 @@ namespace nok_cinema_web.Controllers
 
         public ActionResult ShowInformation()
         {
-            var profile = TempData["UserProfileData"] as UserProfile;
+            var profile = TempData["UserProfileData"] as EmployeeUserProfile;
             if (profile != null)
             {
                 return View("Profile", profile);
@@ -74,16 +81,46 @@ namespace nok_cinema_web.Controllers
         // GET: People/Edit/5
         public async Task<ActionResult> Edit(string id)
         {
-            if (id == null)
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie == null)
+                return RedirectToAction("Index","Home");
+            else
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                DateTime expiration = ticket.Expiration;
+                if (expiration < System.DateTime.Now)
+                    return RedirectToAction("Index", "Home");
+                else
+                {
+                    string userName = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+                    var peopleBLL = new PeopleBLL();
+                    person = peopleBLL.GetPersonByCookie(userName);
+
+                    var membersBLL = new MemberBLL();
+                    member = membersBLL.GetMerberByCitizenId(person.CITIZENID);
+                    if (member.EXPIRYDATE > DateTime.Now)
+                    {
+                        PERSON pERSON = await db.PERSON.FindAsync(member.CITIZENID);
+                        if (pERSON == null)
+                        {
+                            return HttpNotFound();
+                        }
+                        return View(pERSON);
+                    }
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            PERSON pERSON = await db.PERSON.FindAsync(id);
-            if (pERSON == null)
-            {
-                return HttpNotFound();
-            }
-            return View(pERSON);
+
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //PERSON pERSON = await db.PERSON.FindAsync(id);
+            //if (pERSON == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(pERSON);
         }
 
         // POST: People/Edit/5
@@ -91,11 +128,12 @@ namespace nok_cinema_web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CITIZENID,FNAME,LNAME,GENDER,BIRTHDATE,ADDRESS,EMAIL,USERNAME,PASSWORD")] PERSON pERSON)
+        public async Task<ActionResult> Edit([Bind(Include = "CITIZENID,FNAME,LNAME,GENDER,BIRTHDATE,ADDRESS,EMAIL,USERNAME,PASSWORD")] PERSON pERSON, string newPassword)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(pERSON).State = EntityState.Modified;
+                pERSON.PASSWORD = newPassword;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -135,6 +173,10 @@ namespace nok_cinema_web.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public JsonResult currentpass(string PASSWORD)
+        {
+            return Json(!db.PERSON.All(x => x.PASSWORD != PASSWORD), JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -8,10 +8,15 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Seat</title>
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-3.1.1.min.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.seat-charts.js")"></script> 
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.seat-charts.js")"></script>
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/CSS/defaultmember.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/CSS/showtime3.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/CSS/w3.css")">
     <style>
         div.theatre_seats {
             display: inline-block;
@@ -36,122 +41,179 @@
             padding: 25px 30px 0 0;
         }
 
-.front{width: 600px;margin: 5px 32px 45px 32px;background-color: #f0f0f0; color: #666;text-align: center;padding: 3px;border-radius: 5px;} 
-.booking-details {float: right;position: relative;width:250px;height: 450px; } 
-.booking-details h3 {margin: 5px 5px 0 0;font-size: 16px;} 
-.booking-details p{line-height:26px; font-size:16px; color:#999} 
-.booking-details p span{color:#666} 
-div.seatCharts-cell {color: #182C4E;height: 25px;width: 23px;line-height: 25px;margin: 3px;float: left;text-align: center;outline: none;font-size: 13px;} 
-div.seatCharts-seat {color: #fff;cursor: pointer;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius: 5px;} 
-div.seatCharts-row {height: 35px;} 
+.front{width: 600px;margin: 5px 32px 45px 32px;background-color: #f0f0f0; color: #666;text-align: center;padding: 3px;border-radius: 5px;}
+.booking-details {float: right;position: relative;width:400;height: 550px; }
+.booking-details h3 {margin: 5px 5px 0 0;font-size: 16px;}
+.booking-details p{line-height:26px; font-size:16px; color:#999}
+.booking-details p span{color:#666}
+div.seatCharts-cell {color: #182C4E;height: 25px;width: 23px;line-height: 25px;margin: 3px;float: left;text-align: center;outline: none;font-size: 13px;}
+div.seatCharts-seat {color: #fff;cursor: pointer;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius: 5px;}
+div.seatCharts-row {height: 35px;}
 div.seatCharts-seat.sofa-class {background: url(@Url.Content("~/Content/Images/seat-purple.png"))}
-div.seatCharts-seat.normal-class {background: url(@Url.Content("~/Content/Images/seat-green.png"));} 
-div.seatCharts-seat.focused {background: url(@Url.Content("~/Content/Images/seat-lightblue.png")); border: none;} 
-div.seatCharts-seat.selected {background: url(@Url.Content("~/Content/Images/seat-blue.png"));} 
-div.seatCharts-seat.unavailable {background: url(@Url.Content("~/Content/Images/seat-red.png"));cursor: not-allowed;} 
-div.seatCharts-container {border-right: 1px dotted #adadad;width: 650px;padding: 20px;float: left;} 
-div.seatCharts-legend {padding-left: 0px;position: absolute;bottom: 16px;} 
-ul.seatCharts-legendList {padding-left: 0px;} 
-.seatCharts-legendItem{float:left; width:90px;margin-top: 10px;line-height: 2;} 
-span.seatCharts-legendDescription {margin-left: 5px;line-height: 30px;} 
-.checkout-button {display: block;width:80px; height:24px; line-height:20px;margin: 10px auto;border:1px solid #999;font-size: 14px; cursor:pointer} 
-#selected-seats {max-height: 150px;overflow-y: auto;overflow-x: none;width: 200px;} 
-#selected-seats li{float:left; width:72px; line-height:26px; border:1px solid #d3d3d3; background:#f7f7f7; margin:6px; font-size:14px; font-weight:bold; text-align:center} 
+div.seatCharts-seat.normal-class {background: url(@Url.Content("~/Content/Images/seat-green.png"));}
+div.seatCharts-seat.focused {background: url(@Url.Content("~/Content/Images/seat-lightblue.png")); border: none;}
+div.seatCharts-seat.selected {background: url(@Url.Content("~/Content/Images/seat-blue.png"));}
+div.seatCharts-seat.unavailable {background: url(@Url.Content("~/Content/Images/seat-red.png"));cursor: not-allowed;}
+div.seatCharts-container {border-right: 1px dotted #adadad;padding: 20px;float: left;}
+div.seatCharts-legend {padding-left: 0px;position: absolute;bottom: 16px;}
+ul.seatCharts-legendList {padding-left: 0px;}
+.seatCharts-legendItem{float:left; width:90px;margin-top: 10px;line-height: 2;}
+span.seatCharts-legendDescription {margin-left: 5px;line-height: 30px;}
+.checkout-button {display: block;width:80px; height:24px; line-height:20px;margin: 10px auto;border:1px solid #999;font-size: 14px; cursor:pointer}
+#selected-seats {max-height: 320px;overflow-y: auto;overflow-x: none;width: 350px;}
+#selected-seats li{float:left; width:72px; line-height:26px; border:1px solid #d3d3d3; background:#f7f7f7; margin:6px; font-size:14px; font-weight:bold; text-align:center}
+ul { list-style-type: none; }
+.nextBtn { text-align: right; }
+div.unavailable {color: #888888;}
     </style>
 </head>
 <body>
-<div class="demo">
-    <div id="seat-map">
-        <div class="front">SCREEN</div>
-    </div>
-    <div class="booking-details">
-        <p>Movie: <span>@Model.Movie.MOVIENAME</span></p>
-        <p>Time: <span>@Model.DateTime</span></p>
-        <p>Seat: </p>
-        <ul id="selected-seats"></ul>
-        <p>Tickets: <span id="counter">0</span></p>
-        <p>Total: <b>$<span id="total">0</span></b>
-        </p>
+    <div class="header">
+        <div class="menu">
+            @using (Html.BeginForm("Index", "Home"))
+            {<button class="top1" type="submit"><img src="~/Content/Images/logo1.png"> NOK CINEMA</button>}
+            @using (Html.BeginForm("Index", "Home"))
+            {<button class="top2" type="submit">Home</button>}
+            @using (Html.BeginForm("SelectMovie", "Movies"))
+            {<button class="top2" type="submit">ShowTime</button>}
+            @using (Html.BeginForm("Movie", "Movies"))
+            {<button class="top2" type="submit">Movies</button>}
+            @using (Html.BeginForm("Food", "FOODs"))
+            {<button class="top2" type="submit">Food & Drink</button>}
+            <div class="content1">
 
-        <div id="legend"></div>
+                <div class="dropdown">
+                    <button class="dropbtn">Management</button>
+                    <div class="dropdown-content">
+                        <a>Profile</a>
+                        <a>Setting</a>
+                        <a>Logout</a>
+                    </div>
+                </div>
+                <div class="type3">Hello, Username <img src="logo2.png">
+                </div>
+            </div>
+        </div>
     </div>
-    @*<button id="checkout-button">BUY</button>*@
-    @using (Html.BeginForm("Payment", "Booking", FormMethod.Post))
-    {
-        <input type="hidden" name="seatrows" id="seatrows"/>
-        <input type="hidden" name="seatnumbers" id="seatnumbers"/>
-        <input type="hidden" name="totalprice" id="totalprice"/>
-        <input type="hidden" name="movieid" id="movieid" value="@Model.Movie.MOVIEID"/>
-        <input type="hidden" name="moviename" id="moviename" value="@Model.Movie.MOVIENAME"/>
-        <input type="hidden" name="datetime" id="datetime" value="@Model.DateTime"/>
-        <input type="hidden" name="normalprice" id="normalprice" value="@Model.NormalPrice"/>
-        <input type="hidden" name="sofaprice" id="sofaprice" value="@Model.SofaPrice" />
-        <input type="submit" value="Save" id="checkout-button" style="text-align: center"/>
-    }
-    <div style="clear: both"></div>
-</div>
-@*<div class="theatre_seats">
-    <div class="screen_label">
-        -- SCREEN --
-    </div>
-    <div class="screen_theatre">
-        <img alt="screen" src="~/Content/Images/screen.png"/>
-    </div>
-    <div class="seat_table">
-        <table class="seat">
-            <tbody>
-            @foreach (var seat in Model.Seats.Seats)
-            {
-                if (seat.SeatNumber == 1)
-                {
-                    @:<tr class="seatrow">
-                    @:<td class="row_label">
-                    @:@seat.SeatRow
-                    @:</td>
-                }
-                <td class="seatnumber">
-                    <img alt="@(seat.SeatRow + seat.SeatNumber)" src="@Url.Content(seat.SeatUrl)"/>
-                </td>
-                if (seat.SeatNumber == 10)
-                {
-                    @:<td class="seat_space"></td>
-                }
-                if (seat.SeatNumber == 20)
-                {
-                    @:<td class="row_label">
-                    @:@seat.SeatRow
-                    @:</td>
-                    @Html.Raw("</tr>")
-                }
-            }
-            </tbody>
-        </table>
-    </div>
-</div>*@
-<script>
-    $('#checkout-button')
-        .click(function() {
-            var x = document.getElementsByName("seatText");
-            var selectingSeats = {
-                seatRows: [],
-                seatNumbers: [],
-                price: Number($('#total').text())
-                //text: "Seats: "
-            };
-            var i;
-            for (i = 0; i < x.length; i++) {
-                //text += (x[i].innerHTML + ' ');
-                selectingSeats.seatRows.push(x[i].innerHTML.substr(0, 1));
-                selectingSeats.seatNumbers.push(x[i].innerHTML.substr(1));
-                selectingSeats.text += (selectingSeats.seatRows[i] + selectingSeats.seatNumbers[i] + ", ");
-            }
-            $('#seatrows').val(JSON.stringify(selectingSeats.seatRows));
-            $('#seatnumbers').val(JSON.stringify(selectingSeats.seatNumbers));
-            $('#totalprice').val(selectingSeats.price);
-            //alert(selectingSeats.text);
-            //alert(str.join(','));
+    <div class="body">
+        <div class="greenspace"></div>
+        <div class="back">
+            <ul id="breadcrumb">
+                <li><a>Select movie</a></li>
+                <li><a>Select showtime</a></li>
+                <li><a class="menu_ack">Select seat</a></li>
+                <li><a>Pay</a></li>
+                <li><a>Complete</a></li>
+            </ul>
+            <div class="greenspace"></div>
+            <div class="header2"><img src="logo16.png"> Select seat</div>
+            <div class="box2">
+                <div class="demo">
+                    <div id="seat-map">
+                        <div class="front">SCREEN</div>
+                    </div>
+                </div>
+                <div class="booking-details">
+                    <p>Movie: <span>@Model.Movie.MOVIENAME</span></p>
+                    <p>Time: <span>@Model.DateTime</span></p>
+                    <p>Seat: </p>
+                    <ul id="selected-seats"></ul>
+                    <p>Tickets: <span id="counter">0</span></p>
+                    <p>
+                        Total: <b>$<span id="total">0</span></b>
+                    </p>
 
-            @*$.post('@Url.Action("PaymentPost", "Booking")',
+                    <div id="legend"></div>
+                </div>
+                <div style="clear: both"></div>
+                @*<div class="box4" style="float: right;">*@
+                <div class="nextBtn">
+                    @using (Html.BeginForm("Payment", "Booking", FormMethod.Post))
+                    {
+                        <input type="hidden" name="seatrows" id="seatrows" />
+                        <input type="hidden" name="seatnumbers" id="seatnumbers" />
+                        <input type="hidden" name="totalprice" id="totalprice" />
+                        <input type="hidden" name="movieid" id="movieid" value="@Model.Movie.MOVIEID" />
+                        <input type="hidden" name="moviename" id="moviename" value="@Model.Movie.MOVIENAME" />
+                        <input type="hidden" name="datetime" id="datetime" value="@Model.DateTime" />
+                        <input type="hidden" name="normalprice" id="normalprice" value="@Model.NormalPrice" />
+                        <input type="hidden" name="sofaprice" id="sofaprice" value="@Model.SofaPrice" />
+                        <input type="submit" value="Next" id="checkout-button" class="submit" style="text-align: center" />
+                    }
+                </div>
+                @*<button id="checkout-button">BUY</button>*@
+            </div>
+        </div>
+        <div class="orangespace"></div>
+        <div class="greenspace"></div>
+    </div>
+    <div class="content3">
+        <div class="deep">
+            <div class="copyr"><img src="~/Content/Images/logo3.png"> <img src="~/Content/Images/logo4.png"> <img src="~/Content/Images/logo5.png"> 02-222-2222 Copyright<img src="~/Content/Images/logo6.png"> 2016 By NOKCINEMA</div>
+        </div>
+    </div>
+    @*<div class="theatre_seats">
+            <div class="screen_label">
+                -- SCREEN --
+            </div>
+            <div class="screen_theatre">
+                <img alt="screen" src="~/Content/Images/screen.png"/>
+            </div>
+            <div class="seat_table">
+                <table class="seat">
+                    <tbody>
+                    @foreach (var seat in Model.Seats.Seats)
+                    {
+                        if (seat.SeatNumber == 1)
+                        {
+                            @:<tr class="seatrow">
+                            @:<td class="row_label">
+                            @:@seat.SeatRow
+                            @:</td>
+                        }
+                        <td class="seatnumber">
+                            <img alt="@(seat.SeatRow + seat.SeatNumber)" src="@Url.Content(seat.SeatUrl)"/>
+                        </td>
+                        if (seat.SeatNumber == 10)
+                        {
+                            @:<td class="seat_space"></td>
+                        }
+                        if (seat.SeatNumber == 20)
+                        {
+                            @:<td class="row_label">
+                            @:@seat.SeatRow
+                            @:</td>
+                            @Html.Raw("</tr>")
+                        }
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>*@
+    <script>
+        $('#checkout-button')
+            .click(function() {
+                var x = document.getElementsByName("seatText");
+                var selectingSeats = {
+                    seatRows: [],
+                    seatNumbers: [],
+                    price: Number($('#total').text())
+                    //text: "Seats: "
+                };
+                var i;
+                for (i = 0; i < x.length; i++) {
+                    //text += (x[i].innerHTML + ' ');
+                    selectingSeats.seatRows.push(x[i].innerHTML.substr(0, 1));
+                    selectingSeats.seatNumbers.push(x[i].innerHTML.substr(1));
+                    selectingSeats.text += (selectingSeats.seatRows[i] + selectingSeats.seatNumbers[i] + ", ");
+                }
+                $('#seatrows').val(JSON.stringify(selectingSeats.seatRows));
+                $('#seatnumbers').val(JSON.stringify(selectingSeats.seatNumbers));
+                $('#totalprice').val(selectingSeats.price);
+                //alert(selectingSeats.text);
+                //alert(str.join(','));
+
+                @*$.post('@Url.Action("PaymentPost", "Booking")',
                 {type: "POST",
                 contentType: "application/json",
                 data: JSON.stringify({ selectedSeatList: selectingSeats }),
@@ -162,121 +224,134 @@ span.seatCharts-legendDescription {margin-left: 5px;line-height: 30px;}
                     //response ? alert("It worked!") : alert("It didn't work.");
 
         }   );*@
-        });
+            });
 
 
-    var price = 10; //price
-    var firstSeatLabel = 1;
-    $(document).ready(function() {
-        var $cart = $('#selected-seats'), //Sitting Area
-            $counter = $('#counter'), //Votes
-            $total = $('#total'); //Total money
+        var price = 10; //price
+        var firstSeatLabel = 1;
+        $(document)
+            .ready(function() {
+                var $cart = $('#selected-seats'), //Sitting Area
+                    $counter = $('#counter'), //Votes
+                    $total = $('#total'); //Total money
 
-        var sc = $('#seat-map').seatCharts({
-            map: @Html.Raw(Json.Encode(Model.SeatArray)),
-            //[Seating chart
-            //'aaaaaaaaaa',
-            //'aaaaaaaaaa',
-            //'__________',
-            //'aaaaaaaa__',
-            //'aaaaaaaaaa',
-            //'aaaaaaaaaa',
-            //'aaaaaaaaaa',
-            //'aaaaaaaaaa',
-            //'aaaaaaaaaa',
-            //'aa__aa__aa'],
-            seats: {
-                N: {
-                    price: @Model.NormalPrice,
-                    classes: 'normal-class', //CSS class
-                    category: 'Normal Class'
-                },
-                S: {
-                    price: @Model.SofaPrice,
-                    classes: 'sofa-class',
-                    category: 'Sofa Class'
-                }
-            },
-            naming: {
-                top: false,
-                getLabel: function(character, row, column) {
-                    if (firstSeatLabel == 21) firstSeatLabel = 1;
-                    return firstSeatLabel++;
-                    //return column;
-                }
-            },
-            legend: { //Definition legend
-                node: $('#legend'),
-                items: [
-                    //['a', 'available', 'Option'],
-                    //['a', 'unavailable', 'Sold']
-                    ['N', 'available', 'Normal'],
-                    ['S', 'avaiable', 'Sofa'],
-                    ['N', 'unavailable', 'Already Booked']
-                ]
-            },
-            click: function() { //Click event
-                if (this.status() == 'available') { //optional seat
-                    //$('<li>R' + (this.settings.row + 1) + ' S' + this.settings.label + '</li>')
-                    //    .attr('id', 'cart-item-' + this.settings.id)
-                    //    .data('seatId', this.settings.id)
-                    //    .appendTo($cart);
-                    $('<li>' + '<div role="checkbox" tabindex="-1" class="' + '"></div>' +
-                            this.data().category +
-                            ' Seat # '+'<span name="seatText">'+this.settings.id.substr(0, 1)+this.settings.label+'</span>'+': <b>$' +
-                            this.data().price +
-                            '</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
-                        .attr('id', 'cart-item-'+this.settings.id)
-                        .data('seatId', this.settings.id)
-                        .appendTo($cart);
+                var sc = $('#seat-map')
+                    .seatCharts({
+                        map: @Html.Raw(Json.Encode(Model.SeatArray)),
+                        //[Seating chart
+                        //'aaaaaaaaaa',
+                        //'aaaaaaaaaa',
+                        //'__________',
+                        //'aaaaaaaa__',
+                        //'aaaaaaaaaa',
+                        //'aaaaaaaaaa',
+                        //'aaaaaaaaaa',
+                        //'aaaaaaaaaa',
+                        //'aaaaaaaaaa',
+                        //'aa__aa__aa'],
+                        seats: {
+                            N: {
+                                price: @Model.NormalPrice,
+                                classes: 'normal-class', //CSS class
+                                category: 'Normal'
+                            },
+                            S: {
+                                price: @Model.SofaPrice,
+                                classes: 'sofa-class',
+                                category: 'Sofa'
+                            }
+                        },
+                        naming: {
+                            top: false,
+                            getLabel: function(character, row, column) {
+                                if (firstSeatLabel == 21) firstSeatLabel = 1;
+                                return firstSeatLabel++;
+                                //return column;
+                            }
+                        },
+                        legend: { //Definition legend
+                            node: $('#legend'),
+                            items: [
+                                //['a', 'available', 'Option'],
+                                //['a', 'unavailable', 'Sold']
+                                ['N', 'available', 'Normal'],
+                                ['S', 'avaiable', 'Sofa'],
+                                ['N', 'unavailable', 'Booked']
+                            ]
+                        },
+                        click: function() { //Click event
+                            if (this.status() == 'available') { //optional seat
+                                //$('<li>R' + (this.settings.row + 1) + ' S' + this.settings.label + '</li>')
+                                //    .attr('id', 'cart-item-' + this.settings.id)
+                                //    .data('seatId', this.settings.id)
+                                //    .appendTo($cart);
+                                $('<li>' + '<div class="seatCharts-seat seatCharts-cell ' + this.data().category.toLowerCase() + '-class"' + '></div>' +
+                                        '<div role="checkbox" tabindex="-1" class="' +
+                                        '"></div>' +
+                                        //this.data().category +
+                                        ' ' +
+                                        '<span name="seatText">' +
+                                        this.settings.id.substr(0, 1) +
+                                        this.settings.label +
+                                        '</span>' +
+                                        ' <p style="text-align: center; magin: 0 0 0 0px;"><b>$' +
+                                        this.data().price +
+                                        '</b></p> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
+                                    .attr('id', 'cart-item-' + this.settings.id)
+                                    .data('seatId', this.settings.id)
+                                    .appendTo($cart);
 
 
-                    $counter.text(sc.find('selected').length + 1);
-                    //$total.text(recalculateTotal(sc) + price);
-                    $total.text(recalculateTotal(sc)+this.data().price);
+                                $counter.text(sc.find('selected').length + 1);
+                                //$total.text(recalculateTotal(sc) + price);
+                                $total.text(recalculateTotal(sc) + this.data().price);
 
-                    return 'selected';
-                } else if (this.status() == 'selected') { //Checked
-                    //Update Number
-                    $counter.text(sc.find('selected').length - 1);
-                    //update totalnum
-                    //$total.text(recalculateTotal(sc) - price);
-                    $total.text(recalculateTotal(sc) - this.data().price);
+                                return 'selected';
+                            } else if (this.status() == 'selected') { //Checked
+                                //Update Number
+                                $counter.text(sc.find('selected').length - 1);
+                                //update totalnum
+                                //$total.text(recalculateTotal(sc) - price);
+                                $total.text(recalculateTotal(sc) - this.data().price);
 
-                    //Delete reservation
-                    $('#cart-item-' + this.settings.id).remove();
-                    //optional
-                    return 'available';
-                } else if (this.status() == 'unavailable') { //sold
-                    return 'unavailable';
-                } else {
-                    return this.style();
-                }
-            }
-        });
-        //this will handle "[cancel]" link clicks
-        $('#selected-seats').on('click', '.cancel-cart-item', function () {
-            //let's just trigger Click event on the appropriate seat, so we don't have to repeat the logic here
-            sc.get($(this).parents('li:first').data('seatId')).click();
-        });
+                                //Delete reservation
+                                $('#cart-item-' + this.settings.id).remove();
+                                //optional
+                                return 'available';
+                            } else if (this.status() == 'unavailable') { //sold
+                                return 'unavailable';
+                            } else {
+                                return this.style();
+                            }
+                        }
+                    });
+                //this will handle "[cancel]" link clicks
+                $('#selected-seats')
+                    .on('click',
+                        '.cancel-cart-item',
+                        function() {
+                            //let's just trigger Click event on the appropriate seat, so we don't have to repeat the logic here
+                            sc.get($(this).parents('li:first').data('seatId')).click();
+                        });
 
-        //sold seat
-        sc.get(@Html.Raw(Json.Encode(Model.UnavailableSeatArray))).status('unavailable');
-        //sc.get(['1_2', '4_4', '4_5', '6_6', '6_7', '8_5', '8_6', '8_7', '8_8', '10_1', '10_2'])
-        //    .status('unavailable');
+                //sold seat
+                sc.get(@Html.Raw(Json.Encode(Model.UnavailableSeatArray))).status('unavailable');
+                //sc.get(['1_2', '4_4', '4_5', '6_6', '6_7', '8_5', '8_6', '8_7', '8_8', '10_1', '10_2'])
+                //    .status('unavailable');
 
-    });
+            });
 
-    //sum total money
-    function recalculateTotal(sc) {
-        var total = 0;
-        sc.find('selected').each(function() {
-            //total += price;
-            total += this.data().price;
-        });
-        return total;
-    }
+        //sum total money
+        function recalculateTotal(sc) {
+            var total = 0;
+            sc.find('selected')
+                .each(function() {
+                    //total += price;
+                    total += this.data().price;
+                });
+            return total;
+        }
 
-</script>
+    </script>
 </body>
 </html>

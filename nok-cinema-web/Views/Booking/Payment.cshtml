@@ -8,57 +8,152 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Payment</title>
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-3.1.1.min.js")"></script>
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/CSS/defaultmember.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/CSS/showtime4.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/CSS/w3.css")">
+    <style>
+        ul { list-style-type: none; }
+        .bot{
+        padding-top: 15px;
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 100%;
+        height: 115px;
+        color: #606060;
+        float: left;
+        text-decoration: none;
+        }
+        .Cash{ background: #ff0ff0; }
+        .Visa{ background: #00ff00; }
+        .Mastercard{ background: #0000ff; }
+        .Paypal{ background: #ff00ff; }
+    </style>
 </head>
 <body>
     <div>
-        <div class="booking-details">
-            <p>Movie: <span>@Model.Movie.MOVIENAME</span></p>
-            <p>Time: <span>@Model.DateTime</span></p>
-            <p>Seat: </p>
-            <ul id="selected-seats">
-                @if (@Model.SofaCount > 0)
-            {
-                    @:<li><img src="@Url.Content("~/Content/images/seat-purple.png")" alt="sofa seat" />฿@Model.SofaPrice x @Model.SofaCount</li>
-            }
-                @if (@Model.NormalCount > 0)
-            {
-                    @:<li><img src="@Url.Content("~/Content/images/seat-green.png")" alt="normal seat" />฿@Model.NormalPrice x @Model.NormalCount</li>
-            }
-            </ul>
-            <p>Tickets: <span id="counter">@(Model.NormalCount + Model.SofaCount)</span></p>
-            <p>
-                Total: <b>$<span id="total">@Model.TotalPrice</span></b>
-            </p>
-
-            <div id="payment">
-                @using (Html.BeginForm("Ticket", "Booking", FormMethod.Post))
-                {
-                    @Html.Label("Card ID: ")
-                    @Html.TextBox("cardid")
-                    <input type="hidden" name="seatrows" id="seatrows"/>
-                    <input type="hidden" name="seatnumbers" id="seatnumbers"/>
-                    <input type="hidden" name="totalprice" id="totalprice" value="@Model.TotalPrice"/>
-                    <input type="hidden" name="movieid" id="movieid" value="@Model.Movie.MOVIEID"/>
-                    <input type="hidden" name="moviename" id="moviename" value="@Model.Movie.MOVIENAME"/>
-                    <input type="hidden" name="datetime" id="datetime" value="@Model.DateTime"/>
-                    <input type="submit" value="Save" id="checkout-button" style="text-align: center"/>
-                }
+        <div class="header">
+            <div class="menu">
+                <div class="top1"><img src="logo1.png"> NOK CINEMA</div>
+                <div class="top2">Home</div>
+                <div class="top2">ShowTime</div>
+                <div class="top2">Movies</div>
+                <div class="top2">Food & Drink</div>
+                <div class="content1">
+                    <div class="dropdown">
+                        <button class="dropbtn">Management</button>
+                        <div class="dropdown-content">
+                            <a>Profile</a>
+                            <a>Setting</a>
+                            <a>Logout</a>
+                        </div>
+                    </div>
+                    <div class="type3">Hello, Username <img src="logo2.png"></div>
+                </div>
             </div>
-            <div style="clear: both"></div>
         </div>
+        <div class="body">
+            <div class="greenspace"></div>
+            <div class="back">
+                <ul id="breadcrumb">
+                    <li><a>Select movie</a></li>
+                    <li><a>Select showtime</a></li>
+                    <li><a>Select seat</a></li>
+                    <li><a class="menu_ack">Pay</a></li>
+                    <li><a>Complete</a></li>
+                </ul>
+                <div class="greenspace"></div>
+                <div class="header2"><img src="logo16.png"> Pay</div>
+                <div class="box2">
+                    <div class="bot1">
+                        <ul>
+                            <div class="bot11">Movie</div>
+                            <br />
+                            <div class="bot11">Date</div>
+                            <br />
+                            <div class="bot11">Type</div>
+                            <br />
+                            <br />
+                            <br />
+                            @*<div class="bot12">Total</div>*@
+                        </ul>
+                    </div>
+                    <div class="bot2">
+                        <ul>
+                            <div class="bot21">@Model.Movie.MOVIENAME</div>
+                            <br/>
+                            <div class="bot21">@Model.DateTime</div>
+                            <br/>
+                            <div class="bot21">
+                                <ul id="selected-seats">
+                                    @if (@Model.SofaCount > 0)
+                                    {@:
+                                        <li><img src="@Url.Content("~/Content/images/seat-purple.png")" alt="sofa seat"/>฿@Model.SofaPrice x @Model.SofaCount</li>
+                                    }
+                                    @if (@Model.NormalCount > 0)
+                                    {@:
+                                        <li><img src="@Url.Content("~/Content/images/seat-green.png")" alt="normal seat"/>฿@Model.NormalPrice x @Model.NormalCount</li>
+                                    }
+                                </ul>
+                            </div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <p>
+                                <div class="bot22">
+                                    <b>฿<span id="total">@Model.TotalPrice</span></b>
+                                </div>
+                            </p>
+                        </ul>
+                        <br/>
+                        <div id="visa_way" class="nextBtn">
+                            <div id="payment">
+                                @using (Html.BeginForm("Ticket", "Booking", FormMethod.Post))
+                                {
+                                    @Html.Label("Card ID: ")
+                                    @Html.TextBox("cardid")
+                                    <input type="hidden" name="seatrows" id="seatrows" />
+                                    <input type="hidden" name="seatnumbers" id="seatnumbers" />
+                                    <input type="hidden" name="totalprice" id="totalprice" value="@Model.TotalPrice" />
+                                    <input type="hidden" name="movieid" id="movieid" value="@Model.Movie.MOVIEID" />
+                                    <input type="hidden" name="moviename" id="moviename" value="@Model.Movie.MOVIENAME" />
+                                    <input type="hidden" name="datetime" id="datetime" value="@Model.DateTime" />
+                                    <input type="submit" value="Save" id="checkout-button" class="submit" style="text-align: center" />
+                                }
+                            </div>
+                            <div style="clear: both"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="orangespace"></div>
+            <div class="box3">
+                <div class="bot321">
+                    <img src="@Url.Content("~/Content/Images/logo18.png")">
+                </div><br /><br /><br /><br />
+            </div>
+        </div>
+        <div class="yellowspace"></div>
+        <div class="greenspace"></div>
     </div>
+        <div class="content3">
+            <div class="deep">
+                <div class="copyr"><img src="logo3.png"> <img src="logo4.png"> <img src="logo5.png"> 02-222-2222 Copyright<img src="logo6.png"> 2016 By NOKCINEMA</div>
+            </div>
+        </div>
     <script>
         $('#checkout-button')
-            .click(function() {
+            .click(function () {
                 var seatRows = [];
                 var seatNumbers = [];
                 @foreach (SeatViewModel t in Model.BookingSeats.Seats)
                 {
                     <text>seatNumbers.push('@t.SeatNumber');
-                    seatRows.push('@t.SeatRow');</text>
+                seatRows.push('@t.SeatRow');</text>
                 }
                 $('#seatrows').val(JSON.stringify(seatRows));
                 $('#seatnumbers').val(JSON.stringify(seatNumbers));

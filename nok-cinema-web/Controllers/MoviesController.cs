@@ -170,7 +170,7 @@ namespace nok_cinema_web.Controllers
                         TempData["UserProfileData"] = memberuserProfile;                        
                         return View("MovieWithLogin", movielist);
                     }
-                    return View(movielist);
+                    return RedirectToAction("Index", "Home");
                 }
             }
         }
@@ -209,7 +209,7 @@ namespace nok_cinema_web.Controllers
                             TempData["UserProfileData"] = memberuserProfile;
                             return View("SearchWithLogin", movieList);
                         }
-                        return View("Search", movieList);
+                        return RedirectToAction("Index", "Home");
                     }
                 }
             }
@@ -251,7 +251,7 @@ namespace nok_cinema_web.Controllers
                             TempData["UserProfileData"] = memberuserProfile;
                             return View("SearchWithLogin", movieList);
                         }
-                        return View("Search", movieList);
+                        return RedirectToAction("Index", "Home");
                     }
                 }
             }
@@ -290,7 +290,7 @@ namespace nok_cinema_web.Controllers
                         TempData["UserProfileData"] = memberuserProfile;
                         return View("MovieDetailWithLogin", movie);
                     }
-                    return View(movie);
+                    return RedirectToAction("Movie");
                 }
             }
         }

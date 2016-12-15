@@ -55,13 +55,19 @@ namespace nok_cinema_web.Controllers
 
                     var employeesBLL = new EmployeesBLL();
                     employee = employeesBLL.GetEmployeeByCitizenId(person.CITIZENID);
-                    if(employee.CITIZENID != null)
+                    if (employee.JOBPOSITION != "Manager")
                     {
                         employeeuserProfile = new EmployeeUserProfile(employee, person);
                         TempData["UserProfileData"] = employeeuserProfile;
                         return RedirectToAction("IndexEmployee", "Home");
                     }
-                    return View();
+                    else
+                    {
+                        employeeuserProfile = new EmployeeUserProfile(employee, person);
+                        TempData["UserProfileData"] = employeeuserProfile;
+                        return RedirectToAction("Index", "Movies");
+                    }
+                    return View("Login");
                 }
             }
         }
@@ -86,12 +92,20 @@ namespace nok_cinema_web.Controllers
 
                 var employeesBLL = new EmployeesBLL();
                 employee = employeesBLL.GetEmployeeByCitizenId(person.CITIZENID);
-                if (employee.CITIZENID != null)
+                if (employee.JOBPOSITION != "Manager")
                 {
                     employeeuserProfile = new EmployeeUserProfile(employee, person);
                     FormsAuthentication.SetAuthCookie(employeeuserProfile.USERNAME, false);
                     TempData["UserProfileData"] = employeeuserProfile;
                     return RedirectToAction("IndexEmployee", "Home");
+                }
+                else
+                {
+                    employeeuserProfile = new EmployeeUserProfile(employee, person);
+                    FormsAuthentication.SetAuthCookie(employeeuserProfile.USERNAME, false);
+
+                    TempData["UserProfileData"] = employeeuserProfile;
+                    return RedirectToAction("Index", "Movies");
                 }
                 return View("Login");
             }

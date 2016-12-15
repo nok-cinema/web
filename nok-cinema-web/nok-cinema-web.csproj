@@ -296,17 +296,38 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CSS\boxofficestyle.css" />
+    <Content Include="Content\CSS\defaultemployee.css" />
+    <Content Include="Content\CSS\defaultlogin.css" />
+    <Content Include="Content\CSS\defaultmember.css" />
     <Content Include="Content\CSS\description.css" />
     <Content Include="Content\CSS\homestyle.css" />
     <Content Include="Content\CSS\homestyle2.css" />
     <Content Include="Content\CSS\login.css" />
     <Content Include="Content\CSS\manager.css" />
+    <Content Include="Content\CSS\page1.css" />
+    <Content Include="Content\CSS\page2.css" />
+    <Content Include="Content\CSS\page3.css" />
+    <Content Include="Content\CSS\page4.css" />
+    <Content Include="Content\CSS\page5.css" />
+    <Content Include="Content\CSS\profile.css" />
+    <Content Include="Content\CSS\showtime1.css" />
+    <Content Include="Content\CSS\showtime2.css" />
+    <Content Include="Content\CSS\showtime3.css" />
+    <Content Include="Content\CSS\showtime4.css" />
+    <Content Include="Content\CSS\showtime5.css" />
     <Content Include="Content\Images\avengers.jpg" />
     <Content Include="Content\Images\bg_screen_header.jpg" />
+    <Content Include="Content\Images\calendar.png" />
+    <Content Include="Content\Images\cinema.png" />
+    <Content Include="Content\Images\coke.png" />
     <Content Include="Content\Images\logo1.png" />
     <Content Include="Content\Images\logo14.png" />
     <Content Include="Content\Images\logo15.png" />
+    <Content Include="Content\Images\logo16.png" />
     <Content Include="Content\Images\logo2.png" />
+    <Content Include="Content\Images\logo21.png" />
+    <Content Include="Content\Images\logo22.png" />
+    <Content Include="Content\Images\logo25.png" />
     <Content Include="Content\Images\logo26.png" />
     <Content Include="Content\Images\logo3.png" />
     <Content Include="Content\Images\logo4.png" />
@@ -314,6 +335,7 @@
     <Content Include="Content\Images\logo6.PNG" />
     <Content Include="Content\Images\logo7.PNG" />
     <Content Include="Content\Images\logo8.PNG" />
+    <Content Include="Content\Images\movie.png" />
     <Content Include="Content\Images\Movies\Thumbnails\1.jpg" />
     <Content Include="Content\Images\Movies\Thumbnails\2.jpg" />
     <Content Include="Content\Images\Movies\Thumbnails\3.jpg" />
@@ -322,6 +344,7 @@
     <Content Include="Content\Images\Movies\Thumbnails\6.jpg" />
     <Content Include="Content\Images\Movies\Thumbnails\7.jpg" />
     <Content Include="Content\Images\Movies\Thumbnails\8.jpg" />
+    <Content Include="Content\Images\popcorn.png" />
     <Content Include="Content\Images\screen.png" />
     <Content Include="Content\Images\seat-blue.png" />
     <Content Include="Content\Images\seat-cyan.png" />
@@ -331,6 +354,7 @@
     <Content Include="Content\Images\seat-pink.png" />
     <Content Include="Content\Images\seat-purple.png" />
     <Content Include="Content\Images\seat-red.png" />
+    <Content Include="Content\Images\seat.png" />
     <Content Include="Content\Images\uncle.jpg" />
     <Content Include="Content\Images\yourname.jpg" />
     <Content Include="Content\Movie\1.jpg" />
@@ -505,8 +529,8 @@
     <Content Include="Views\SHOWTIMEs\Seats.cshtml" />
     <Content Include="Views\Booking\Payment.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\IndexEmployee.cshtml" />
-    <Content Include="Views\Home\IndexManager.cshtml" />
+    <Content Include="Views\MOVIEs\SelectMovieByEmployee.cshtml" />
+    <Content Include="Views\Statistics\IndexManager.cshtml" />
     <Content Include="Views\Home\IndexMember.cshtml" />
     <Content Include="Views\Statistics\Statistic.cshtml" />
     <Content Include="Views\Booking\Ticket.cshtml" />
@@ -516,6 +540,10 @@
     <Content Include="Views\MOVIEs\MovieWithLogin.cshtml" />
     <Content Include="Views\MOVIEs\Search.cshtml" />
     <Content Include="Views\MOVIEs\SearchWithLogin.cshtml" />
+    <Content Include="Views\MOVIEs\SelectMovieByMember.cshtml" />
+    <Content Include="Views\MOVIEs\SelectMovie.cshtml" />
+    <Content Include="Views\SHOWTIMEs\SelectShowtimeByMember.cshtml" />
+    <Content Include="Views\SHOWTIMEs\SelectShowtimeByEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

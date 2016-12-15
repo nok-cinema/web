@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using nok_cinema_web.Models;
 using nok_cinema_web.ViewModels;
+using nok_cinema_web.BLL;
 
 namespace nok_cinema_web.BLL
 {
@@ -45,7 +46,7 @@ namespace nok_cinema_web.BLL
                     if (same)
                     {
                         showtime.SHOWDATES.Add(showtimeTuple.SHOWDATE);
-                        showtime.DATES = showtimeTuple.SHOWDATE.ToString("dd/MM/yyyy");
+                        showtime.DATES = showtimeTuple.SHOWDATE.ToString("dd-MM-yyyy");
                         showtime.TIMES.Add(showtimeTuple.SHOWDATE.ToShortTimeString());
                         showtime.MOVIEID = showtimeTuple.MOVIEID;
                         showtime.THEATREID = showtimeTuple.THEATREID;
@@ -56,7 +57,7 @@ namespace nok_cinema_web.BLL
 
                         showtime = new ShowtimeViewModel();
                         showtime.SHOWDATES.Add(showtimeTuple.SHOWDATE);
-                        showtime.DATES = showtimeTuple.SHOWDATE.ToString("dd/MM/yyyy");
+                        showtime.DATES = showtimeTuple.SHOWDATE.ToString("dd-MM-yyyy");
                         showtime.TIMES.Add(showtimeTuple.SHOWDATE.ToShortTimeString());
                         showtime.MOVIEID = showtimeTuple.MOVIEID;
                         showtime.THEATREID = showtimeTuple.THEATREID;
@@ -73,8 +74,13 @@ namespace nok_cinema_web.BLL
                     first = false;
                 }
             }
+            var movieBLL = new MoviesBLL();
+            var movie = new MovieViewModel();
+            movie = movieBLL.GetMovieByMovieID(id);
             showtimeList.SHOWTIMES = showtimes;
             showtimeList.MOVIENAME = name;
+            showtimeList.Category = movie.Category;
+            showtimeList.Duration = movie.Duration;
             return showtimeList;
         }
     }

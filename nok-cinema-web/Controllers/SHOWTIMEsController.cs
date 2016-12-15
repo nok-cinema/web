@@ -10,12 +10,19 @@ using System.Web.Mvc;
 using nok_cinema_web.Models;
 using nok_cinema_web.ViewModels;
 using nok_cinema_web.BLL;
+using System.Web.Security;
+using nok_cinema_web.DAL;
 
 namespace nok_cinema_web.Controllers
 {
     public class SHOWTIMEsController : Controller
     {
         private CinemaEntities db = new CinemaEntities();
+        EMPLOYEE employee = new EMPLOYEE();
+        MEMBER member = new MEMBER();
+        PERSON person = new PERSON();
+        MemberUserProfile memberuserProfile = new MemberUserProfile();
+        EmployeeUserProfile employeeuserProfile = new EmployeeUserProfile();
 
         // GET: SHOWTIMEs
         public async Task<ActionResult> Index()
@@ -187,6 +194,51 @@ namespace nok_cinema_web.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpPost]
+        public ActionResult SelectShowtime(string movieid)
+        {
+            int id = int.Parse(movieid);
+            var showtimeBLL = new ShowtimeBLL();
+            var showtimeList = new ShowtimeListViewModel();
+            showtimeList = showtimeBLL.GetMovieListByMovieid(id);
+
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie == null)
+                return View(showtimeList);
+            else
+            {
+                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                DateTime expiration = ticket.Expiration;
+                if (expiration < System.DateTime.Now)
+                    return RedirectToAction("Index", "Home");
+                else
+                {
+                    string userName = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+                    var peopleBLL = new PeopleBLL();
+                    person = peopleBLL.GetPersonByCookie(userName);
+
+                    var memberDAL = new MemberDAL();
+                    member = memberDAL.GetMemberByCitizenId(person.CITIZENID);
+                    if (member.EXPIRYDATE > DateTime.Now)
+                    {
+                        memberuserProfile = new MemberUserProfile(member, person);
+                        TempData["UserProfileData"] = memberuserProfile;
+                        return View("SelectShowtimeByMember", showtimeList);
+                    }
+
+                    var employeeDAL = new EmployeeDAL();
+                    employee = employeeDAL.GetEmployeeByCitizenId(person.CITIZENID);
+                    if (employee.JOBPOSITION != null)
+                    {
+                        employeeuserProfile = new EmployeeUserProfile(employee, person);
+                        TempData["UserProfileData"] = employeeuserProfile;
+                        return View("SelectShowtimeByEmployee", showtimeList);
+                    }
+                    return RedirectToAction("Index", "Home");
+                }
+            }
         }
     }
 }

@@ -1,154 +1,3 @@
-body {
-	margin: 0;
-}
-
-.header {
-	background: #ff6624;
-	width: 100%;
-	height: 65px;
-	z-index: 1;
-	position: fixed;
-}
-
-.menu {
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	position: absolute;
-}
-
-.menu div {
-	display: inline-block;
-}
-
-.top1 img {
-	width: 12%;
-	height: 12%;
-}
-
-.top1 {
-	padding-top: 14px;
-	padding-bottom: 14px;
-	width: 20%;
-	font-size: 25px;
-	color: black;
-	background-color: white;
-	text-align: center;
-	text-decoration: none;
-	float: left;
-    border: none;
-}
-
-.top2 {
-	padding-top: 17.5px;
-	padding-bottom: 17.5px;
-	width: 12%;
-	font-size: 20px;
-	color: #606060;
-	background-color: #cccccc;
-	text-align: center;
-	text-decoration: none;
-	float: left;
-    border: none;
-}
-
-.top2:hover {
-	color: #898989;
-	background-color: #333333;
-    border: none;
-}
-
-.content1 {
-	padding-right: 3.5%;
-	float: right;
-}
-
-.top3 {
-	padding-top: 17.5px;
-	padding-bottom: 17.5px;
-	width: 10%;
-	font-size: 20px;
-	background-color: #4CAF50;
-    color: white;
-	text-align: center;
-	text-decoration: none;
-	float: right;
-        border: none;
-}
-
-.top3:hover {
-	background-color: #3e8e41;
-    border: none;
-}
-
-.boxheader {
-	padding-left: 64px;
-	font-size: 20pt;
-}
-
-.box1 {
-	position: absolute;
-	left: 55%;
-	top: 30%;
-	transform: translate(-50%,-50%);
-	width: 250px;
-	height: 150px;
-	/*background-color: blue;*/F
-	text-align: left;
-}
-
-#BtnSave {
-	margin-left: 50px;
-    margin-top: 1px;
-    width: 100px;
-    height: 45px;   
-    border: none; 
-    font-size: 14px;
-    font-weight: 700;
-    background-color: #ff6624;
-    color: white;
-}
-
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-left: 35%;
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%;
-    height: 400px;
-}
-
-/* The Close Button */
-.close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
 .body {
 	padding-top: 64px;
 }
@@ -183,10 +32,52 @@ body {
 	display: inline-block;
 }
 
+.bot1 {
+	padding-top: 10px;
+	width: 25%;
+	text-align: center;
+	background-color: #ff6624;
+	float: left;
+}
+
+.bot11 {
+	font-size: 25px;
+	text-align: center;
+	color: white;
+	width: 80%;
+	background: red;
+}
+
+.bot12 {
+	font-size: 35px;
+	text-align: center;
+	color: red;
+	width: 80%;
+	background: white;
+}
+
+.bot13 {
+	font-size: 30px;
+	text-align: center;
+	color: red;
+	text-decoration: underline;
+	width: 80%;
+}
+
+.bot2 {
+	padding-top: 2.95%;
+	padding-left: 5%;
+	width: 25%;
+	text-align: center;
+	background-color: #cccccc;
+	float: left;
+}
+
+
 .content3 {
-	padding-top: 8px;
+	padding-top: 255px;
 	width: 100%;
-	height: 40px;
+	height: 289px;
 	margin: : 0;
 	background-color: #333333;
 }

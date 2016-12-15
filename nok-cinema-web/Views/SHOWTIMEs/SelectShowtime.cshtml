@@ -1,29 +1,98 @@
 ﻿@using nok_cinema_web.ViewModels
-@model ShowtimeViewModel
-@{
-    ViewBag.Title = "SelectShowtime";
-}
+@model ShowtimeListViewModel
 @{
     Layout = null;
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>SelectShowtime</title>
+    <title>Register</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/CSS/defaultlogin.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/CSS/showtime2.css">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 </head>
 <body>
     <div>
-        <h2>SelectShowtime</h2>
-<pre>
-    @Model.MOVIEID
-    @Model.SHOWDATES[0]
-    @Model.THEATREID
-</pre>
+        <div class="header">
+            <div class="menu">
+                @using (Html.BeginForm("Index", "Home"))
+                {<button class="top1" type="submit"><img src="~/Content/Images/logo1.png"> NOK CINEMA</button>}
+                @using (Html.BeginForm("Index", "Home"))
+                {<button class="top2" type="submit">Home</button>}
+                @using (Html.BeginForm("SelectMovie", "Movies"))
+                {<button class="top2" type="submit">ShowTime</button>}
+                @using (Html.BeginForm("Movie", "Movies"))
+                {<button class="top2" type="submit">Movies</button>}
+                @using (Html.BeginForm("Index", "Home"))
+                {<button class="top2" type="submit">Food & Drink</button>}
+                @using (Html.BeginForm("Login", "Authentication"))
+                {<button class="top3" type="submit">Login</button>}
+                @using (Html.BeginForm("Register", "Authentication"))
+                {<button class="top3" type="submit">Register</button>}
+            </div>
+        </div>
+        <div class="body">
+            <div class="greenspace"></div>
+            <div class="back">
+                <ul id="breadcrumb">
+                    <li><a>Select movie</a></li>
+                    <li><a class="menu_ack">Select showtime</a></li>
+                    <li><a>Select seat</a></li>
+                    <li><a>Pay</a></li>
+                    <li><a>Complete</a></li>
+                </ul>
+                <div class="greenspace"></div>
+                <div class="header1"> Movie: Deepwater Horizon</div>
+                <div class="greenspace"></div>
+                <div class="header2"><img src="logo16.png"> Select showtime</div>
+                <div class="content2">
+                    @foreach (var item in Model.SHOWTIMES)
+                    {
+                        <div class="bot1">
+                            <div class="bot11">Theatre</div>
+                            <div class="bot12">@item.THEATREID</div>
+                        </div>
+                        <div class="bot2">
+                            <ul>
+                                <div class="bot21">@Model.MOVIENAME</div>
+                                <div class="bot22">
+                                    @for (int i = 0; i < item.TIMES.Count(); i++)
+                                    {
+                                        <span>
+                                            @Html.ActionLink(item.TIMES[i].ToString(), "SelectShowtime", new { m_id = item.MOVIEID, sd = item.SHOWDATES[i], t_id = item.THEATREID })
+                                        </span>
+                                    }
+                                </div>
+                                <br />
+                                <div class="bot23">
+                                    @foreach (var tmp in Model.Category)
+                                    {
+                                        <span>
+                                            @tmp.CATEGORYNAME
+                                        </span>
+                                    }
+                                </div>
+                                <br />
+                                <div class="bot24">@Model.Duration minutes</div>
+                                <br />
+                                <br />
+                                <div class="bot25">@item.DATES</div>
+                            </ul>
+                        </div>
+                    }
+                </div><br />
+                <div class="round-button"><img src="logo22.png"></div>
+            </div>
+        </div>
+        <div class="content3">
+            <div class="deep">
+                <div class="copyr"><img src="~/Content/Images/logo3.png"> <img src="~/Content/Images/logo4.png"> <img src="~/Content/Images/logo5.png"> 02-222-2222 Copyright<img src="~/Content/Images/logo6.png"> 2016 By NOKCINEMA</div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
-
-

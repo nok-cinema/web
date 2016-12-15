@@ -38,8 +38,8 @@ namespace nok_cinema_web.Controllers
                     var peopleBLL = new PeopleBLL();
                     person = peopleBLL.GetPersonByCookie(userName);
 
-                    var membersBLL = new MemberBLL();
-                    member = membersBLL.GetMerberByCitizenId(person.CITIZENID);
+                    var memberDAL = new MemberDAL();
+                    member = memberDAL.GetMemberByCitizenId(person.CITIZENID);
                     if (member.EXPIRYDATE > DateTime.Now)
                     {
                         memberuserProfile = new MemberUserProfile(member, person);
@@ -49,18 +49,18 @@ namespace nok_cinema_web.Controllers
 
                     var employeeDAL = new EmployeeDAL();
                     employee = employeeDAL.GetEmployeeByCitizenId(person.CITIZENID);
-                    if (employee.JOBPOSITION != "Manager")
+                    if (employee.JOBPOSITION != null/*"Manager"*/)
                     {
                         employeeuserProfile = new EmployeeUserProfile(employee, person);
                         TempData["UserProfileData"] = employeeuserProfile;
                         return RedirectToAction("IndexEmployee");
                     }
-                    else
-                    {
-                        employeeuserProfile = new EmployeeUserProfile(employee, person);
-                        TempData["UserProfileData"] = employeeuserProfile;
-                        return RedirectToAction("IndexManager");
-                    }
+                    //else
+                    //{
+                    //    employeeuserProfile = new EmployeeUserProfile(employee, person);
+                    //    TempData["UserProfileData"] = employeeuserProfile;
+                    //    return RedirectToAction("IndexManager");
+                    //}
                     return View();
                 }
             }
@@ -83,20 +83,10 @@ namespace nok_cinema_web.Controllers
             var profile = TempData["UserProfileData"] as EmployeeUserProfile;
             if (profile != null)
             {
-                return View(profile);
+                return RedirectToAction("SelectMovie", "Movies");
             }
             return RedirectToAction("Login", "Authentication");           
         }
-
-        [Authorize]
-        public ActionResult IndexManager()
-        {
-            var profile = TempData["UserProfileData"] as EmployeeUserProfile;
-            if (profile != null)
-            {
-                return View(profile);
-            }
-            return RedirectToAction("Login", "Authentication");
-        }
+     
     }
 }

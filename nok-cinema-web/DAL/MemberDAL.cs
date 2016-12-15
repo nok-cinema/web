@@ -37,6 +37,7 @@ namespace nok_cinema_web.DAL
                     member.PERSON = memberTuple.PERSON;
                     member.CITIZENID = memberTuple.CITIZENID;
                     member.MEMBERID = memberTuple.MEMBERID;
+                    member.EXPIRYDATE = memberTuple.EXPIRYDATE;
                 }
             }
             return member;

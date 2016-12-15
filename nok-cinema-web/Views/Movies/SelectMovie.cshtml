@@ -1,0 +1,77 @@
+﻿@using nok_cinema_web.ViewModels
+@model MovieListViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/CSS/defaultlogin.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/CSS/showtime1.css">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+</head>
+
+<body>
+
+    <div>
+        <div class="header">
+            <div class="menu">
+                @using (Html.BeginForm("Index", "Home"))
+                {<button class="top1" type="submit"><img src="~/Content/Images/logo1.png"> NOK CINEMA</button>}
+                @using (Html.BeginForm("Index", "Home"))
+                {<button class="top2" type="submit">Home</button>}
+                @using (Html.BeginForm("SelectMovie", "Movies"))
+                {<button class="top2" type="submit">ShowTime</button>}
+                @using (Html.BeginForm("Movie", "Movies"))
+                {<button class="top2" type="submit">Movies</button>}
+                @using (Html.BeginForm("Index", "Home"))
+                {<button class="top2" type="submit">Food & Drink</button>}
+                @using (Html.BeginForm("Login", "Authentication"))
+                {<button class="top3" type="submit">Login</button>}
+                @using (Html.BeginForm("Register", "Authentication"))
+                {<button class="top3" type="submit">Register</button>}
+            </div>
+        </div>
+        <div class="body">
+            <div class="greenspace"></div>
+            <div class="back">
+                <ul id="breadcrumb">
+                    <li><a class="menu_ack">Select movie</a></li>
+                    <li><a>Select showtime</a></li>
+                    <li><a>Select seat</a></li>
+                    <li><a>Pay</a></li>
+                    <li><a>Complete</a></li>
+                </ul>
+                <div class="greenspace"></div>
+                <div class="header2"><img src="~/Content/Images/logo16.png"> Select movie</div>
+                @using (Html.BeginForm("SelectShowtime", "SHOWTIMEs", FormMethod.Post))
+                {
+                    <div class="box2">
+                        <select id="movieid" name="movieid" style="width: 50%; height: 40px; font-size: 15pt; padding-left: 10px;">
+                            <option value="Movies" selected>Movies</option>
+                            @foreach (var item in Model.Movies)
+                            {
+                                <option value=@item.MovieId>@item.MovieName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="greenspace"></div>
+                    <div class="greenspace"></div>
+                    <div class="box4">
+                        <button class="submit">Next</button>
+                    </div>
+                }
+            </div>
+            <div class="content3">
+                <div class="deep">
+                    <div class="copyr"><img src="~/Content/Images/logo3.png"> <img src="~/Content/Images/logo4.png"> <img src="~/Content/Images/logo5.png"> 02-222-2222 Copyright<img src="~/Content/Images/logo6.png"> 2016 By NOKCINEMA</div>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
+

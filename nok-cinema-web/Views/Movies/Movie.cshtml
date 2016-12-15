@@ -12,6 +12,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/CSS/defaultlogin.css">
     <link rel="stylesheet" type="text/css" href="~/Content/CSS/boxofficestyle.css">
     <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 </head>
@@ -23,7 +24,7 @@
                 {<button class="top1" type="submit"><img src="~/Content/Images/logo1.png"> NOK CINEMA</button>}
                 @using (Html.BeginForm("Index", "Home"))
                 {<button class="top2" type="submit">Home</button>}
-                @using (Html.BeginForm("Index", "Home"))
+                @using (Html.BeginForm("SelectMovie", "Movies"))
                 {<button class="top2" type="submit">ShowTime</button>}
                 @using (Html.BeginForm("Movie", "Movies"))
                 {<button class="top2" type="submit">Movies</button>}

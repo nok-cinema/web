@@ -18,6 +18,7 @@ namespace nok_cinema_web.BLL
 
             foreach (var employeeTuple in employeeQuery)
             {
+                employee.CITIZENID = employeeTuple.CITIZENID;
                 employee.JOBPOSITION = employeeTuple.JOBPOSITION;
                 employee.SALARY = employeeTuple.SALARY;
             }

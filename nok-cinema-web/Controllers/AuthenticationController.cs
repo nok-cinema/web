@@ -16,8 +16,10 @@ namespace nok_cinema_web.Controllers
     {
         CinemaEntities db = new CinemaEntities();
         EMPLOYEE employee = new EMPLOYEE();
+        MEMBER member = new MEMBER();
         PERSON person = new PERSON();
-        UserProfile userProfile = new UserProfile();
+        MemberUserProfile memberuserProfile = new MemberUserProfile();
+        EmployeeUserProfile employeeuserProfile = new EmployeeUserProfile();
 
         // GET: Authentication
         public ActionResult Login()
@@ -41,12 +43,25 @@ namespace nok_cinema_web.Controllers
                     string userName = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
                     var peopleBLL = new PeopleBLL();
                     person = peopleBLL.GetPersonByCookie(userName);
+
+                    var membersBLL = new MemberBLL();
+                    member = membersBLL.GetMerberByCitizenId(person.CITIZENID);
+                    if(member.EXPIRYDATE > DateTime.Now)
+                    {
+                        memberuserProfile = new MemberUserProfile(member, person);
+                        TempData["UserProfileData"] = memberuserProfile;
+                        return RedirectToAction("IndexMember", "Home");
+                    }
+
                     var employeesBLL = new EmployeesBLL();
                     employee = employeesBLL.GetEmployeeByCitizenId(person.CITIZENID);
-
-                    userProfile = new UserProfile(employee, person);
-                    TempData["UserProfileData"] = userProfile;
-                    return RedirectToAction("ShowInformation", "People");
+                    if(employee.CITIZENID != null)
+                    {
+                        employeeuserProfile = new EmployeeUserProfile(employee, person);
+                        TempData["UserProfileData"] = employeeuserProfile;
+                        return RedirectToAction("IndexEmployee", "Home");
+                    }
+                    return View();
                 }
             }
         }
@@ -59,13 +74,26 @@ namespace nok_cinema_web.Controllers
             
             if (personBLL.Status)
             {
+                var membersBLL = new MemberBLL();
+                member = membersBLL.GetMerberByCitizenId(person.CITIZENID);
+                if (member.EXPIRYDATE > DateTime.Now)
+                {
+                    memberuserProfile = new MemberUserProfile(member, person);
+                    FormsAuthentication.SetAuthCookie(memberuserProfile.USERNAME, false);
+                    TempData["UserProfileData"] = memberuserProfile;
+                    return RedirectToAction("IndexMember", "Home");
+                }
+
                 var employeesBLL = new EmployeesBLL();
                 employee = employeesBLL.GetEmployeeByCitizenId(person.CITIZENID);
-
-                userProfile = new UserProfile(employee, person);
-                FormsAuthentication.SetAuthCookie(userProfile.USERNAME, false);
-                TempData["UserProfileData"] = userProfile;
-                return RedirectToAction("ShowInformation", "People");
+                if (employee.CITIZENID != null)
+                {
+                    employeeuserProfile = new EmployeeUserProfile(employee, person);
+                    FormsAuthentication.SetAuthCookie(employeeuserProfile.USERNAME, false);
+                    TempData["UserProfileData"] = employeeuserProfile;
+                    return RedirectToAction("IndexEmployee", "Home");
+                }
+                return View("Login");
             }
             else
             {
@@ -74,10 +102,10 @@ namespace nok_cinema_web.Controllers
             }
         }
 
-        [HttpPost]
         public ActionResult Logout()
-        {
-            userProfile.Cleanup();
+        {           
+            memberuserProfile.Cleanup();
+            employeeuserProfile.Cleanup();
             FormsAuthentication.SignOut();
 
             return RedirectToAction("Index", "Home");
@@ -96,12 +124,12 @@ namespace nok_cinema_web.Controllers
                 string userName = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
                 var peopleBLL = new PeopleBLL();
                 person = peopleBLL.GetPersonByCookie(userName);
-                var employeesBLL = new EmployeesBLL();
-                employee = employeesBLL.GetEmployeeByCitizenId(person.CITIZENID);
+                var membersBLL = new MemberBLL();
+                member = membersBLL.GetMerberByCitizenId(person.CITIZENID);
 
-                userProfile = new UserProfile(employee, person);
-                TempData["UserProfileData"] = userProfile;
-                return RedirectToAction("ShowInformation", "People");
+                memberuserProfile = new MemberUserProfile(member, person);
+                TempData["UserProfileData"] = memberuserProfile;
+                return RedirectToAction("IndexMember", "Home");
             }
         }
 
@@ -110,17 +138,22 @@ namespace nok_cinema_web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register([Bind(Include = "CITIZENID,FNAME,LNAME,GENDER,BIRTHDATE,ADDRESS,EMAIL,USERNAME,PASSWORD")] PERSON pERSON)
+        public async Task<ActionResult> DoRegister([Bind(Include = "CITIZENID,FNAME,LNAME,GENDER,BIRTHDATE,ADDRESS,EMAIL,USERNAME,PASSWORD")] PERSON pERSON)
         {
             if (ModelState.IsValid)
             {
+                MEMBER member = new MEMBER();
+                member.CITIZENID = pERSON.CITIZENID;
+                member.STARTDATE = DateTime.Now;
+                member.EXPIRYDATE = DateTime.Now.AddYears(1);
+                db.MEMBER.Add(member);
                 db.PERSON.Add(pERSON);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Login");
             }
 
             //return View(pERSON);
-            return RedirectToAction("Login");
+            return RedirectToAction("Register");
         }
     }
 }

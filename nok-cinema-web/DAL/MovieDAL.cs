@@ -27,5 +27,69 @@ namespace nok_cinema_web.DAL
             }
             return movie;
         }
+
+        public List<MOVIE> GetMovieBySearch(string searchstr)
+        {
+            var db = new CinemaEntities();
+            var movieList = new List<MOVIE>();
+            var movies = from m in db.MOVIE
+                         select m;
+            //var actors = from a in db.ACTOR
+            //             select a;
+            //var categorys = from c in db.CATEGORY
+            //                select c;
+            if (!String.IsNullOrEmpty(searchstr))
+            {
+                movies = movies.Where(s => s.MOVIENAME.Contains(searchstr));
+
+                foreach (var _movie in movies)
+                {
+                    var movie = new MOVIE();
+                    movie.MOVIENAME = _movie.MOVIENAME;
+                    movie.MOVIEID = _movie.MOVIEID;
+                    //movie.SHORTDESCRIPTION = _movie.SHORTDESCRIPTION;
+                    //movie.DIRECTOR = _movie.DIRECTOR;                    
+                    //movie.SHOWDATE = _movie.SHOWDATE;
+
+                    //actors = actors.Where(s => s.MOVIE.Equals(movie.MOVIEID));
+                    //foreach (var _actor in actors)
+                    //{
+                    //    var actor = new ACTOR();
+                    //    actor.ACTORNAME = _actor.ACTORNAME;
+                    //    movie.ACTOR.Add(actor);
+                    //}
+                    //categorys = categorys.Where(s => s.MOVIE.Equals(movie.MOVIEID));
+                    //foreach (var _actor in actors)
+                    //{
+                    //    var category = new CATEGORY();
+                    //    category.CATEGORYNAME = category.CATEGORYNAME;
+                    //    movie.CATEGORY.Add(category);
+                    //}
+                    movieList.Add(movie);
+                }
+            }
+            return movieList;
+        }
+
+        public MOVIE GetMovieByMovieID(int id)
+        {
+            var db = new CinemaEntities();
+            var movie = new MOVIE();
+            var movieQuery = from movieTmp in db.MOVIE
+                             where movieTmp.MOVIEID.Equals(id)
+                             select movieTmp;
+            foreach (var movieTuple in movieQuery)
+            {
+                movie.MOVIEID = movieTuple.MOVIEID;
+                movie.MOVIENAME = movieTuple.MOVIENAME;
+                movie.SHORTDESCRIPTION = movieTuple.SHORTDESCRIPTION;
+                movie.DIRECTOR = movieTuple.DIRECTOR;
+                movie.SHOWDATE = movieTuple.SHOWDATE;
+                movie.DURATION = movieTuple.DURATION;
+                movie.ACTOR = movieTuple.ACTOR;
+                movie.CATEGORY = movieTuple.CATEGORY;
+            }         
+            return movie;
+        }
     }
 }

@@ -1,7 +1,15 @@
-﻿
+﻿@using nok_cinema_web.ViewModels
+@model EmployeeUserProfile
 @{
     Layout = null;
 }
+
+<!DOCTYPE html>
+
+@{
+    Layout = null;
+}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +17,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/CSS/homestyle2.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/CSS/homestyle.css">
     <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 </head>
 
@@ -24,14 +32,21 @@
                 {<button class="top2" type="submit">Home</button>}
                 @using (Html.BeginForm("Index", "Home"))
                 {<button class="top2" type="submit">ShowTime</button>}
-                @using (Html.BeginForm("Movie", "Movies"))
-                {<button class="top2" type="submit">Movies</button>}
+                @*@using (Html.BeginForm("Index", "Home"))
+                {<button class="top2" type="submit">Movies</button>}*@
                 @using (Html.BeginForm("Index", "Home"))
                 {<button class="top2" type="submit">Food & Drink</button>}
-                @using (Html.BeginForm("Login", "Authentication"))
-                {<button class="top3" type="submit">Login</button>}
-                @using (Html.BeginForm("Register", "Authentication"))
-                {<button class="top3" type="submit">Register</button>}
+                <div class="content1">
+                    <div class="dropdown">
+                        <button class="dropbtn">Management</button>
+                        <div class="dropdown-content">
+                            <a>Profile</a>
+                            <a>Setting</a>                           
+                            @Html.ActionLink("Logout", "Logout", "Authentication")
+                        </div>
+                    </div>
+                    <div class="type3">Hello, @Model.USERNAME <img src="~/Content/Images/logo2.png"></div>
+                </div>
             </div>
         </div>
         <div class="body">
@@ -51,6 +66,7 @@
                     <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
                 </div>
             </div>
+
 
             <script>
 				var slideIndex = 1;
@@ -89,4 +105,3 @@
     </div>
 </body>
 </html>
-

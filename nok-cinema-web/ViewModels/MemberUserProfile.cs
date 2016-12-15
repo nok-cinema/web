@@ -4,12 +4,14 @@ using System.Linq;
 using System.Web;
 using nok_cinema_web.Models;
 
+
 namespace nok_cinema_web.ViewModels
 {
-    public class UserProfile
+    public class MemberUserProfile
     {
-        public string JOBPOSITION { get; set; }
-        public int SALARY { get; set; }
+        public int MEMBERID { get; set; }
+        public System.DateTime STARTDATE { get; set; }
+        public System.DateTime EXPIRYDATE { get; set; }
         public string CITIZENID { get; set; }
         public string FNAME { get; set; }
         public string LNAME { get; set; }
@@ -19,15 +21,16 @@ namespace nok_cinema_web.ViewModels
         public string EMAIL { get; set; }
         public string USERNAME { get; set; }
 
-        public UserProfile()
+        public MemberUserProfile()
         {
             this.USERNAME = null;
         }
-        public UserProfile(EMPLOYEE e, PERSON p)
+        public MemberUserProfile(MEMBER m, PERSON p)
         {
-            this.CITIZENID = e.CITIZENID;
-            this.JOBPOSITION = e.JOBPOSITION;
-            this.SALARY = e.SALARY;
+            this.CITIZENID = m.CITIZENID;
+            this.STARTDATE = m.STARTDATE;
+            this.EXPIRYDATE = m.EXPIRYDATE;
+            this.MEMBERID = m.MEMBERID;
 
             this.FNAME = p.FNAME;
             this.LNAME = p.LNAME;
@@ -38,8 +41,8 @@ namespace nok_cinema_web.ViewModels
         public void Cleanup()
         {
             this.CITIZENID = null;
-            this.JOBPOSITION = null;
-            this.SALARY = 0;
+            this.STARTDATE = DateTime.Now.AddYears(-10);
+            this.EXPIRYDATE = DateTime.Now.AddYears(-10);
 
             this.FNAME = null;
             this.LNAME = null;

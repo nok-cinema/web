@@ -10,34 +10,27 @@ using System.Web.Mvc;
 using nok_cinema_web.BLL;
 using nok_cinema_web.Models;
 using nok_cinema_web.ViewModels;
+using System.Globalization;
+using System.Web.Security;
+
 
 namespace nok_cinema_web.Controllers
 {
     public class MoviesController : Controller
-    {
+    {       
+        EMPLOYEE employee = new EMPLOYEE();
+        MEMBER member = new MEMBER();
+        PERSON person = new PERSON();
+        MemberUserProfile memberuserProfile = new MemberUserProfile();
+        EmployeeUserProfile employeeuserProfile = new EmployeeUserProfile();
+
         private CinemaEntities db = new CinemaEntities();
 
         // GET: Movies
         public async Task<ActionResult> Index()
         {
             return View(await db.MOVIE.ToListAsync());
-        }
-
-        public ActionResult Browse(string category)
-        {
-            var movieBLL = new MoviesBLL();
-            var movieList = new MovieListViewModel();
-            movieList.Category = new CATEGORY { CATEGORYNAME = category };
-            movieList.Movies = movieBLL.GetMovieListByCategory(category);
-            if (movieList.Movies.Any())
-            {
-                return View(movieList);
-            }
-            else
-            {
-                return RedirectToAction("Index");
-            }
-        }
+        }        
 
         public ActionResult BrowseShowtimes(int movieid)
         {
@@ -146,6 +139,160 @@ namespace nok_cinema_web.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Movie()
+        {
+            var movieBLL = new MoviesBLL();
+            var movielist = new MovieListViewModel();
+            movielist.Movies = movieBLL.GetMovieListByNowShowing();            
+
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie == null)
+                return View(movielist);
+            else
+            {
+                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                DateTime expiration = ticket.Expiration;
+                if (expiration < System.DateTime.Now)
+                    return View(movielist);
+                else
+                {
+                    string userName = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+                    var peopleBLL = new PeopleBLL();
+                    person = peopleBLL.GetPersonByCookie(userName);
+
+                    var membersBLL = new MemberBLL();
+                    member = membersBLL.GetMerberByCitizenId(person.CITIZENID);
+                    if (member.EXPIRYDATE > DateTime.Now)
+                    {
+                        memberuserProfile = new MemberUserProfile(member, person);
+                        TempData["UserProfileData"] = memberuserProfile;                        
+                        return View("MovieWithLogin", movielist);
+                    }
+                    return View(movielist);
+                }
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Search(string searchstr)
+        {
+            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+            searchstr = textInfo.ToTitleCase(searchstr);
+            
+            var movieBLL = new MoviesBLL();
+            var movieList = new MovieListViewModel();
+            movieList.Movies = movieBLL.GetMovieListBySearch(searchstr);
+            if (movieList.Movies.Any())
+            {
+                HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+                if (authCookie == null)
+                    return View("Search", movieList);
+                else
+                {
+                    FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                    DateTime expiration = ticket.Expiration;
+                    if (expiration < System.DateTime.Now)
+                        return View("Search", movieList);
+                    else
+                    {
+                        string userName = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+                        var peopleBLL = new PeopleBLL();
+                        person = peopleBLL.GetPersonByCookie(userName);
+
+                        var membersBLL = new MemberBLL();
+                        member = membersBLL.GetMerberByCitizenId(person.CITIZENID);
+                        if (member.EXPIRYDATE > DateTime.Now)
+                        {
+                            memberuserProfile = new MemberUserProfile(member, person);
+                            TempData["UserProfileData"] = memberuserProfile;
+                            return View("SearchWithLogin", movieList);
+                        }
+                        return View("Search", movieList);
+                    }
+                }
+            }
+            else
+            {
+                return RedirectToAction("Movie");
+            }            
+        }
+
+        [HttpPost]
+        public ActionResult Browse(string category)
+        {
+            var movieBLL = new MoviesBLL();
+            var movieList = new MovieListViewModel();
+            movieList.Category = new CATEGORY { CATEGORYNAME = category };
+            movieList.Movies = movieBLL.GetMovieListByCategory(category);
+            if (movieList.Movies.Any())
+            {
+                HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+                if (authCookie == null)
+                    return View("Search", movieList);
+                else
+                {
+                    FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                    DateTime expiration = ticket.Expiration;
+                    if (expiration < System.DateTime.Now)
+                        return View("Search", movieList);
+                    else
+                    {
+                        string userName = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+                        var peopleBLL = new PeopleBLL();
+                        person = peopleBLL.GetPersonByCookie(userName);
+
+                        var membersBLL = new MemberBLL();
+                        member = membersBLL.GetMerberByCitizenId(person.CITIZENID);
+                        if (member.EXPIRYDATE > DateTime.Now)
+                        {
+                            memberuserProfile = new MemberUserProfile(member, person);
+                            TempData["UserProfileData"] = memberuserProfile;
+                            return View("SearchWithLogin", movieList);
+                        }
+                        return View("Search", movieList);
+                    }
+                }
+            }
+            else
+            {
+                return RedirectToAction("Movie");
+            }
+        }
+
+        public ActionResult MovieDetail(int id)
+        {
+            var movieBLL = new MoviesBLL();
+            var movie = new MovieViewModel();
+            movie = movieBLL.GetMovieByMovieID(id);
+            
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie == null)
+                return View(movie);
+            else
+            {
+                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                DateTime expiration = ticket.Expiration;
+                if (expiration < System.DateTime.Now)
+                    return View(movie);
+                else
+                {
+                    string userName = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+                    var peopleBLL = new PeopleBLL();
+                    person = peopleBLL.GetPersonByCookie(userName);
+
+                    var membersBLL = new MemberBLL();
+                    member = membersBLL.GetMerberByCitizenId(person.CITIZENID);
+                    if (member.EXPIRYDATE > DateTime.Now)
+                    {
+                        memberuserProfile = new MemberUserProfile(member, person);
+                        TempData["UserProfileData"] = memberuserProfile;
+                        return View("MovieDetailWithLogin", movie);
+                    }
+                    return View(movie);
+                }
+            }
         }
     }
 }

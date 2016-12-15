@@ -129,7 +129,7 @@ namespace nok_cinema_web.Controllers
             HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             if (authCookie == null)
             {
-                return View();
+                return RedirectToAction("Index", "Home");
             }
             else
             {

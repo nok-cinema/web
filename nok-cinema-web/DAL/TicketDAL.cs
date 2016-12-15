@@ -27,20 +27,12 @@ namespace nok_cinema_web.DAL
                 THEATREID = showtimeDetail.THEATREID,
                 SHOWDATE = showtime.SHOWDATE,
                 MOVIEID = showtime.MOVIEID,
-                EMPID = empId,
-                MEMBER = member,
-                EMPLOYEE = employee,
-                SHOWTIME = showtimeDetail,
-                SEAT = new SEAT()
-                {
-                    SEATROW = seatViewModel.SeatRow,
-                    SEATNUMBER = seatViewModel.SeatNumber,
-                    THEATREID = showtime.THEATREID,
-                    THEATRE = showtime.THEATRE
-                }
+                EMPID = empId
             };
             db.TICKET.Add(t);
-            return db.SaveChanges() > 0;
+            db.SaveChanges();
+            if (db.SaveChanges() > 0) return true;
+            else return false;
         }
 
         public List<TICKET> GetTicketByDate(DateTime date)

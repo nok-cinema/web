@@ -509,6 +509,7 @@
     <Content Include="Views\Home\IndexManager.cshtml" />
     <Content Include="Views\Home\IndexMember.cshtml" />
     <Content Include="Views\Statistics\Statistic.cshtml" />
+    <Content Include="Views\Booking\Ticket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

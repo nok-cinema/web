@@ -20,17 +20,14 @@ namespace nok_cinema_web.BLL
             };
             var theatreDAL = new TheatreDAL();
             var ticketDAL = new TicketDAL();
+            var ticketListViewModel = new TicketListViewModel();
             foreach (var seatViewModel in booking.BookingSeats.Seats)
             {
                 ticketDAL.InsertTicket(showtime, seatViewModel, empId, memberId);
-            }
-            var ticketListViewModel = new TicketListViewModel();
-            ticketListViewModel.DateTime = booking.DateTime;
-            ticketListViewModel.MovieName = booking.Movie.MOVIENAME;
-            ticketListViewModel.TheatreId = theatreDAL.GetTheatreIdByShowtime(showtime);
-            ticketListViewModel.Tickets = new List<TicketViewModel>();
-            foreach (var seatViewModel in booking.BookingSeats.Seats)
-            {
+                ticketListViewModel.DateTime = booking.DateTime;
+                ticketListViewModel.MovieName = booking.Movie.MOVIENAME;
+                ticketListViewModel.TheatreId = theatreDAL.GetTheatreIdByShowtime(showtime);
+                ticketListViewModel.Tickets = new List<TicketViewModel>();
                 ticketListViewModel.Tickets.Add(new TicketViewModel
                 {
                     Seatnumber = seatViewModel.SeatNumber,

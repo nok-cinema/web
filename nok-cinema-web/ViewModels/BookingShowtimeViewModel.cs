@@ -14,5 +14,7 @@ namespace nok_cinema_web.ViewModels
         public List<string> SeatArray { get; set; }
         public List<string> UnavailableSeatArray { get; set; }
         public SeatListViewModel BookingSeats { get; set; }
+        public int NormalPrice { get; set; }
+        public int SofaPrice { get; set; }
     }
 }

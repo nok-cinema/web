@@ -20,7 +20,59 @@ namespace nok_cinema_web.BLL
             bookingShowtime.SeatArray = GetSeatListForJavascriptArray(bookingShowtime.Seats);
             bookingShowtime.UnavailableSeatArray =
                 GetUnavailableSeatListForJavascriptArray(showtime);
+            bookingShowtime.NormalPrice = GetNormalPricebyDateTime(showdate);
+            bookingShowtime.SofaPrice = GetSofaPricebyDateTime(showdate);
             return bookingShowtime;
+        }
+
+        public int GetNormalPricebyDateTime(DateTime datetime)
+        {
+            int price = 0;
+            switch (datetime.DayOfWeek)
+            {
+                case DayOfWeek.Monday:
+                case DayOfWeek.Tuesday:
+                case DayOfWeek.Thursday:
+                case DayOfWeek.Friday:
+                    price = 120;
+                    break;
+                case DayOfWeek.Wednesday:
+                    price = 100;
+                    break;
+                case DayOfWeek.Saturday:
+                case DayOfWeek.Sunday:
+                    price = 140;
+                    break;
+                default:
+                    price = 120;
+                    break;
+            }
+            return price;
+        }
+
+        public int GetSofaPricebyDateTime(DateTime datetime)
+        {
+            int price = 0;
+            switch (datetime.DayOfWeek)
+            {
+                case DayOfWeek.Monday:
+                case DayOfWeek.Tuesday:
+                case DayOfWeek.Thursday:
+                case DayOfWeek.Friday:
+                    price = 150;
+                    break;
+                case DayOfWeek.Wednesday:
+                    price = 130;
+                    break;
+                case DayOfWeek.Saturday:
+                case DayOfWeek.Sunday:
+                    price = 170;
+                    break;
+                default:
+                    price = 150;
+                    break;
+            }
+            return price;
         }
 
         public MOVIE GetMovieByShowTime(SHOWTIME showtime)

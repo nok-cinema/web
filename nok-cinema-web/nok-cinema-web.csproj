@@ -34,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -425,6 +426,7 @@
     <Content Include="Views\Booking\Seat.cshtml" />
     <Content Include="Views\SHOWTIMEs\Seats.cshtml" />
     <Content Include="Views\Booking\Payment.cshtml" />
+    <Content Include="Views\Booking\Ticket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

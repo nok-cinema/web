@@ -1,4 +1,5 @@
-﻿@model nok_cinema_web.ViewModels.BookingShowtimeViewModel
+﻿@using nok_cinema_web.ViewModels
+@model nok_cinema_web.ViewModels.BookingTicketViewModel
 @{
     Layout = null;
 }
@@ -17,15 +18,54 @@
             <p>Time: <span>@Model.DateTime</span></p>
             <p>Seat: </p>
             <ul id="selected-seats">
-                <li></li>
+                @if (@Model.SofaCount > 0)
+            {
+                    @:<li><img src="@Url.Content("~/Content/images/seat-purple.png")" alt="sofa seat" />฿@Model.SofaPrice x @Model.SofaCount</li>
+            }
+                @if (@Model.NormalCount > 0)
+            {
+                    @:<li><img src="@Url.Content("~/Content/images/seat-green.png")" alt="normal seat" />฿@Model.NormalPrice x @Model.NormalCount</li>
+            }
             </ul>
-            <p>Tickets: <span id="counter">0</span></p>
+            <p>Tickets: <span id="counter">@(Model.NormalCount + Model.SofaCount)</span></p>
             <p>
-                Total: <b>$<span id="total">0</span></b>
+                Total: <b>$<span id="total">@Model.TotalPrice</span></b>
             </p>
 
-            <div id="legend"></div>
+            <div id="payment">
+                @using (Html.BeginForm("OnlinePay", "Booking", FormMethod.Post))
+                {
+                    @Html.Label("Card ID: ")
+                    @Html.TextBox("cardid")
+                    <input type="hidden" name="bookedseatrows" id="bookedseatrows"/>
+                    <input type="hidden" name="bookedseatnumbers" id="bookedseatnumbers"/>
+                    <input type="hidden" name="totalprice" id="totalprice" value="@Model.TotalPrice"/>
+                    <input type="hidden" name="movieid" id="movieid" value="@Model.Movie.MOVIEID"/>
+                    <input type="hidden" name="moviename" id="moviename" value="@Model.Movie.MOVIENAME"/>
+                    <input type="hidden" name="datetime" id="datetime" value="@Model.DateTime"/>
+                    <input type="submit" value="Save" id="checkout-button" style="text-align: center"/>
+                }
+            </div>
+            <div style="clear: both"></div>
         </div>
     </div>
+    <script>
+        $('#checkout-button')
+            .click(function() {
+                var selectingSeats = {
+                    seatRows: [],
+                    seatNumbers: []
+                };
+                var ROWS = [];
+                var NUMBERS = [];
+                @foreach (SeatViewModel t in Model.BookingSeats.Seats)
+                {
+                    <text>NUMBERS.push('@t.SeatNumber');
+                ROWS.push('@t.SeatRow');</text>
+                }
+                $('#bookedseatrows').val("test");
+                $('#bookedseatnumbers').val(JSON.stringify(NUMBERS));
+            });
+    </script>
 </body>
 </html>

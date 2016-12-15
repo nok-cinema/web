@@ -12,7 +12,7 @@ namespace nok_cinema_web.DAL
         {
             var db = new CinemaEntities();
             var showtimeDAL = new ShowtimeDAL();
-            int movieId = showtimeDAL.GetMovieIdByShowdate(showtime.SHOWDATE);
+            int movieId = showtime.MOVIEID;
             IQueryable<MOVIE> movieQuery = (from movieTmp in db.MOVIE
                                             where movieTmp.MOVIEID.Equals(movieId)
                                             select movieTmp);

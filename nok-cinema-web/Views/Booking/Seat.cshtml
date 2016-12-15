@@ -1,4 +1,5 @@
-﻿@model nok_cinema_web.ViewModels.BookingShowtimeViewModel
+﻿@using nok_cinema_web.ViewModels
+@model nok_cinema_web.ViewModels.BookingShowtimeViewModel
 @{
     Layout = null;
 }
@@ -35,7 +36,7 @@
             padding: 25px 30px 0 0;
         }
 
-.front{width: 300px;margin: 5px 32px 45px 32px;background-color: #f0f0f0; color: #666;text-align: center;padding: 3px;border-radius: 5px;} 
+.front{width: 600px;margin: 5px 32px 45px 32px;background-color: #f0f0f0; color: #666;text-align: center;padding: 3px;border-radius: 5px;} 
 .booking-details {float: right;position: relative;width:250px;height: 450px; } 
 .booking-details h3 {margin: 5px 5px 0 0;font-size: 16px;} 
 .booking-details p{line-height:26px; font-size:16px; color:#999} 
@@ -43,7 +44,8 @@
 div.seatCharts-cell {color: #182C4E;height: 25px;width: 23px;line-height: 25px;margin: 3px;float: left;text-align: center;outline: none;font-size: 13px;} 
 div.seatCharts-seat {color: #fff;cursor: pointer;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius: 5px;} 
 div.seatCharts-row {height: 35px;} 
-div.seatCharts-seat.available {background: url(@Url.Content("~/Content/Images/seat-green.png"));} 
+div.seatCharts-seat.sofa-class {background: url(@Url.Content("~/Content/Images/seat-purple.png"))}
+div.seatCharts-seat.normal-class {background: url(@Url.Content("~/Content/Images/seat-green.png"));} 
 div.seatCharts-seat.focused {background: url(@Url.Content("~/Content/Images/seat-lightblue.png")); border: none;} 
 div.seatCharts-seat.selected {background: url(@Url.Content("~/Content/Images/seat-blue.png"));} 
 div.seatCharts-seat.unavailable {background: url(@Url.Content("~/Content/Images/seat-red.png"));cursor: not-allowed;} 
@@ -58,24 +60,36 @@ span.seatCharts-legendDescription {margin-left: 5px;line-height: 30px;}
     </style>
 </head>
 <body>
-    <div class="demo">
-        <div id="seat-map">
-            <div class="front">SCREEN</div>
-        </div>
-        <div class="booking-details">
-            <p>Movie: <span>@Model.Movie.MOVIENAME</span></p>
-            <p>Time: <span>@Model.DateTime</span></p>
-            <p>Seat: </p>
-            <ul id="selected-seats"></ul>
-            <p>Tickets: <span id="counter">0</span></p>
-            <p>Total: <b>$<span id="total">0</span></b>
-            </p>
-
-            <div id="legend"></div>
-        </div>
-        <button id="checkout-button">BUY</button>
-        <div style="clear:both"></div>
+<div class="demo">
+    <div id="seat-map">
+        <div class="front">SCREEN</div>
     </div>
+    <div class="booking-details">
+        <p>Movie: <span>@Model.Movie.MOVIENAME</span></p>
+        <p>Time: <span>@Model.DateTime</span></p>
+        <p>Seat: </p>
+        <ul id="selected-seats"></ul>
+        <p>Tickets: <span id="counter">0</span></p>
+        <p>Total: <b>$<span id="total">0</span></b>
+        </p>
+
+        <div id="legend"></div>
+    </div>
+    @*<button id="checkout-button">BUY</button>*@
+    @using (Html.BeginForm("Payment", "Booking", FormMethod.Post))
+    {
+        <input type="hidden" name="seatrows" id="seatrows"/>
+        <input type="hidden" name="seatnumbers" id="seatnumbers"/>
+        <input type="hidden" name="totalprice" id="totalprice"/>
+        <input type="hidden" name="movieid" id="movieid" value="@Model.Movie.MOVIEID"/>
+        <input type="hidden" name="moviename" id="moviename" value="@Model.Movie.MOVIENAME"/>
+        <input type="hidden" name="datetime" id="datetime" value="@Model.DateTime"/>
+        <input type="hidden" name="normalprice" id="normalprice" value="@Model.NormalPrice"/>
+        <input type="hidden" name="sofaprice" id="sofaprice" value="@Model.SofaPrice" />
+        <input type="submit" value="Save" id="checkout-button" style="text-align: center"/>
+    }
+    <div style="clear: both"></div>
+</div>
 @*<div class="theatre_seats">
     <div class="screen_label">
         -- SCREEN --
@@ -121,11 +135,8 @@ span.seatCharts-legendDescription {margin-left: 5px;line-height: 30px;}
             var selectingSeats = {
                 seatRows: [],
                 seatNumbers: [],
-                price: Number($('#total').text()),
-                movieId: @Model.Movie.MOVIEID,
-                movieName: "@Model.Movie.MOVIENAME",
-                showtime: "@Model.DateTime",
-                text: "Seats: "
+                price: Number($('#total').text())
+                //text: "Seats: "
             };
             var i;
             for (i = 0; i < x.length; i++) {
@@ -134,27 +145,23 @@ span.seatCharts-legendDescription {margin-left: 5px;line-height: 30px;}
                 selectingSeats.seatNumbers.push(x[i].innerHTML.substr(1));
                 selectingSeats.text += (selectingSeats.seatRows[i] + selectingSeats.seatNumbers[i] + ", ");
             }
-            alert(selectingSeats.text);
+            $('#seatrows').val(JSON.stringify(selectingSeats.seatRows));
+            $('#seatnumbers').val(JSON.stringify(selectingSeats.seatNumbers));
+            $('#totalprice').val(selectingSeats.price);
+            //alert(selectingSeats.text);
             //alert(str.join(','));
 
-            $.ajax({
-                url: "@Url.Action("ProcessData", "Booking")",
-                type: "POST",
+            @*$.post('@Url.Action("PaymentPost", "Booking")',
+                {type: "POST",
                 contentType: "application/json",
                 data: JSON.stringify({ selectedSeatList: selectingSeats }),
                 //success: function(response) {
-                complete: function(result) {
-                    if (result.responseText == 'pending') {
-                        //$('body').html(result.responseText);
-                        //window.location.href = result.responseText;
-                        setTimeout(function () { ajaxRequest(); }, 5000);   
-                    }
-                    else {
-                        window.location = '@Url.Action("Index", "Movies")';
+                success: function (response) {
+                    $('#container').html(response.HtmlFromRenderPartialView );
                     }
                     //response ? alert("It worked!") : alert("It didn't work.");
-            }
-        }   );
+
+        }   );*@
         });
 
 
@@ -180,12 +187,12 @@ span.seatCharts-legendDescription {margin-left: 5px;line-height: 30px;}
             //'aa__aa__aa'],
             seats: {
                 N: {
-                    price: 80,
+                    price: @Model.NormalPrice,
                     classes: 'normal-class', //CSS class
-                    category: 'Normal Class',
+                    category: 'Normal Class'
                 },
                 S: {
-                    price: 120,
+                    price: @Model.SofaPrice,
                     classes: 'sofa-class',
                     category: 'Sofa Class'
                 }
@@ -214,10 +221,10 @@ span.seatCharts-legendDescription {margin-left: 5px;line-height: 30px;}
                     //    .attr('id', 'cart-item-' + this.settings.id)
                     //    .data('seatId', this.settings.id)
                     //    .appendTo($cart);
-                    $('<li>' + 
-                            this.data().category + 
-                            ' Seat # '+'<span name="seatText">'+this.settings.id.substr(0, 1)+this.settings.label+'</span>'+': <b>$' + 
-                            this.data().price + 
+                    $('<li>' + '<div role="checkbox" tabindex="-1" class="' + '"></div>' +
+                            this.data().category +
+                            ' Seat # '+'<span name="seatText">'+this.settings.id.substr(0, 1)+this.settings.label+'</span>'+': <b>$' +
+                            this.data().price +
                             '</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
                         .attr('id', 'cart-item-'+this.settings.id)
                         .data('seatId', this.settings.id)

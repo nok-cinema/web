@@ -297,6 +297,7 @@
     <Content Include="Content\CSS\homestyle2.css" />
     <Content Include="Content\CSS\login.css" />
     <Content Include="Content\CSS\manager.css" />
+    <Content Include="Content\CSS\profile.css" />
     <Content Include="Content\Images\avengers.jpg" />
     <Content Include="Content\Images\bg_screen_header.jpg" />
     <Content Include="Content\Images\logo1.png" />

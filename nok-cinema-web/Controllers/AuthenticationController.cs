@@ -29,6 +29,7 @@ namespace nok_cinema_web.Controllers
             //    return RedirectToAction("ShowInformation", "People");
             //}
             //return View();
+
             HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             if (authCookie == null)
                 return View();

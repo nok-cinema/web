@@ -3,11 +3,15 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
-
 <html>
 <head>
+    <title>Register</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="@Url.Content("~/Content/CSS/registerstyle.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/CSS/defaultlogin.css")" />
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
     <link rel="stylesheet" href="@Url.Content("~/Scripts/bootstrap.css")" />
     <script type="text/javascript" src="@Url.Content("~/Scripts/bootstrap.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery-3.1.1.min.js")" type="text/javascript"></script>
@@ -18,29 +22,44 @@
     <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 </head>
 <body>
+    <div>
+        <div class="header">
+            <div class="menu">
+                <div class="top1"><img src="~/Content/Images/logo1.png"> NOK CINEMA</div>
+                <div class="top2">Home</div>
+                <div class="top2">ShowTime</div>
+                <div class="top2">Movies</div>
+                <div class="top2">Food & Drink</div>
+                <div class="top3">Login</div>
+                <div class="top3">Register</div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="greyspace"></div>
+            <div class="back">
+                <div class="header2"><img src="~/Content/Images/logo7.png">Register</div>
+                <div class="boxbg">
+                    
+                        @using (Html.BeginForm("DoRegister", "Authentication", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm("DoRegister", "Authentication", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
+                            <div class="form-horizontal">
+                                @*<style>
+                                    .bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form {
+                                        font-family: Arial, Helvetica, sans-serif;
+                                        color: black;
+                                    }
 
-        <div class="form-horizontal">
-            <h4>Create a new account</h4>
-            <hr />
-            <style>
-                .bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form {
-                    font-family: Arial, Helvetica, sans-serif;
-                    color: black;
-                }
+                                        .bootstrap-iso form button, .bootstrap-iso form button:hover {
+                                            color: white !important;
+                                        }
 
-                    .bootstrap-iso form button, .bootstrap-iso form button:hover {
-                        color: white !important;
-                    }
-
-                .asteriskField {
-                    color: red;
-                }
-            </style>
-            <script type="text/javascript">
+                                    .asteriskField {
+                                        color: red;
+                                    }
+                                </style>*@
+                                <script type="text/javascript">
                 jQuery(function ($) {
                     $.mask.definitions['~'] = '[+-]';
                     $('#date').mask('99/99/9999', { placeholder: "mm/dd/yyyy" });
@@ -54,139 +73,146 @@
                     //$("#CITIZENID").mask("9-9999-99999-99-9", { removeMaskOnSubmit: true });
                 });
 
-            </script>
-            <script>
+                                </script>
+                                <script>
                     $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); });
-            </script>
+                                </script>
 
-            <div class="body">
-                <div class="bootstrap-iso">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6 col-md-6 col-xs-12">
-                                <form class="form-horizontal" method="post">
-                                    <div class="form-group ">
-                                        <label class="control-label col-md-6" for="CITIZENID">
-                                            CITIZENID
-                                        </label>
-                                        <div class="col-md-6">
-                                            @Html.TextBoxFor(m => m.CITIZENID, new { @class = "form-control text-box single-line", @maxlength = "13", @required = "required" })
-                                            @Html.ValidationMessageFor(m => m.CITIZENID, null, new { @class = "text-danger" })
-                                            <br />
-                                        </div>
-                                    </div>
-                                    <div class="control-group ">
-                                        <label class="control-label col-md-6" for="FNAME">
-                                            FNAME
-                                        </label>
-                                        <div class="col-md-6">
-                                            <input class="form-control text-box single-line" id="FNAME" name="FNAME" type="text" value="" required maxlength="35">
-                                            <p class="help-block"></p>
-                                        </div>
-                                    </div>
-                                    <div class="control-group ">
-                                        <label class="control-label col-md-6" for="LNAME">
-                                            LNAME
-                                        </label>
-                                        <div class="col-md-6">
-                                            <input class="form-control text-box single-line" id="LNAME" name="LNAME" type="text" value="" required maxlength="35">
-                                            <p class="help-block"></p>
-                                        </div>
-                                    </div>
-                                    <div class="form-group" id="div_radio">
-                                        <label class="control-label col-md-6" for="GENDER">
-                                            GENDER
-                                        </label>
-                                        <div class="col-md-6">
-                                            <label class="radio-inline">
-                                                <input name="GENDER" type="radio" value="M" required />
-                                                MALE
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input name="GENDER" type="radio" value="F" required />
-                                                FEMALE
-                                            </label>
-                                        </div>
-                                    </div>
-                                    &nbsp;
-                                    <div class="control-group ">
-                                        <label class="control-label col-md-6" for="BIRTHDATE">
-                                            BIRTHDATE
-                                        </label>
-                                        <div class="col-md-6">
-                                            <input class="form-control text-box single-line" id="BIRTHDATE" name="BIRTHDATE" type="text" value="" required>
-                                            <p class="help-block"></p>
-                                        </div>
-
-                                    </div>
-                                    <div class="control-group ">
-                                        <label class="control-label col-md-6" for="ADDRESS">
-                                            ADDRESS
-                                        </label>
-                                        <div class="col-md-6">
-                                            <input class="form-control text-box single-line" id="ADDRESS" name="ADDRESS" type="text" value="" maxlength="95">
-                                            <p class="help-block"></p>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group ">
-                                        <label class="control-label col-md-6" for="EMAIL">
-                                            EMAIL
-                                        </label>
-                                        <div class="col-md-6">
-                                            @Html.TextBoxFor(m => m.EMAIL, new { @class = "form-control text-box single-line", @type = "email", @maxlenght = "62", @required = "required" })
-                                            @Html.ValidationMessageFor(m => m.EMAIL, null, new { @class = "text-danger" })
-                                            <br />
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label class="control-label col-md-6" for="USERNAME">
-                                            USERNAME
-                                        </label>
-                                        <div class="col-md-6">
-                                            @Html.TextBoxFor(m => m.USERNAME, new { @class = "form-control text-box single-line", @maxlength = "20", @required = "required" })
-                                            @Html.ValidationMessageFor(m => m.USERNAME, null, new { @class = "text-danger" })
-                                            <br />
-                                        </div>
-                                    </div>
-
-                                    <div class="control-group ">
-                                        <label class="control-label col-md-6" for="PASSWORD">
-                                            PASSWORD
-                                        </label>
-                                        <div class="col-md-6">
-                                            <input class="form-control text-box single-line" id="PASSWORD" name="PASSWORD" type="password" value="" required maxlength="20">
-                                            <p class="help-block"></p>
-                                        </div>
-                                    </div>
-                                    <div class="control-group ">
-                                        <label class="control-label col-md-6" for="PASSWORDAGAIN">
-                                            CONFIRM PASSWORD
-                                        </label>
-                                        <div class="col-md-6">
-                                            <input class="form-control text-box single-line" type="password" data-validation-match-match="PASSWORD" name="checkpassword" data-validation-match-message="The password and its confirm are not the same" required maxlength="20" />
-                                            <p class="help-block"></p>
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <div class="control-label col-md-12 col-md-10">
-                                            <input type="submit" value="Register" class="btn btn-default" />
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                                <div class="body">
+                                    <div class="bootstrap-iso">
+                                        <div class="container-fluid">
+                                            <div class="row">
+    <div class="col-md-6 col-md-6 col-xs-12">
+        <form class="form-horizontal" method="post">
+            <div class="form-group ">
+                <label class="control-label col-md-6" for="CITIZENID">
+                    CITIZENID
+                </label>
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.CITIZENID, new { @class = "form-control text-box single-line", @maxlength = "13", @required = "required" })
+                    @Html.ValidationMessageFor(m => m.CITIZENID, null, new { @class = "text-danger" })
+                    <br />
                 </div>
             </div>
-            <div class="boxbg"></div>
-        </div>
+            <div class="control-group ">
+                <label class="control-label col-md-6" for="FNAME">
+                    FNAME
+                </label>
+                <div class="col-md-6">
+                    <input class="form-control text-box single-line" id="FNAME" name="FNAME" type="text" value="" required maxlength="35">
+                    <p class="help-block"></p>
+                </div>
+            </div>
+            <div class="control-group ">
+                <label class="control-label col-md-6" for="LNAME">
+                    LNAME
+                </label>
+                <div class="col-md-6">
+                    <input class="form-control text-box single-line" id="LNAME" name="LNAME" type="text" value="" required maxlength="35">
+                    <p class="help-block"></p>
+                </div>
+            </div>
+            <div class="form-group" id="div_radio">
+                <label class="control-label col-md-6" for="GENDER">
+                    GENDER
+                </label>
+                <div class="col-md-6">
+                    <label class="radio-inline">
+                        <input name="GENDER" type="radio" value="M" required />
+                        MALE
+                    </label>
+                    <label class="radio-inline">
+                        <input name="GENDER" type="radio" value="F" required />
+                        FEMALE
+                    </label>
+                </div>
+            </div>
+            &nbsp;
+            <div class="control-group ">
+                <label class="control-label col-md-6" for="BIRTHDATE">
+                    BIRTHDATE
+                </label>
+                <div class="col-md-6">
+                    <input class="form-control text-box single-line" id="BIRTHDATE" name="BIRTHDATE" type="text" value="" required>
+                    <p class="help-block"></p>
+                </div>
+
+            </div>
+            <div class="control-group ">
+                <label class="control-label col-md-6" for="ADDRESS">
+                    ADDRESS
+                </label>
+                <div class="col-md-6">
+                    <input class="form-control text-box single-line" id="ADDRESS" name="ADDRESS" type="text" value="" maxlength="95">
+                    <p class="help-block"></p>
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <label class="control-label col-md-6" for="EMAIL">
+                    EMAIL
+                </label>
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.EMAIL, new { @class = "form-control text-box single-line", @type = "email", @maxlenght = "62", @required = "required" })
+                    @Html.ValidationMessageFor(m => m.EMAIL, null, new { @class = "text-danger" })
+                    <br />
+                </div>
+            </div>
+            <div class="form-group ">
+                <label class="control-label col-md-6" for="USERNAME">
+                    USERNAME
+                </label>
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.USERNAME, new { @class = "form-control text-box single-line", @maxlength = "20", @required = "required" })
+                    @Html.ValidationMessageFor(m => m.USERNAME, null, new { @class = "text-danger" })
+                    <br />
+                </div>
+            </div>
+
+            <div class="control-group ">
+                <label class="control-label col-md-6" for="PASSWORD">
+                    PASSWORD
+                </label>
+                <div class="col-md-6">
+                    <input class="form-control text-box single-line" id="PASSWORD" name="PASSWORD" type="password" value="" required maxlength="20">
+                    <p class="help-block"></p>
+                </div>
+            </div>
+            <div class="control-group ">
+                <label class="control-label col-md-6" for="PASSWORDAGAIN">
+                    CONFIRM PASSWORD
+                </label>
+                <div class="col-md-6">
+                    <input class="form-control text-box single-line" type="password" data-validation-match-match="PASSWORD" name="checkpassword" data-validation-match-message="The password and its confirm are not the same" required maxlength="20" />
+                    <p class="help-block"></p>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label col-md-12 col-md-10">
+                    <input type="submit" value="Register" class="btn btn-default" />
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label col-md-12 col-md-10">
+                    <div>
+                        @Html.ActionLink("Already has an account?", "Login")
+                    </div>
+                </div>
+             </div>
+        </form>
+                                        </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="boxbg"></div>
+                            </div>
 
                 <!-- Include Date Range Picker -->
-                <script type="text/javascript" src="@Url.Content("~/Scripts/bootstrap-datepicker.min.js")"></script>
-                <link rel="stylesheet" href="@Url.Content("~/Scripts/bootstrap-datepicker3.css")" />
+                            <script type="text/javascript" src="@Url.Content("~/Scripts/bootstrap-datepicker.min.js")"></script>
+                            <link rel="stylesheet" href="@Url.Content("~/Scripts/bootstrap-datepicker3.css")" />
 
-                <script>
+                            <script>
                     $(document).ready(function () {
                         var date_input = $('input[name="BIRTHDATE"]'); //our date input has the name "date"
                         var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
@@ -197,12 +223,20 @@
                             autoclose: true,
                         })
                     })
-                </script>
-    }
+                            </script>
+                        }
 
-    <div>
-        @Html.ActionLink("Already has an account?", "Login")
+                        
+                    
+                </div>
+                <div class="darkgreyspace"></div>
+            </div>
+        </div>
+        <div class="content3">
+            <div class="deep">
+                <div class="copyr"><img src="~/Content/Images/logo3.png"> <img src="~/Content/Images/logo4.png"> <img src="~/Content/Images/logo5.png"> 02-222-2222 Copyright<img src="~/Content/Images/logo6.png"> 2016 By NOKCINEMA</div>
+            </div>
+        </div>
     </div>
-
 </body>
 </html>

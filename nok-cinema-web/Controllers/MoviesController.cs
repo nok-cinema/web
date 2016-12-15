@@ -294,5 +294,25 @@ namespace nok_cinema_web.Controllers
                 }
             }
         }
+
+        [Authorize]
+        public ActionResult SelectMovie()
+        {
+            var movieBLL = new MoviesBLL();
+            var movielist = new MovieListViewModel();
+            movielist.Movies = movieBLL.GetMovieListByNowShowing();
+            var employeesBLL = new EmployeesBLL();
+            employee = employeesBLL.GetEmployeeByCitizenId(person.CITIZENID);
+            if (employee.JOBPOSITION != "Manager")
+            {
+                employeeuserProfile = new EmployeeUserProfile(employee, person);
+                TempData["UserProfileData"] = employeeuserProfile;
+                return View("SelectMovieEmployee", movielist);
+            }
+            else
+                return RedirectToAction("Index", "Home");
+
+
+        }
     }
 }

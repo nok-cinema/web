@@ -81,8 +81,8 @@ namespace nok_cinema_web.Controllers
         {
             var profile = TempData["UserProfileData"] as EmployeeUserProfile;
             if (profile != null)
-            {
-                return View(profile);
+            {                
+                return RedirectToAction("SelectMovie", "Movies");
             }
             return RedirectToAction("Login", "Authentication");           
         }

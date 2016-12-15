@@ -297,12 +297,16 @@
     <Content Include="Content\CSS\homestyle2.css" />
     <Content Include="Content\CSS\login.css" />
     <Content Include="Content\CSS\manager.css" />
+    <Content Include="Content\CSS\page1.css" />
+    <Content Include="Content\CSS\page2.css" />
     <Content Include="Content\Images\avengers.jpg" />
     <Content Include="Content\Images\bg_screen_header.jpg" />
     <Content Include="Content\Images\logo1.png" />
     <Content Include="Content\Images\logo14.png" />
     <Content Include="Content\Images\logo15.png" />
+    <Content Include="Content\Images\logo16.png" />
     <Content Include="Content\Images\logo2.png" />
+    <Content Include="Content\Images\logo22.png" />
     <Content Include="Content\Images\logo26.png" />
     <Content Include="Content\Images\logo3.png" />
     <Content Include="Content\Images\logo4.png" />
@@ -502,7 +506,7 @@
     <Content Include="Views\Booking\Payment.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\IndexMember.cshtml" />
-    <Content Include="Views\Home\IndexEmployee.cshtml" />
+    <Content Include="Views\MOVIEs\SelectMovieEmployee.cshtml" />
     <Content Include="Views\MOVIEs\Movie.cshtml" />
     <Content Include="Views\MOVIEs\Search.cshtml" />
     <Content Include="Views\MOVIEs\MovieDetail.cshtml" />

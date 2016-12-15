@@ -19,6 +19,7 @@ namespace nok_cinema_web.BLL
             foreach (var memberTuple in merberQuery)
             {
                 member.CITIZENID = memberTuple.CITIZENID;
+                member.MEMBERID = memberTuple.MEMBERID;
                 member.STARTDATE = memberTuple.STARTDATE;
                 member.EXPIRYDATE = memberTuple.EXPIRYDATE;
             }

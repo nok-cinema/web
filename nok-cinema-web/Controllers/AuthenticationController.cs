@@ -65,9 +65,9 @@ namespace nok_cinema_web.Controllers
                     {
                         employeeuserProfile = new EmployeeUserProfile(employee, person);
                         TempData["UserProfileData"] = employeeuserProfile;
-                        return RedirectToAction("Index", "Movies");
+                        return RedirectToAction("IndexManager", "Home");
                     }
-                    return View("Login");
+                    return View();
                 }
             }
         }
@@ -104,7 +104,7 @@ namespace nok_cinema_web.Controllers
                     employeeuserProfile = new EmployeeUserProfile(employee, person);
                     FormsAuthentication.SetAuthCookie(employeeuserProfile.USERNAME, false);
                     TempData["UserProfileData"] = employeeuserProfile;
-                    return RedirectToAction("Index", "Movies");
+                    return RedirectToAction("IndexManager", "Home");
                 }
                 return View("Login");
             }
@@ -137,12 +137,31 @@ namespace nok_cinema_web.Controllers
                 string userName = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
                 var peopleBLL = new PeopleBLL();
                 person = peopleBLL.GetPersonByCookie(userName);
+
                 var membersBLL = new MemberBLL();
                 member = membersBLL.GetMerberByCitizenId(person.CITIZENID);
+                if (member.EXPIRYDATE > DateTime.Now)
+                {
+                    memberuserProfile = new MemberUserProfile(member, person);
+                    TempData["UserProfileData"] = memberuserProfile;
+                    return RedirectToAction("IndexMember", "Home");
+                }
 
-                memberuserProfile = new MemberUserProfile(member, person);
-                TempData["UserProfileData"] = memberuserProfile;
-                return RedirectToAction("IndexMember", "Home");
+                var employeesBLL = new EmployeesBLL();
+                employee = employeesBLL.GetEmployeeByCitizenId(person.CITIZENID);
+                if (employee.JOBPOSITION != "Manager")
+                {
+                    employeeuserProfile = new EmployeeUserProfile(employee, person);
+                    TempData["UserProfileData"] = employeeuserProfile;
+                    return RedirectToAction("IndexEmployee", "Home");
+                }
+                else
+                {
+                    employeeuserProfile = new EmployeeUserProfile(employee, person);
+                    TempData["UserProfileData"] = employeeuserProfile;
+                    return RedirectToAction("IndexManager", "Home");
+                }
+                return RedirectToAction("Index","Home");
             }
         }
 

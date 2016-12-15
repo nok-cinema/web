@@ -43,7 +43,7 @@ namespace nok_cinema_web.Controllers
                     {
                         memberuserProfile = new MemberUserProfile(member, person);
                         TempData["UserProfileData"] = memberuserProfile;
-                        return RedirectToAction("IndexMember", "Home");
+                        return RedirectToAction("IndexMember");
                     }
 
                     var employeesBLL = new EmployeesBLL();
@@ -52,13 +52,13 @@ namespace nok_cinema_web.Controllers
                     {
                         employeeuserProfile = new EmployeeUserProfile(employee, person);
                         TempData["UserProfileData"] = employeeuserProfile;
-                        return RedirectToAction("IndexEmployee", "Home");
+                        return RedirectToAction("IndexEmployee");
                     }
                     else
                     {
                         employeeuserProfile = new EmployeeUserProfile(employee, person);
                         TempData["UserProfileData"] = employeeuserProfile;
-                        return RedirectToAction("Index", "Movies");
+                        return RedirectToAction("IndexManager");
                     }
                     return View();
                 }
@@ -85,6 +85,17 @@ namespace nok_cinema_web.Controllers
                 return View(profile);
             }
             return RedirectToAction("Login", "Authentication");           
+        }
+
+        [Authorize]
+        public ActionResult IndexManager()
+        {
+            var profile = TempData["UserProfileData"] as EmployeeUserProfile;
+            if (profile != null)
+            {
+                return View(profile);
+            }
+            return RedirectToAction("Login", "Authentication");
         }
     }
 }

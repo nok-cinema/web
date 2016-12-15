@@ -24,7 +24,7 @@
                 {<button class="top2" type="submit">Home</button>}
                 @using (Html.BeginForm("Index", "Home"))
                 {<button class="top2" type="submit">ShowTime</button>}
-                @using (Html.BeginForm("Movie", "Home"))
+                @using (Html.BeginForm("Movie", "Movies"))
                 {<button class="top2" type="submit">Movies</button>}
                 @using (Html.BeginForm("Index", "Home"))
                 {<button class="top2" type="submit">Food & Drink</button>}
@@ -46,19 +46,23 @@
                             <tr>
                                 <th>Category</th>
                                 <td>
-                                    @foreach (var item in Model.Category)
-                                    {
-                                        <span>@item.CATEGORYNAME</span>
-                                    }
+                                    <ul>
+                                        @foreach (var item in Model.Category)
+                                        {
+                                            <li>@item.CATEGORYNAME</li>
+                                        }
+                                    </ul>
                                 </td>
                             </tr>
                             <tr>
                                 <th>Actor</th>
                                 <td>
-                                    @foreach (var item in Model.Actor)
-                                    {
-                                        <span>@item.ACTORNAME</span>
-                                    }
+                                    <ul>
+                                        @foreach (var item in Model.Actor)
+                                        {
+                                            <li>@item.ACTORNAME</li>
+                                        }
+                                    </ul>
                                 </td>
                             </tr>
                             <tr>

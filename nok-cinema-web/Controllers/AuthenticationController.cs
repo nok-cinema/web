@@ -103,7 +103,6 @@ namespace nok_cinema_web.Controllers
                 {
                     employeeuserProfile = new EmployeeUserProfile(employee, person);
                     FormsAuthentication.SetAuthCookie(employeeuserProfile.USERNAME, false);
-
                     TempData["UserProfileData"] = employeeuserProfile;
                     return RedirectToAction("Index", "Movies");
                 }

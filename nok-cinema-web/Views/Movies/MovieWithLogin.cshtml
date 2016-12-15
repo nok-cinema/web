@@ -45,7 +45,7 @@
         <div class="body">
             <div class="greyspace"></div>
             <div class="back">
-                <div class="header3"><img src="~/Content/Images/logo14.png" style="width: 1.8%; height: 1.8%;"> Movies</div>
+                <div class="header3"><img src="~/Content/Images/logo14.png" style="width: 1.8%; height: 1.8%;"> Now Showing</div>
                 <div class="box3">
                     <div class="box4">
                         @*<div class="movie1">
@@ -71,16 +71,33 @@
                     </div>
                     @using (Html.BeginForm("Search", "Movies", FormMethod.Post))
                     {
-                        <p>
+                        <div>
                             Name: @Html.TextBox("searchstr") <input type="submit" value="Search" />
-                        </p>
+                        </div>
                     }
 
                     @using (Html.BeginForm("Browse", "Movies", FormMethod.Post))
                     {
-                        <p>
-                            Category: @Html.TextBox("category") <input type="submit" value="Search" />
-                        </p>
+                        <div>
+                            Category:
+                            <select class="form-control" id="category" name="category">
+                                <option>action</option>
+                                <option>adventure</option>
+                                <option>animation</option>
+                                <option>comedy</option>
+                                <option>crime</option>
+                                <option>documentary</option>
+                                <option>drama</option>
+                                <option>horror</option>
+                                <option>musical</option>
+                                <option>mystery</option>
+                                <option>romance</option>
+                                <option>sci-fi</option>
+                                <option>thriller</option>
+                                <option>fantasy</option>
+                            </select>
+                            <input type="submit" value="Search" />
+                        </div>
                     }
 
                 </div>

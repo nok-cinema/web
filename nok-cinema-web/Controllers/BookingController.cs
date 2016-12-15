@@ -139,9 +139,9 @@ namespace nok_cinema_web.Controllers
                 var memberDAL = new MemberDAL();
                 memberId = memberDAL.GetMemberIdByUsername(userName);
             }
-
-            ticketsBLL.InsertTickets(booking, empId, memberId);
-            return View("Ticket", booking);
+            var ticketListViewModel = ticketsBLL.InsertTickets(booking, empId, memberId);
+            if (ticketListViewModel == null) return View("Index");
+            return View("Ticket", ticketListViewModel);
         }
     }
 }

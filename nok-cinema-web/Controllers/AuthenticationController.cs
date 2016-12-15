@@ -9,6 +9,7 @@ using System.Web.Security;
 using nok_cinema_web.Models;
 using nok_cinema_web.ViewModels;
 using nok_cinema_web.BLL;
+using nok_cinema_web.DAL;
 
 namespace nok_cinema_web.Controllers
 {
@@ -41,8 +42,8 @@ namespace nok_cinema_web.Controllers
                     string userName = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
                     var peopleBLL = new PeopleBLL();
                     person = peopleBLL.GetPersonByCookie(userName);
-                    var employeesBLL = new EmployeesBLL();
-                    employee = employeesBLL.GetEmployeeByCitizenId(person.CITIZENID);
+                    var employeeDAL = new EmployeeDAL();
+                    employee = employeeDAL.GetEmployeeByCitizenId(person.CITIZENID);
 
                     userProfile = new UserProfile(employee, person);
                     TempData["UserProfileData"] = userProfile;
@@ -59,8 +60,8 @@ namespace nok_cinema_web.Controllers
             
             if (personBLL.Status)
             {
-                var employeesBLL = new EmployeesBLL();
-                employee = employeesBLL.GetEmployeeByCitizenId(person.CITIZENID);
+                var employeeDAL = new EmployeeDAL();
+                employee = employeeDAL.GetEmployeeByCitizenId(person.CITIZENID);
 
                 userProfile = new UserProfile(employee, person);
                 FormsAuthentication.SetAuthCookie(userProfile.USERNAME, false);
@@ -96,8 +97,8 @@ namespace nok_cinema_web.Controllers
                 string userName = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
                 var peopleBLL = new PeopleBLL();
                 person = peopleBLL.GetPersonByCookie(userName);
-                var employeesBLL = new EmployeesBLL();
-                employee = employeesBLL.GetEmployeeByCitizenId(person.CITIZENID);
+                var employeeDAL = new EmployeeDAL();
+                employee = employeeDAL.GetEmployeeByCitizenId(person.CITIZENID);
 
                 userProfile = new UserProfile(employee, person);
                 TempData["UserProfileData"] = userProfile;

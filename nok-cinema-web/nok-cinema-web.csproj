@@ -181,7 +181,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="BLL\EmployeesBLL.cs" />
     <Compile Include="BLL\MoviesBLL.cs" />
     <Compile Include="BLL\PeopleBLL.cs" />
     <Compile Include="BLL\SeatsBLL.cs" />
@@ -237,7 +236,6 @@
     <Compile Include="Models\EMPLOYEE.cs">
       <DependentUpon>CinemaModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EmployeeBusinessLayer.cs" />
     <Compile Include="Models\FOOD.cs">
       <DependentUpon>CinemaModel.tt</DependentUpon>
     </Compile>

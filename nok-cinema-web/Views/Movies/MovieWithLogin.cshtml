@@ -11,8 +11,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="~/Content/CSS/defaultmember.css">
     <link rel="stylesheet" type="text/css" href="~/Content/CSS/boxofficestyle.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/CSS/defaultmember.css">
     <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 </head>
 <body>
@@ -23,7 +23,7 @@
                 {<button class="top1" type="submit"><img src="~/Content/Images/logo1.png"> NOK CINEMA</button>}
                 @using (Html.BeginForm("Index", "Home"))
                 {<button class="top2" type="submit">Home</button>}
-                @using (Html.BeginForm("SelectMovie", "Movies"))
+                @using (Html.BeginForm("Index", "Home"))
                 {<button class="top2" type="submit">ShowTime</button>}
                 @using (Html.BeginForm("Movie", "Movies"))
                 {<button class="top2" type="submit">Movies</button>}
@@ -33,7 +33,7 @@
                     <div class="dropdown">
                         <button class="dropbtn">Management</button>
                         <div class="dropdown-content">
-                            @Html.ActionLink("Profile", "Edit", "People")
+                            <a>Profile</a>
                             <a>Setting</a>
                             @Html.ActionLink("Logout", "Logout", "Authentication")
                         </div>
@@ -104,7 +104,6 @@
                         }
                     </div>
                 </div>
-
             </div>
             <div class="content3">
                 <div class="deep">

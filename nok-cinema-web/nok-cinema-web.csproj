@@ -266,6 +266,7 @@
       <DependentUpon>CinemaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserDetails.cs" />
+    <Compile Include="Models\validation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BookingShowtimeViewModel.cs" />
     <Compile Include="ViewModels\BookingTicketViewModel.cs" />
@@ -298,15 +299,16 @@
     <Content Include="Content\CSS\manager.css" />
     <Content Include="Content\Images\avengers.jpg" />
     <Content Include="Content\Images\bg_screen_header.jpg" />
-    <Content Include="Content\Images\logo1.PNG" />
+    <Content Include="Content\Images\logo1.png" />
     <Content Include="Content\Images\logo14.png" />
     <Content Include="Content\Images\logo15.png" />
-    <Content Include="Content\Images\logo2.PNG" />
+    <Content Include="Content\Images\logo2.png" />
     <Content Include="Content\Images\logo26.png" />
     <Content Include="Content\Images\logo3.png" />
     <Content Include="Content\Images\logo4.png" />
     <Content Include="Content\Images\logo5.png" />
     <Content Include="Content\Images\logo6.PNG" />
+    <Content Include="Content\Images\logo7.PNG" />
     <Content Include="Content\Images\logo8.PNG" />
     <Content Include="Content\Images\Movies\Thumbnails\1.jpg" />
     <Content Include="Content\Images\Movies\Thumbnails\2.jpg" />
@@ -341,6 +343,7 @@
     <Content Include="Content\Movie\7.jpg" />
     <Content Include="Content\Movie\8.jpg" />
     <Content Include="Content\Movie\9.jpg" />
+    <Content Include="Content\CSS\registerstyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -357,12 +360,37 @@
     </Content>
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-datepicker.min.js" />
+    <Content Include="Scripts\bootstrap-datepicker3.css" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\bootstrap-iso.css" />
+    <Content Include="Scripts\bootstrap-theme.css" />
+    <Content Include="Scripts\bootstrap-theme.min.css" />
+    <Content Include="Scripts\bootstrap-validaton.js" />
+    <Content Include="Scripts\bootstrap-validaton.min.js" />
+    <Content Include="Scripts\bootstrap.css" />
     <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.css" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\bootstrapValidator.css" />
+    <Content Include="Scripts\bootstrapValidator.js" />
+    <Content Include="Scripts\bootstrapValidator.min.css" />
+    <Content Include="Scripts\bootstrapValidator.min.js" />
+    <Content Include="Scripts\font-awesome.min.css" />
+    <Content Include="Scripts\formden.js" />
+    <Content Include="Scripts\jqBootstrapValidation.js" />
+    <Content Include="Scripts\jquery-1.11.3.min.js" />
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Scripts\jquery.maskedinput.min.js" />
     <Content Include="Scripts\jquery.seat-charts.css" />
     <Content Include="Scripts\jquery.seat-charts.js" />
     <Content Include="Scripts\jquery.seat-charts.min.js" />
@@ -373,15 +401,25 @@
     <Content Include="Models\CinemaModel.edmx.diagram">
       <DependentUpon>CinemaModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Scripts\bootstrap-theme.css.map" />
+    <Content Include="Scripts\bootstrap.css.map" />
+    <Content Include="Scripts\bootstrap.min.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\registerstyle.css" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />

@@ -10,15 +10,14 @@ namespace nok_cinema_web.DAL
     {
         public int GetMemberIdByUsername(string username)
         {
-            var personDAL = new PersonDAL();
             var db = new CinemaEntities();
-            IQueryable<MEMBER> memberQuery = from tmp in db.MEMBER
-                                             where tmp.CITIZENID.Equals(personDAL.GetCitizenIdByUsername(username))
-                                             select tmp;
-
-            foreach (var memberTuple in memberQuery)
+            var memberQuery = db.MEMBER.Where(m => m.PERSON.USERNAME.Equals(username));
+            if (memberQuery.Any())
             {
-                return memberTuple.MEMBERID;
+                foreach (var memberTuple in memberQuery)
+                {
+                    return memberTuple.MEMBERID;
+                }
             }
             return 1;
         }
@@ -31,11 +30,14 @@ namespace nok_cinema_web.DAL
                                              where tmp.CITIZENID.Equals(citizenid)
                                              select tmp;
 
-            foreach (var memberTuple in memberQuery)
+            if (memberQuery.Any())
             {
-                member.PERSON = memberTuple.PERSON;
-                member.CITIZENID = memberTuple.CITIZENID;
-                member.MEMBERID = memberTuple.MEMBERID;
+                foreach (var memberTuple in memberQuery)
+                {
+                    member.PERSON = memberTuple.PERSON;
+                    member.CITIZENID = memberTuple.CITIZENID;
+                    member.MEMBERID = memberTuple.MEMBERID;
+                }
             }
             return member;
         }
@@ -48,11 +50,14 @@ namespace nok_cinema_web.DAL
                                              where tmp.MEMBERID.Equals(memberId)
                                              select tmp;
 
-            foreach (var memberTuple in memberQuery)
+            if (memberQuery.Any())
             {
-                member.PERSON = memberTuple.PERSON;
-                member.CITIZENID = memberTuple.CITIZENID;
-                member.MEMBERID = memberTuple.MEMBERID;
+                foreach (var memberTuple in memberQuery)
+                {
+                    member.PERSON = memberTuple.PERSON;
+                    member.CITIZENID = memberTuple.CITIZENID;
+                    member.MEMBERID = memberTuple.MEMBERID;
+                }
             }
             return member;
         }

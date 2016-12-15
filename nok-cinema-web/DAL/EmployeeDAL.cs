@@ -10,15 +10,14 @@ namespace nok_cinema_web.DAL
     {
         public int GetEmployeeIdByUsername(string username)
         {
-            var personDAL = new PersonDAL();
             var db = new CinemaEntities();
-            IQueryable<EMPLOYEE> employeeQuery = from tmp in db.EMPLOYEE
-                                                 where tmp.CITIZENID.Equals(personDAL.GetCitizenIdByUsername(username))
-                                                 select tmp;
-
-            foreach (var employeeTuple in employeeQuery)
+            var employeeQuery = db.EMPLOYEE.Where(e => e.PERSON.USERNAME.Equals(username));
+            if (employeeQuery.Any())
             {
-                return employeeTuple.EMPID;
+                foreach (var employeeTuple in employeeQuery)
+                {
+                    return employeeTuple.EMPID;
+                }
             }
             return 1;
         }
@@ -30,14 +29,16 @@ namespace nok_cinema_web.DAL
             IQueryable<EMPLOYEE> employeeQuery = from tmp in db.EMPLOYEE
                                                  where tmp.CITIZENID.Equals(citizenid)
                                                  select tmp;
-
-            foreach (var employeeTuple in employeeQuery)
+            if (employeeQuery.Any())
             {
-                employee.PERSON = employeeTuple.PERSON;
-                employee.CITIZENID = employeeTuple.CITIZENID;
-                employee.EMPID = employeeTuple.EMPID;
-                employee.JOBPOSITION = employeeTuple.JOBPOSITION;
-                employee.SALARY = employeeTuple.SALARY;
+                foreach (var employeeTuple in employeeQuery)
+                {
+                    employee.PERSON = employeeTuple.PERSON;
+                    employee.CITIZENID = employeeTuple.CITIZENID;
+                    employee.EMPID = employeeTuple.EMPID;
+                    employee.JOBPOSITION = employeeTuple.JOBPOSITION;
+                    employee.SALARY = employeeTuple.SALARY;
+                }
             }
             return employee;
         }
@@ -49,14 +50,16 @@ namespace nok_cinema_web.DAL
             IQueryable<EMPLOYEE> employeeQuery = from tmp in db.EMPLOYEE
                                                  where tmp.EMPID.Equals(employeeId)
                                                  select tmp;
-
-            foreach (var employeeTuple in employeeQuery)
+            if (employeeQuery.Any())
             {
-                employee.PERSON = employeeTuple.PERSON;
-                employee.CITIZENID = employeeTuple.CITIZENID;
-                employee.EMPID = employeeTuple.EMPID;
-                employee.JOBPOSITION = employeeTuple.JOBPOSITION;
-                employee.SALARY = employeeTuple.SALARY;
+                foreach (var employeeTuple in employeeQuery)
+                {
+                    employee.PERSON = employeeTuple.PERSON;
+                    employee.CITIZENID = employeeTuple.CITIZENID;
+                    employee.EMPID = employeeTuple.EMPID;
+                    employee.JOBPOSITION = employeeTuple.JOBPOSITION;
+                    employee.SALARY = employeeTuple.SALARY;
+                }
             }
             return employee;
         }

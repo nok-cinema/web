@@ -73,5 +73,19 @@ namespace nok_cinema_web.DAL
             }
             return seats;
         }
+
+        public SHOWTIME GetShowtimeDetailByDateTimeAndMovieId(DateTime dateTime, int movieid)
+        {
+            var db = new CinemaEntities();
+            var showtimeQuery = db.SHOWTIME.Where(m => m.SHOWDATE.Equals(dateTime)).Where(m => m.MOVIE.MOVIEID.Equals(movieid));
+            if (showtimeQuery.Any())
+            {
+                foreach (var showtimeTuple in showtimeQuery)
+                {
+                    return showtimeTuple;
+                }
+            }
+            return null;
+        }
     }
 }

@@ -181,12 +181,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="BLL\EmployeesBLL.cs" />
+    <Compile Include="BLL\MemberBLL.cs" />
     <Compile Include="BLL\MoviesBLL.cs" />
     <Compile Include="BLL\PeopleBLL.cs" />
     <Compile Include="BLL\SeatsBLL.cs" />
     <Compile Include="BLL\ShowtimeBLL.cs" />
     <Compile Include="BLL\TheatreBLL.cs" />
+    <Compile Include="BLL\TicketBLL.cs" />
+    <Compile Include="BLL\TicketsBLL.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\EMPLOYEEsController.cs" />
@@ -208,6 +210,8 @@
     <Compile Include="DAL\PersonDAL.cs" />
     <Compile Include="DAL\SeatDAL.cs" />
     <Compile Include="DAL\ShowtimeDAL.cs" />
+    <Compile Include="DAL\TheatreDAL.cs" />
+    <Compile Include="DAL\TicketDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -500,6 +504,11 @@
     <Content Include="Views\Booking\Seat.cshtml" />
     <Content Include="Views\SHOWTIMEs\Seats.cshtml" />
     <Content Include="Views\Booking\Payment.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\IndexEmployee.cshtml" />
+    <Content Include="Views\Home\IndexManager.cshtml" />
+    <Content Include="Views\Home\IndexMember.cshtml" />
+    <Content Include="Views\Statistics\Statistic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

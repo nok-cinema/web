@@ -7,6 +7,7 @@ using System.Web.Security;
 using nok_cinema_web.Models;
 using nok_cinema_web.ViewModels;
 using nok_cinema_web.BLL;
+using nok_cinema_web.DAL;
 
 namespace nok_cinema_web.Controllers
 {    
@@ -46,8 +47,8 @@ namespace nok_cinema_web.Controllers
                         return RedirectToAction("IndexMember");
                     }
 
-                    var employeesBLL = new EmployeesBLL();
-                    employee = employeesBLL.GetEmployeeByCitizenId(person.CITIZENID);
+                    var employeeDAL = new EmployeeDAL();
+                    employee = employeeDAL.GetEmployeeByCitizenId(person.CITIZENID);
                     if (employee.JOBPOSITION != "Manager")
                     {
                         employeeuserProfile = new EmployeeUserProfile(employee, person);

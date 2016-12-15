@@ -9,6 +9,7 @@ using System.Web.Security;
 using nok_cinema_web.Models;
 using nok_cinema_web.ViewModels;
 using nok_cinema_web.BLL;
+using nok_cinema_web.DAL;
 
 namespace nok_cinema_web.Controllers
 {
@@ -44,8 +45,8 @@ namespace nok_cinema_web.Controllers
                     var peopleBLL = new PeopleBLL();
                     person = peopleBLL.GetPersonByCookie(userName);
 
-                    var membersBLL = new MemberBLL();
-                    member = membersBLL.GetMerberByCitizenId(person.CITIZENID);
+                    var memberDAL = new MemberDAL();
+                    member = memberDAL.GetMemberByCitizenId(person.CITIZENID);
                     if(member.EXPIRYDATE > DateTime.Now)
                     {
                         memberuserProfile = new MemberUserProfile(member, person);
@@ -53,8 +54,8 @@ namespace nok_cinema_web.Controllers
                         return RedirectToAction("IndexMember", "Home");
                     }
 
-                    var employeesBLL = new EmployeesBLL();
-                    employee = employeesBLL.GetEmployeeByCitizenId(person.CITIZENID);
+                    var employeeDAL = new EmployeeDAL();
+                    employee = employeeDAL.GetEmployeeByCitizenId(person.CITIZENID);
                     if (employee.JOBPOSITION != "Manager")
                     {
                         employeeuserProfile = new EmployeeUserProfile(employee, person);
@@ -80,8 +81,8 @@ namespace nok_cinema_web.Controllers
             
             if (personBLL.Status)
             {
-                var membersBLL = new MemberBLL();
-                member = membersBLL.GetMerberByCitizenId(person.CITIZENID);
+                var memberDAL = new MemberDAL();
+                member = memberDAL.GetMemberByCitizenId(person.CITIZENID);
                 if (member.EXPIRYDATE > DateTime.Now)
                 {
                     memberuserProfile = new MemberUserProfile(member, person);
@@ -90,8 +91,8 @@ namespace nok_cinema_web.Controllers
                     return RedirectToAction("IndexMember", "Home");
                 }
 
-                var employeesBLL = new EmployeesBLL();
-                employee = employeesBLL.GetEmployeeByCitizenId(person.CITIZENID);
+                var employeeDAL = new EmployeeDAL();
+                employee = employeeDAL.GetEmployeeByCitizenId(person.CITIZENID);
                 if (employee.JOBPOSITION != "Manager")
                 {
                     employeeuserProfile = new EmployeeUserProfile(employee, person);
@@ -138,8 +139,8 @@ namespace nok_cinema_web.Controllers
                 var peopleBLL = new PeopleBLL();
                 person = peopleBLL.GetPersonByCookie(userName);
 
-                var membersBLL = new MemberBLL();
-                member = membersBLL.GetMerberByCitizenId(person.CITIZENID);
+                var memberDAL = new MemberDAL();
+                member = memberDAL.GetMemberByCitizenId(person.CITIZENID);
                 if (member.EXPIRYDATE > DateTime.Now)
                 {
                     memberuserProfile = new MemberUserProfile(member, person);
@@ -147,8 +148,8 @@ namespace nok_cinema_web.Controllers
                     return RedirectToAction("IndexMember", "Home");
                 }
 
-                var employeesBLL = new EmployeesBLL();
-                employee = employeesBLL.GetEmployeeByCitizenId(person.CITIZENID);
+                var employeeDAL = new EmployeeDAL();
+                employee = employeeDAL.GetEmployeeByCitizenId(person.CITIZENID);
                 if (employee.JOBPOSITION != "Manager")
                 {
                     employeeuserProfile = new EmployeeUserProfile(employee, person);

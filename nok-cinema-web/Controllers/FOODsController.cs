@@ -8,11 +8,20 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using nok_cinema_web.Models;
+using nok_cinema_web.BLL;
+using nok_cinema_web.DAL;
+using nok_cinema_web.ViewModels;
+using System.Web.Security;
 
 namespace nok_cinema_web.Controllers
 {
     public class FOODsController : Controller
     {
+        EMPLOYEE employee = new EMPLOYEE();
+        MEMBER member = new MEMBER();
+        PERSON person = new PERSON();
+        MemberUserProfile memberuserProfile = new MemberUserProfile();
+        EmployeeUserProfile employeeuserProfile = new EmployeeUserProfile();
         private CinemaEntities db = new CinemaEntities();
 
         // GET: FOODs
@@ -123,6 +132,49 @@ namespace nok_cinema_web.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Food()
+        {
+            var foodBLL = new FoodBLL();
+            var foodlist = new FoodListViewModel();
+            foodlist = foodBLL.GetFoodAll();
+
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie == null)
+                return View(foodlist);
+            else
+            {
+                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                DateTime expiration = ticket.Expiration;
+                if (expiration < System.DateTime.Now)
+                    return RedirectToAction("Index", "Home");
+                else
+                {
+                    string userName = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+                    var peopleBLL = new PeopleBLL();
+                    person = peopleBLL.GetPersonByCookie(userName);
+
+                    var memberDAL = new MemberDAL();
+                    member = memberDAL.GetMemberByCitizenId(person.CITIZENID);
+                    if (member.EXPIRYDATE > DateTime.Now)
+                    {
+                        memberuserProfile = new MemberUserProfile(member, person);
+                        TempData["UserProfileData"] = memberuserProfile;
+                        return View("FoodMember", foodlist);
+                    }
+
+                    var employeeDAL = new EmployeeDAL();
+                    employee = employeeDAL.GetEmployeeByCitizenId(person.CITIZENID);
+                    if (employee.JOBPOSITION != null)
+                    {
+                        employeeuserProfile = new EmployeeUserProfile(employee, person);
+                        TempData["UserProfileData"] = employeeuserProfile;
+                        return View("FoodEmployee");
+                    }
+                    return RedirectToAction("Index", "Home");
+                }
+            }
         }
     }
 }

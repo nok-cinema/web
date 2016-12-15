@@ -181,6 +181,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BLL\FoodBLL.cs" />
     <Compile Include="BLL\MemberBLL.cs" />
     <Compile Include="BLL\MoviesBLL.cs" />
     <Compile Include="BLL\PeopleBLL.cs" />
@@ -205,6 +206,7 @@
     <Compile Include="Controllers\THEATREsController.cs" />
     <Compile Include="Controllers\TICKETsController.cs" />
     <Compile Include="DAL\EmployeeDAL.cs" />
+    <Compile Include="DAL\FoodDAL.cs" />
     <Compile Include="DAL\MemberDAL.cs" />
     <Compile Include="DAL\MovieDAL.cs" />
     <Compile Include="DAL\PersonDAL.cs" />
@@ -274,6 +276,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BookingShowtimeViewModel.cs" />
     <Compile Include="ViewModels\BookingTicketViewModel.cs" />
+    <Compile Include="ViewModels\FoodListViewModel.cs" />
+    <Compile Include="ViewModels\FoodViewModel.cs" />
     <Compile Include="ViewModels\MemberUserProfile.cs" />
     <Compile Include="ViewModels\MovieListViewModel.cs" />
     <Compile Include="ViewModels\MovieStatisticListViewModel.cs" />
@@ -296,10 +300,12 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CSS\boxofficestyle.css" />
+    <Content Include="Content\CSS\cusfood.css" />
     <Content Include="Content\CSS\defaultemployee.css" />
     <Content Include="Content\CSS\defaultlogin.css" />
     <Content Include="Content\CSS\defaultmember.css" />
     <Content Include="Content\CSS\description.css" />
+    <Content Include="Content\CSS\empfood.css" />
     <Content Include="Content\CSS\homestyle.css" />
     <Content Include="Content\CSS\homestyle2.css" />
     <Content Include="Content\CSS\login.css" />
@@ -544,6 +550,8 @@
     <Content Include="Views\MOVIEs\SelectMovie.cshtml" />
     <Content Include="Views\SHOWTIMEs\SelectShowtimeByMember.cshtml" />
     <Content Include="Views\SHOWTIMEs\SelectShowtimeByEmployee.cshtml" />
+    <Content Include="Views\FOODs\Food.cshtml" />
+    <Content Include="Views\FOODs\FoodMember.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

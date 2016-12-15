@@ -34,14 +34,14 @@
 
 .back {
 	background-color: #ebebeb;
-	width: 95%;
-	height: 620px;
+	width: 90%;
+	height: 100%;
 	margin: 0 auto;
 }
 
 .greyspace {
 	background-color: #ebebeb;
-	width: 95%;
+	width: 90%;
 	height: 30px;
 	margin: 0 auto;
 }
@@ -75,7 +75,7 @@
 	background-color: white;
 	padding-left: 20px;
 	width: 90%;
-	height: 520px;
+	height: 100%;
 	margin: 0 auto;
 	z-index: 1;
 }

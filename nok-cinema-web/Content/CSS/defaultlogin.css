@@ -19,13 +19,13 @@ body {
 
 .top1 img {
 	width: 12%;
-	height: 12%;
 }
 
 .top1 {
 	padding-top: 14px;
 	padding-bottom: 14px;
 	width: 20%;
+    height: 65px;
 	font-size: 25px;
 	color: black;
 	background-color: white;
@@ -35,10 +35,13 @@ body {
 	border-style: none;
 }
 
+
 .top2 {
+    margin-top: 0;
 	padding-top: 17.5px;
 	padding-bottom: 17.5px;
 	width: 12%;
+    height: 65px;
 	font-size: 20px;
 	color: #606060;
 	background-color: #cccccc;
@@ -62,6 +65,7 @@ body {
 	padding-top: 17.5px;
 	padding-bottom: 17.5px;
 	width: 10%;
+    height: 65px;
 	font-size: 20px;
 	background-color: #4CAF50;
     color: white;

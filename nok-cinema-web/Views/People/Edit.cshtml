@@ -49,6 +49,7 @@
             @Html.HiddenFor(model => model.EMAIL)
             @Html.HiddenFor(model => model.USERNAME)
             @Html.HiddenFor(model => model.GENDER)
+            @Html.HiddenFor(model => model.BIRTHDATE)
             <div class="body">
                 <div class="bootstrap-iso">
                     <div class="container-fluid">
@@ -128,19 +129,39 @@
                                         </div>
                                     </div>
 
-                                    <div class="control-group">
+                                    <div class="form-group">
                                         <label class="control-label col-md-6" for="PASSWORD">
+                                           CURRENT PASSWORD
+                                        </label>
+                                        <div class="col-md-6">
+                                            @Html.PasswordFor(model => model.PASSWORD, new  { @class = "form-control text-box single-line", @maxlenght = "20", @required = "required"  })
+                                            @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
+                                        </div>
+                                        <br />
+                                        <br />
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label col-md-6" for="newpassword">
                                             PASSWORD
                                         </label>
                                         <div class="col-md-6">
-                                            @Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control" ,@maxlenght = "20", @required = "required" } })
-                                            @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
+                                            <input class="form-control text-box single-line" id="newpassword" name="newpassword" type="password" value="" required maxlength="20">
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group ">
+                                        <label class="control-label col-md-6" for="PASSWORDAGAIN">
+                                            CONFIRM PASSWORD
+                                        </label>
+                                        <div class="col-md-6">
+                                            <input class="form-control text-box single-line" type="password" data-validation-match-match="newpassword" name="NEWPASSWORD" data-validation-match-message="The password and its confirm are not the same" required maxlength="20" />
+                                            <p class="help-block"></p>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <div class="col-md-offset-2 col-md-10">
-                                            <input type="submit" value="Save" class="btn btn-default" />
+                                        <div class="control-label col-md-12 col-md-10">
+                                            <input type="submit" value="Confirm" class="btn btn-default" />
                                         </div>
                                     </div>
                                 </form>

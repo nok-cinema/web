@@ -16,6 +16,8 @@ namespace nok_cinema_web.Models
     public class PERSONMetaData
     {
         [Required]
+        [MinLength(13)]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Please Enter digits")]
         [Remote("CITIZENID", "Authentication", HttpMethod = "POST", ErrorMessage = "CITIZENID already exists. Please enter a different CITIZENID.")]
         public string CITIZENID { get; set; }
         [Required]
@@ -24,6 +26,7 @@ namespace nok_cinema_web.Models
         public string LNAME { get; set; }
         [Required]
         public string GENDER { get; set; }
+        [Required]
         public Nullable<System.DateTime> BIRTHDATE { get; set; }
         public string ADDRESS { get; set; }
         [Required]
@@ -33,6 +36,8 @@ namespace nok_cinema_web.Models
         [Remote("doesUSERNAMEExist", "Authentication", HttpMethod = "POST", ErrorMessage = "Username already exists. Please enter a different username.")]
         public string USERNAME { get; set; }
         [Required]
+        [Remote("currentpass", "People", HttpMethod = "POST", ErrorMessage = "Current password didn't match!")]
         public string PASSWORD { get; set; }
+
     }
 }

@@ -37,6 +37,23 @@ namespace nok_cinema_web.BLL
             return null;
         }
 
+        public bool CheckPassword (string password)
+        {
+            var db = new CinemaEntities();
+            var person = new PERSON();
+            IQueryable<PERSON> personQuery = from tmp in db.PERSON
+                                             where tmp.PASSWORD.Equals(password)
+                                             select tmp;
+            if (personQuery != null)
+            {
+                foreach (var personTuple in personQuery)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public PERSON GetPersonByUserDetails(UserDetails userDetails)
         {
             var db = new CinemaEntities();

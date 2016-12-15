@@ -20,6 +20,7 @@ namespace nok_cinema_web.Controllers
         PERSON person = new PERSON();
         UserProfile userProfile = new UserProfile();
 
+
         // GET: Authentication
         public ActionResult Login()
         {
@@ -66,6 +67,7 @@ namespace nok_cinema_web.Controllers
                 userProfile = new UserProfile(employee, person);
                 FormsAuthentication.SetAuthCookie(userProfile.USERNAME, false);
                 TempData["UserProfileData"] = userProfile;
+                
                 return RedirectToAction("ShowInformation", "People");
             }
             else
@@ -143,8 +145,5 @@ namespace nok_cinema_web.Controllers
         {
             return Json(!db.PERSON.Any(x => x.CITIZENID == CITIZENID), JsonRequestBehavior.AllowGet);
         }
-        
-
-
     }
 }

@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using nok_cinema_web.Models;
 using nok_cinema_web.ViewModels;
+using nok_cinema_web.BLL;
 
 namespace nok_cinema_web.Controllers
 {
@@ -91,11 +92,12 @@ namespace nok_cinema_web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CITIZENID,FNAME,LNAME,GENDER,BIRTHDATE,ADDRESS,EMAIL,USERNAME,PASSWORD")] PERSON pERSON)
+        public async Task<ActionResult> Edit([Bind(Include = "CITIZENID,FNAME,LNAME,GENDER,BIRTHDATE,ADDRESS,EMAIL,USERNAME,PASSWORD")] PERSON pERSON, string newPassword)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(pERSON).State = EntityState.Modified;
+                pERSON.PASSWORD = newPassword;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -136,5 +138,10 @@ namespace nok_cinema_web.Controllers
             }
             base.Dispose(disposing);
         }
+        public JsonResult currentpass(string PASSWORD)
+        {
+            return Json(!db.PERSON.All(x => x.PASSWORD != PASSWORD), JsonRequestBehavior.AllowGet);
+        }
+        
     }
 }

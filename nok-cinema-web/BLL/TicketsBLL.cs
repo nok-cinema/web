@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using System.Web.WebPages;
+using nok_cinema_web.Controllers;
 using nok_cinema_web.DAL;
 using nok_cinema_web.Models;
 using nok_cinema_web.ViewModels;
@@ -21,19 +23,43 @@ namespace nok_cinema_web.BLL
             var theatreDAL = new TheatreDAL();
             var ticketDAL = new TicketDAL();
             var ticketListViewModel = new TicketListViewModel();
+            ticketListViewModel.Tickets = new List<TicketViewModel>();
             foreach (var seatViewModel in booking.BookingSeats.Seats)
             {
-                ticketDAL.InsertTicket(showtime, seatViewModel, empId, memberId);
-                ticketListViewModel.DateTime = booking.DateTime;
+                if (!ticketDAL.InsertTicket(showtime, seatViewModel, empId, memberId))
+                {
+                    return null;
+                }
+                ticketListViewModel.DateTime = showtime.SHOWDATE;
                 ticketListViewModel.MovieName = booking.Movie.MOVIENAME;
                 ticketListViewModel.TheatreId = theatreDAL.GetTheatreIdByShowtime(showtime);
-                ticketListViewModel.Tickets = new List<TicketViewModel>();
                 ticketListViewModel.Tickets.Add(new TicketViewModel
                 {
                     Seatnumber = seatViewModel.SeatNumber,
                     Seatrow = seatViewModel.SeatRow
                 });
             }
+            return ticketListViewModel;
+        }
+
+        public HistoryBookedShowtimeMovieIdViewModel GetTicketsFromBooked(int memberId, string memberName)
+        {
+            var ticketDAL = new TicketDAL();
+            var movieShowtimeListViewModel = ticketDAL.GetTicketsFromTheseDays(memberId);
+            var history = new HistoryBookedShowtimeMovieIdViewModel
+            {
+                MovieShowtimeViewModels = movieShowtimeListViewModel,
+                MemberName = memberName
+            };
+            return history;
+        }
+
+        public TicketListViewModel GetTicketsFromShowtimeMovieId(DateTime dateTime, int movieId, string userName)
+        {
+            var ticketDAL = new TicketDAL();
+            var memberDAL = new MemberDAL();
+            int memberId = memberDAL.GetMemberIdByUsername(userName);
+            var ticketListViewModel = ticketDAL.GetTicketsByDatetimeMovieId(dateTime, movieId, memberId);
             return ticketListViewModel;
         }
     }

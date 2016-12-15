@@ -10,7 +10,7 @@ namespace nok_cinema_web.ViewModels
     {
         public List<TicketViewModel> Tickets { get; set; }
         public string MovieName { get; set; }
-        public string DateTime { get; set; }
+        public DateTime DateTime { get; set; }
         public short TheatreId { get; set; }
     }
 }

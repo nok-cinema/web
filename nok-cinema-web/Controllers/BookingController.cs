@@ -129,7 +129,7 @@ namespace nok_cinema_web.Controllers
             HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             if (authCookie == null)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login", "Authentication");
             }
             else
             {
@@ -142,6 +142,44 @@ namespace nok_cinema_web.Controllers
             var ticketListViewModel = ticketsBLL.InsertTickets(booking, empId, memberId);
             if (ticketListViewModel == null) return View("Index");
             return View("Ticket", ticketListViewModel);
+        }
+
+        public ActionResult History()
+        {
+            HistoryBookedShowtimeMovieIdViewModel historyTicketListViewModel;
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie == null)
+            {
+                return RedirectToAction("Login", "Authentication");
+            }
+            else
+            {
+                string userName = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+                var memberDAL = new MemberDAL();
+                var memberId = memberDAL.GetMemberIdByUsername(userName);
+                var ticketsBLL = new TicketsBLL();
+                historyTicketListViewModel = ticketsBLL.GetTicketsFromBooked(memberId, userName);
+            }
+            return View(historyTicketListViewModel);
+        }
+        
+        public ActionResult HistoryTicket(DateTime dateTime, int movieId)
+        {
+            TicketListViewModel ticketListViewModel;
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie == null)
+            {
+                return RedirectToAction("Login", "Authentication");
+            }
+            else
+            {
+                string userName =
+                    FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+                var ticketsBLL = new TicketsBLL();
+                ticketListViewModel = ticketsBLL.GetTicketsFromShowtimeMovieId(dateTime, movieId, userName);
+            }
+            if (ticketListViewModel == null) return View("History");
+            return View("HistoryTicket", ticketListViewModel);
         }
     }
 }

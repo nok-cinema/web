@@ -193,6 +193,7 @@
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\EMPLOYEEsController.cs" />
     <Compile Include="Controllers\FOODsController.cs" />
+    <Compile Include="ViewModels\HistoryBookedShowtimeMovieIdViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MEMBERsController.cs" />
     <Compile Include="Controllers\MOVIEsController.cs" />
@@ -276,6 +277,7 @@
     <Compile Include="ViewModels\BookingTicketViewModel.cs" />
     <Compile Include="ViewModels\MemberUserProfile.cs" />
     <Compile Include="ViewModels\MovieListViewModel.cs" />
+    <Compile Include="ViewModels\MovieShowtimeViewModel.cs" />
     <Compile Include="ViewModels\MovieStatisticListViewModel.cs" />
     <Compile Include="ViewModels\MovieStatisticViewModel.cs" />
     <Compile Include="ViewModels\MovieViewModel.cs" />
@@ -296,13 +298,19 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CSS\boxofficestyle.css" />
+    <Content Include="Content\CSS\defaultmember.css" />
+    <Content Include="Content\CSS\defaultuser.css" />
     <Content Include="Content\CSS\description.css" />
     <Content Include="Content\CSS\homestyle.css" />
     <Content Include="Content\CSS\homestyle2.css" />
     <Content Include="Content\CSS\login.css" />
     <Content Include="Content\CSS\manager.css" />
+    <Content Include="Content\CSS\ticket.css" />
+    <Content Include="Content\CSS\w3.css" />
     <Content Include="Content\Images\avengers.jpg" />
     <Content Include="Content\Images\bg_screen_header.jpg" />
+    <Content Include="Content\Images\calendar.png" />
+    <Content Include="Content\Images\cinema.png" />
     <Content Include="Content\Images\logo1.png" />
     <Content Include="Content\Images\logo14.png" />
     <Content Include="Content\Images\logo15.png" />
@@ -314,6 +322,7 @@
     <Content Include="Content\Images\logo6.PNG" />
     <Content Include="Content\Images\logo7.PNG" />
     <Content Include="Content\Images\logo8.PNG" />
+    <Content Include="Content\Images\movie.png" />
     <Content Include="Content\Images\Movies\Thumbnails\1.jpg" />
     <Content Include="Content\Images\Movies\Thumbnails\2.jpg" />
     <Content Include="Content\Images\Movies\Thumbnails\3.jpg" />
@@ -331,6 +340,7 @@
     <Content Include="Content\Images\seat-pink.png" />
     <Content Include="Content\Images\seat-purple.png" />
     <Content Include="Content\Images\seat-red.png" />
+    <Content Include="Content\Images\seat.png" />
     <Content Include="Content\Images\uncle.jpg" />
     <Content Include="Content\Images\yourname.jpg" />
     <Content Include="Content\Movie\1.jpg" />
@@ -516,6 +526,8 @@
     <Content Include="Views\MOVIEs\MovieWithLogin.cshtml" />
     <Content Include="Views\MOVIEs\Search.cshtml" />
     <Content Include="Views\MOVIEs\SearchWithLogin.cshtml" />
+    <Content Include="Views\Booking\History.cshtml" />
+    <Content Include="Views\Booking\HistoryTicket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

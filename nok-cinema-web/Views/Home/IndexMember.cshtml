@@ -34,8 +34,8 @@
                 <div class="content1">
                     <div class="dropdown">
                         <button class="dropbtn">Management</button>
-                        <div class="dropdown-content">
-                            <a>Profile</a>
+                        <div class="dropdown-content">                           
+                            @Html.ActionLink("Profile", "Edit", "People")
                             <a>Setting</a>
                             @Html.ActionLink("Logout", "Logout", "Authentication")
                         </div>

@@ -57,14 +57,21 @@
                         <div class="bot12"><img src="~/Content/Images/coke.png"></div>
                     </div>
                     <div class="bot2">
-                        <ul>
+                        <table>
+                            <tr><th>
+                                Menu
+                            </th>
+                                <th>
+                                    Price
+                                </th></tr>
                             @foreach (var item in Model.FOODS)
                             {
-                                <div class="bot21">@item.Name</div>                                
-                                <div class="bot22">- Price: ฿@item.Price</div>
-                                <br />
-                            } 
-                        </ul>
+                                <tr>
+                                    <td><div class="bot21">@item.Name</div></td>
+                                    <td><div class="bot22">-  ฿@item.Price</div></td>
+                                </tr>
+                            }
+                        </table>
                     </div>
                 </div>
                 <div class="orangespace"></div>

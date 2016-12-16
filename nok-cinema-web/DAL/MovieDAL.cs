@@ -8,6 +8,21 @@ namespace nok_cinema_web.DAL
 {
     public class MovieDAL
     {
+        public bool InsertReview(int movieId, int memberId, string Comment, byte Rating)
+        {
+            if (movieId == 0 || memberId == 0 || Rating == 0) return false;
+            var db = new CinemaEntities();
+            var r = new REVIEW()
+            {
+                MOVIEID = movieId,
+                COMMENTS = Comment,
+                MEMBERID = memberId,
+                RATING = Rating
+            };
+            db.REVIEW.Add(r);
+            if (db.SaveChanges() > 0) return true;
+            else return false;
+        }
 
         public List<REVIEW> GetReviewsByMovieId(int movieId)
         {

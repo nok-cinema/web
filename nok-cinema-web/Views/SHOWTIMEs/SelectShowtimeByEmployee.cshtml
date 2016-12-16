@@ -55,9 +55,9 @@
                     <li><a>Complete</a></li>
                 </ul>
                 <div class="greenspace"></div>
-                <div class="header1"> Movie: Deepwater Horizon</div>
+                <div class="header1"> Movie: @Model.MOVIENAME</div>
                 <div class="greenspace"></div>
-                <div class="header2"><img src="logo16.png"> Select showtime</div>
+                <div class="header2"><img src="@Url.Content("~/Content/Images/logo16.png")"> Select showtime</div>
                 <div class="content2">
                     @foreach (var item in Model.SHOWTIMES)
                     {

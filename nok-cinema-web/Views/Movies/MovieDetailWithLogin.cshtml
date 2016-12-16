@@ -48,7 +48,8 @@
             <div class="back">
                 <div class="header2"><img src="~/Content/Images/logo8.png"> Description</div>
                 <div class="box2">
-                    <div class="bot1"><img src="@Url.Content(String.Format("~/Content/Movie/{0}.jpg", Model.MovieId))" style="width: 100%; height: 100%;" /></div>
+                    <div class="bot1"><img src="@Url.Content(String.Format("~/Content/Movie/{0}.jpg", Model.MovieId))" style="width: 70%; height: 70%;"/>
+                    </div>
                     <div class="bot2">@Model.MovieName</div>
                     <div class="bot3">
                         <table>
@@ -91,22 +92,48 @@
                                 <td>@Model.ShortDiscription</td>
                             </tr>
                         </table>
-                        <hr />
-                        <div class="coment">
-                            @foreach (var item in Model.Reviews.Reviews)
-                            {
-                                <p>@item.MEMBER.PERSON.USERNAME:</p>
-                                <div class="ccfield-prepend">
-                                    <span class="ccform-addon"><i class="fa fa-comment fa-5x"></i></span>
-                                    <textarea class="ccformfield" name="comments" rows="1" placeholder="Message" disabled="disabled">@item.COMMENTS</textarea>
-                                </div>
-                            }
-                        </div>
+                        <hr/>
                     </div>
                     <div class="box3">
-                        <div class="reserve">Get ticket</div>
+                        <div class="reserve">@Html.ActionLink("Get ticket", "SelectMovie")</div>
                     </div>
                 </div>
+                <div class="coment" style="padding: 20px 80px 20px 80px">
+                    @using (Html.BeginForm("MemberCommentOnMovie", "Movies", FormMethod.Post))
+                    {
+                        <table>
+                            <tr>
+                                <td style="padding-right:10px">@Html.Label("Rating: ")</td>
+                                <td style="padding-right:10px">
+                                    <input type="number" name="rating" id="rating" maxlength="1"/>
+                                </td>
+                                <br/>
+                                <td style="padding-right:10px">
+                                    @Html.Label("Comment: ")
+                                </td>
+                                <td style="padding-right:10px">
+                                    @Html.TextArea("comment", new {style = "width:600px;"})
+                                </td>
+                                <input type="hidden" name="seatnumbers" id="seatnumbers"/>
+                                <input type="hidden" name="movieid" id="movieid" value="@Model.MovieId"/>
+                                <td style="padding-left:30px"><input type="submit" value="Save" id="checkout-button" class="submit" style="text-align: center" /></td>
+                            </tr></table>
+                            
+                    }
+                    <hr/>
+                    <h3 style="color:darkcyan">COMMENTs</h3>
+                    <br/>
+                    @foreach (var item in Model.Reviews.Reviews)
+                    {
+                        <hr style="border-top: 1px dashed #8c8b8b; border-bottom: 1px dashed #fff;" />
+                        <p style="color: coral">@item.MEMBER.PERSON.USERNAME:</p>
+                        <div class="ccfield-prepend">
+                            <span class="ccform-addon"><i class="fa fa-comment fa-5x"></i></span>
+                            <textarea class="ccformfield" name="comments" rows="1" placeholder="Message" style="width: 1100px" disabled="disabled">@item.COMMENTS</textarea>
+                        </div>
+                    }
+                </div>
+
                 <div class="darkgreyspace"></div>
             </div>
         </div>

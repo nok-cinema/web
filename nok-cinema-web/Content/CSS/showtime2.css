@@ -18,7 +18,7 @@ body {
 }
 
 .menu div {
-	display: inline-block;
+	/*display: inline-block;*/
 }
 
 .top1 img {
@@ -124,7 +124,7 @@ body {
 .back {
 	background-color: #aedd94;
 	width: 95%;
-	height: 600px;
+	height: 1400px;
 	margin: 0 auto;
 }
 

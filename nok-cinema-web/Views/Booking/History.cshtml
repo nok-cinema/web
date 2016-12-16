@@ -14,7 +14,12 @@
 	<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/CSS/defaultmember.css")">
 	<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/CSS/ticket.css")">
 	<link rel="stylesheet" href="@Url.Content("~/Content/CSS/w3.css")">
-	<script type="text/javascript" src="@Url.Content("~/Scripts/jquery-3.1.1.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-3.1.1.min.js")"></script>
+    <style>
+        body {
+            font-size: 22px;
+        }
+    </style>
 </head>
 <body>
 	<div>
@@ -51,7 +56,7 @@
 					<div class="header2"><img src="@Url.Content("~/Content/Images/logo8.png")"> History</div>
 					<div class="box2">
 						<div class="whitespace"></div>
-						<h3><em>This is history booking of "@Model.MemberName"</em></h3>
+					    <h3><em>"<span style="color: crimson; font-size: 30px;">@Model.MemberName</span>'s ticket booking history"</em></h3>
 						<table class="table">
 						    <tr>
 						        <th>

@@ -111,5 +111,16 @@ namespace nok_cinema_web.BLL
             };
             return reviewListViewModel;
         }
+
+        public bool AddReviewToMovieId(int movieId, int memberId, string Comment, byte Rating)
+        {
+            if (movieId == 0 || memberId == 0) return false;
+            var movieDAL = new MovieDAL();
+            if (!movieDAL.InsertReview(movieId, memberId, Comment, Rating))
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

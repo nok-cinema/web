@@ -47,15 +47,8 @@
         <div class="body">
             <div class="bluespace"></div>
             <div class="back">
-                <ul id="breadcrumb">
-                    <li><a>Select movie</a></li>
-                    <li><a>Select showtime</a></li>
-                    <li><a>Select seat</a></li>
-                    <li><a>Pay</a></li>
-                    <li><a class="menu_ack">Complete</a></li>
-                </ul>
                 <div class="bluespace"></div>
-                <div class="header2"><img src="logo16.png"> Complete</div>
+                <div class="header2"><img src="@Url.Content("~/Content/Images/logo16.png")"> Complete</div>
                 <div class="box2">
                     <div class="whitespace"></div>
                     @foreach (var ticketViewModel in Model.Tickets)

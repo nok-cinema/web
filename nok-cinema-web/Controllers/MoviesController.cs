@@ -381,5 +381,29 @@ namespace nok_cinema_web.Controllers
             return RedirectToAction("IndexManager", "Statistics");
         }
 
+        [HttpPost]
+        public ActionResult MemberCommentOnMovie(int movieId, string comment, byte rating)
+        {
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie == null)
+                return RedirectToAction("MovieDetail", new {id = movieId});
+            else
+            {
+                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                DateTime expiration = ticket.Expiration;
+                if (expiration < System.DateTime.Now)
+                    return RedirectToAction("Login", "Authentication");
+                else
+                {
+                    string userName =
+                        FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+                    var memberDAL = new MemberDAL();
+                    var memberId = memberDAL.GetMemberIdByUsername(userName);
+                    var moviesBLL = new MoviesBLL();
+                    moviesBLL.AddReviewToMovieId(movieId, memberId, comment, rating);
+                    return RedirectToAction("MovieDetail", new { id = movieId });
+                }
+            }
+        }
     }
 }

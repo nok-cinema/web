@@ -135,7 +135,7 @@ namespace nok_cinema_web.Controllers
                 db.Entry(pERSON).State = EntityState.Modified;
                 pERSON.PASSWORD = newPassword;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit");
             }
             return View(pERSON);
         }

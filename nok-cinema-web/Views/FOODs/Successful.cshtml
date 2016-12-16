@@ -8,38 +8,54 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Content/CSS/datatable.css">
     <title>Successful</title>
 </head>
 <body>
-<div>
-    @if (@Model.status)
-    {
-        @:Successful !! :)
-        <table>
-            <tr>
-                <th>Food Name</th>
-                <th>Price</th>
-                <th>Count</th>
-                <th>Total</th>
-            </tr>
-            @foreach (var foodViewModel in Model.FOODS)
-            {
-            <tr>
-                <td>@foodViewModel.Name</td>
-                <td>@foodViewModel.Price</td>
-                <td>@foodViewModel.Count</td>
-                <td>@(foodViewModel.Count * foodViewModel.Price)</td>
-            </tr>
-            }
-        </table>
-        <br/>
-    }
-    else
-    {
-        @:Unsuccessful !! :(
-    }
-    <br/>
-    @Html.ActionLink("Go back to FOOD", "Food")
-</div>
+    <div>
+        @if (@Model.status)
+        {
+            @*@:Successful !!*@
+            <div class="table-title">
+                <h3>Success !!</h3>
+            </div>
+            <table class="table-fill">
+                <thead>
+                    <tr>
+                        <th class="text-left">Food Name</th>
+                        <th class="text-left">Price</th>
+                        <th class="text-left">Count</th>
+                        <th class="text-left">Total</th>
+                    </tr>
+                </thead>
+                <tbody class="table-hover">
+
+                    @foreach (var foodViewModel in Model.FOODS)
+                    {
+                        if (foodViewModel.Count > 0)
+                        { 
+                            <tr>
+                                <td class="text-left">@foodViewModel.Name</td>
+                                <td class="text-left">@foodViewModel.Price</td>
+                                <td class="text-left">@foodViewModel.Count</td>
+                                <td class="text-left">@(foodViewModel.Count*foodViewModel.Price)</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            @*@:Unsuccessful !!*@
+            <div class="table-title">
+                <h3>Fail !!</h3>
+            </div>
+        }
+        <br />
+        <div class="table-title">
+            @Html.ActionLink("Go back to FOOD", "Food")
+        </div>
+    </div>
 </body>
 </html>

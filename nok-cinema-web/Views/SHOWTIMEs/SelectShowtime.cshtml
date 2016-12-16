@@ -46,15 +46,16 @@
                     <li><a>Complete</a></li>
                 </ul>
                 <div class="greenspace"></div>
-                <div class="header1"> Movie: Deepwater Horizon</div>
+                <div class="header1"> Movie: @Model.MOVIENAME</div>
                 <div class="greenspace"></div>
-                <div class="header2"><img src="logo16.png"> Select showtime</div>
+                <div class="header2"><img src="@Url.Content("~/Content/Images/logo16.png")"> Select showtime</div>
                 <div class="content2">
                     @foreach (var item in Model.SHOWTIMES)
                     {
                         <div class="bot1">
-                            <div class="bot11">Theatre</div>
-                            <div class="bot12">@item.THEATREID</div>
+                            <img src="@Url.Content("~/Content/Movie/" + Model.MovieId + ".jpg")" style="width: 100%; height: 100%;"/>
+                            @*<div class="bot11">Theatre</div>
+                            <div class="bot12">@item.THEATREID</div>*@
                         </div>
                         <div class="bot2">
                             <ul>

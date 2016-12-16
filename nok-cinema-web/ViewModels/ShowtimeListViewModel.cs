@@ -12,5 +12,6 @@ namespace nok_cinema_web.ViewModels
         public string MOVIENAME { get; set; }
         public ICollection<CATEGORY> Category { get; set; }
         public Nullable<short> Duration { get; set; }
+        public int MovieId { get; set; }
     }
 }

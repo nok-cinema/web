@@ -90,9 +90,11 @@
                             </div>*@
                         @foreach (var movie in Model.Movies)
                         {
-                            <div class="movie4">
+                            <div class="movie4" style="text-align: center;">
                                 <a href="@Url.Action("MovieDetail", "Movies", new { id = movie.MovieId })">
-                                    <img alt="@movie.MovieName" src="@Url.Content(String.Format("~/Content/Movie/{0}.jpg", movie.MovieId))" />
+                                    <img alt="@movie.MovieName" src="@Url.Content(String.Format("~/Content/Movie/{0}.jpg", movie.MovieId))"/>
+                                    <br/>
+                                    <b>@movie.MovieName</b>
                                 </a>
                             </div>
                         }

@@ -34,7 +34,7 @@
                         <button class="dropbtn">Management</button>
                         <div class="dropdown-content">
                             @Html.ActionLink("Profile", "Edit", "People")
-                            <a>Setting</a>
+                            @Html.ActionLink("Ticket", "History", "Booking")
                             @Html.ActionLink("Logout", "Logout", "Authentication")
                         </div>
                     </div>
@@ -78,6 +78,7 @@
                     <div class="copyr"><img src="~/Content/Images/logo3.png"> <img src="~/Content/Images/logo4.png"> <img src="~/Content/Images/logo5.png"> 02-222-2222 Copyright<img src="~/Content/Images/logo6.png"> 2016 By NOKCINEMA</div>
                 </div>
             </div>
+        </div>
         </div>
 </body>
 </html>

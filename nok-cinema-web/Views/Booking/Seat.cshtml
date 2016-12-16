@@ -74,24 +74,22 @@ div.unavailable {color: #888888;}
             {<button class="top1" type="submit"><img src="~/Content/Images/logo1.png"> NOK CINEMA</button>}
             @using (Html.BeginForm("Index", "Home"))
             {<button class="top2" type="submit">Home</button>}
-            @using (Html.BeginForm("SelectMovie", "Movies"))
-            {<button class="top2" type="submit">ShowTime</button>}
-            @using (Html.BeginForm("Movie", "Movies"))
-            {<button class="top2" type="submit">Movies</button>}
+            @*@using (Html.BeginForm("SelectMovie", "Movies"))
+                {<button class="top2" type="submit">ShowTime</button>}
+                @using (Html.BeginForm("Movie", "Movies"))
+                {<button class="top2" type="submit">Movies</button>}*@
             @using (Html.BeginForm("Food", "FOODs"))
             {<button class="top2" type="submit">Food & Drink</button>}
             <div class="content1">
-
                 <div class="dropdown">
                     <button class="dropbtn">Management</button>
                     <div class="dropdown-content">
-                        <a>Profile</a>
-                        <a>Setting</a>
-                        <a>Logout</a>
+                        @Html.ActionLink("Profile", "Edit", "People")
+                        @Html.ActionLink("Ticket", "History", "Booking")
+                        @Html.ActionLink("Logout", "Logout", "Authentication")
                     </div>
                 </div>
-                <div class="type3">Hello, Username <img src="logo2.png">
-                </div>
+                <div class="type3">Welcome<img src="~/Content/Images/logo2.png"></div>
             </div>
         </div>
     </div>
@@ -106,7 +104,7 @@ div.unavailable {color: #888888;}
                 <li><a>Complete</a></li>
             </ul>
             <div class="greenspace"></div>
-            <div class="header2"><img src="logo16.png"> Select seat</div>
+            <div class="header2"><img src="~/Content/Images/logo16.png"> Select seat</div>
             <div class="box2">
                 <div class="demo">
                     <div id="seat-map">

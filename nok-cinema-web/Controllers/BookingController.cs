@@ -37,7 +37,7 @@ namespace nok_cinema_web.Controllers
         //        return RedirectToAction("Index");
         //    }
         //}
-
+        [Authorize]
         public ActionResult Seat(DateTime id1, int id2)
         {
             var seatsBLL = new SeatsBLL();
@@ -53,6 +53,7 @@ namespace nok_cinema_web.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Payment(int movieId, string movieName, string seatRows, string seatNumbers, string dateTime,
             int normalPrice, int sofaPrice, int totalPrice = 0)
@@ -91,6 +92,7 @@ namespace nok_cinema_web.Controllers
             return View("Payment", booking);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Ticket(string seatRows, string seatNumbers, string cardId, int movieId, string movieName, string dateTime, int totalPrice = 0)
         {
@@ -144,6 +146,7 @@ namespace nok_cinema_web.Controllers
             return View("Ticket", ticketListViewModel);
         }
 
+        [Authorize]
         public ActionResult History()
         {
             HistoryBookedShowtimeMovieIdViewModel historyTicketListViewModel;

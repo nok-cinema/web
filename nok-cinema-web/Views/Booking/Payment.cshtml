@@ -38,21 +38,26 @@
     <div>
         <div class="header">
             <div class="menu">
-                <div class="top1"><img src="logo1.png"> NOK CINEMA</div>
-                <div class="top2">Home</div>
-                <div class="top2">ShowTime</div>
-                <div class="top2">Movies</div>
-                <div class="top2">Food & Drink</div>
+                @using (Html.BeginForm("Index", "Home"))
+            {<button class="top1" type="submit"><img src="~/Content/Images/logo1.png"> NOK CINEMA</button>}
+                @using (Html.BeginForm("Index", "Home"))
+            {<button class="top2" type="submit">Home</button>}
+                @*@using (Html.BeginForm("SelectMovie", "Movies"))
+                {<button class="top2" type="submit">ShowTime</button>}
+                @using (Html.BeginForm("Movie", "Movies"))
+                {<button class="top2" type="submit">Movies</button>}*@
+                @using (Html.BeginForm("Food", "FOODs"))
+            {<button class="top2" type="submit">Food & Drink</button>}
                 <div class="content1">
                     <div class="dropdown">
                         <button class="dropbtn">Management</button>
                         <div class="dropdown-content">
-                            <a>Profile</a>
-                            <a>Setting</a>
-                            <a>Logout</a>
+                            @Html.ActionLink("Profile", "Edit", "People")
+                            @Html.ActionLink("Ticket", "History", "Booking")
+                            @Html.ActionLink("Logout", "Logout", "Authentication")
                         </div>
                     </div>
-                    <div class="type3">Hello, Username <img src="logo2.png"></div>
+                    <div class="type3">Welcome<img src="~/Content/Images/logo2.png"></div>
                 </div>
             </div>
         </div>
@@ -67,7 +72,7 @@
                     <li><a>Complete</a></li>
                 </ul>
                 <div class="greenspace"></div>
-                <div class="header2"><img src="logo16.png"> Pay</div>
+                <div class="header2"><img src="~/Content/Images/logo16.png"> Pay</div>
                 <div class="box2">
                     <div class="bot1">
                         <ul>
@@ -133,7 +138,7 @@
             <div class="orangespace"></div>
             <div class="box3">
                 <div class="bot321">
-                    <img src="@Url.Content("~/Content/Images/logo18.png")">
+                    <img src="~/Content/Images/logo18.png)">
                 </div><br /><br /><br /><br />
             </div>
         </div>
@@ -142,7 +147,7 @@
     </div>
         <div class="content3">
             <div class="deep">
-                <div class="copyr"><img src="logo3.png"> <img src="logo4.png"> <img src="logo5.png"> 02-222-2222 Copyright<img src="logo6.png"> 2016 By NOKCINEMA</div>
+                <div class="copyr"><img src="~/Content/Images/logo3.png"> <img src="~/Content/Images/logo4.png"> <img src="~/Content/Images/logo5.png"> 02-222-2222 Copyright<img src="~/Content/Images/logo6.png"> 2016 By NOKCINEMA</div>
             </div>
         </div>
     <script>

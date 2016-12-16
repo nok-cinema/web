@@ -112,10 +112,14 @@ namespace nok_cinema_web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "SHOWDATE,MOVIEID,THEATREID")] SHOWTIME sHOWTIME)
+        public async Task<ActionResult> Create([Bind(Include = "SHOWDATE,MOVIEID,THEATREID")] SHOWTIME sHOWTIME,string time)
         {
             if (ModelState.IsValid)
             {
+                string datetime = sHOWTIME.SHOWDATE.ToString("dd/MM/yyyy ") + time;
+                    DateTime myDate = DateTime.ParseExact(datetime , "dd/MM/yyyy HH:mm:ss",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+                sHOWTIME.SHOWDATE = myDate;
                 db.SHOWTIME.Add(sHOWTIME);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

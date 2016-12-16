@@ -13,6 +13,7 @@ using nok_cinema_web.ViewModels;
 using System.Globalization;
 using System.Web.Security;
 using nok_cinema_web.DAL;
+using System.IO;
 
 namespace nok_cinema_web.Controllers
 {
@@ -69,10 +70,29 @@ namespace nok_cinema_web.Controllers
             {
                 db.MOVIE.Add(mOVIE);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
+                if (Request.Files.Count == 1)
+                {
+                    var file = Request.Files[0];
 
-            return View(mOVIE);
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        int id = 0;
+                        var movieQuery = db.MOVIE.Select(m => m);
+                        foreach(var movietuple in movieQuery)
+                        {
+                            id = movietuple.MOVIEID;
+                        }
+                        var str = Convert.ToString(id);
+                        var fileName = Path.GetFileName(file.FileName);
+                        var path = Path.Combine(Server.MapPath("~/Content/Movie/"), str +".jpg" );
+                        file.SaveAs(path);
+                    }
+                }
+                return RedirectToAction("Movie");
+            }
+            
+
+            return RedirectToAction("Movie");
         }
 
         // GET: Movies/Edit/5
@@ -336,6 +356,7 @@ namespace nok_cinema_web.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
+
         }
     }
 }

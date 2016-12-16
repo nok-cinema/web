@@ -66,7 +66,7 @@ namespace nok_cinema_web.Controllers
                     {
                         employeeuserProfile = new EmployeeUserProfile(employee, person);
                         TempData["UserProfileData"] = employeeuserProfile;
-                        return RedirectToAction("IndexManager", "Home");
+                        return RedirectToAction("IndexManager", "Statistics");
                     }
                     return View();
                 }
@@ -105,7 +105,7 @@ namespace nok_cinema_web.Controllers
                     employeeuserProfile = new EmployeeUserProfile(employee, person);
                     FormsAuthentication.SetAuthCookie(employeeuserProfile.USERNAME, false);
                     TempData["UserProfileData"] = employeeuserProfile;
-                    return RedirectToAction("IndexManager", "Home");
+                    return RedirectToAction("IndexManager", "Statistics");
                 }
                 return View("Login");
             }
@@ -160,7 +160,7 @@ namespace nok_cinema_web.Controllers
                 {
                     employeeuserProfile = new EmployeeUserProfile(employee, person);
                     TempData["UserProfileData"] = employeeuserProfile;
-                    return RedirectToAction("IndexManager", "Home");
+                    return RedirectToAction("IndexManager", "Statistics");
                 }
                 return RedirectToAction("Index","Home");
             }

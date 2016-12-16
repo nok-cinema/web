@@ -8,5 +8,6 @@ namespace nok_cinema_web.ViewModels
     public class FoodListViewModel
     {
         public List<FoodViewModel> FOODS { get; set; }
+        public bool status { get; set; }
     }
 }

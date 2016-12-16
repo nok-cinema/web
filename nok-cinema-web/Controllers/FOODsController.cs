@@ -154,9 +154,11 @@ namespace nok_cinema_web.Controllers
                     string userName = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
                     var peopleBLL = new PeopleBLL();
                     person = peopleBLL.GetPersonByCookie(userName);
+                    if (person == null) return RedirectToAction("Index", "Home");
 
                     var memberDAL = new MemberDAL();
                     member = memberDAL.GetMemberByCitizenId(person.CITIZENID);
+                    if (member == null) return RedirectToAction("Index", "Home");
                     if (member.EXPIRYDATE > DateTime.Now)
                     {
                         memberuserProfile = new MemberUserProfile(member, person);
@@ -170,11 +172,47 @@ namespace nok_cinema_web.Controllers
                     {
                         employeeuserProfile = new EmployeeUserProfile(employee, person);
                         TempData["UserProfileData"] = employeeuserProfile;
-                        return View("FoodEmployee");
+                        return View("FoodEmployee", foodlist);
                     }
                     return RedirectToAction("Index", "Home");
                 }
             }
+        }
+
+        [HttpPost]
+        public ActionResult CalculateFood(string employeeName, int food_1, int food_2, int food_3, int food_4, int food_5, int food_6, int food_7, int food_8)
+        {
+            List<int> foods = new List<int>();
+            foods.Add(0);
+            foods.Add(food_1);
+            foods.Add(food_2);
+            foods.Add(food_3);
+            foods.Add(food_4);
+            foods.Add(food_5);
+            foods.Add(food_6);
+            foods.Add(food_7);
+            foods.Add(food_8);
+            var employeeDAL = new EmployeeDAL();
+            var empId = employeeDAL.GetEmployeeIdByUsername(employeeName);
+            var foodBLL = new FoodBLL();
+            FoodListViewModel foodALL = foodBLL.GetFoodAll();
+            var foodDAL = new FoodDAL();
+            var foodListViewModel = new FoodListViewModel();
+            foodListViewModel.FOODS = new List<FoodViewModel>();
+            for (int i = 1; i <= 8; ++i)
+            {
+                if (foods[i] != 0)
+                {
+                    if (!foodDAL.InsertFood(i, empId, foods[i]))
+                    {
+                        foodALL.status = false;
+                        return null;
+                    }
+                    foodALL.status = true;
+                    foodALL.FOODS[i-1].Count = foods[i];
+                }
+            }
+            return View("Successful", foodALL);
         }
     }
 }

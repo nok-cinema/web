@@ -11,5 +11,6 @@ namespace nok_cinema_web.ViewModels
         public string Name { get; set; }
         public string Type { get; set; }
         public int Price { get; set; }
+        public int Count { get; set; }
     }
 }

@@ -562,6 +562,8 @@
     <Content Include="Views\FOODs\FoodMember.cshtml" />
     <Content Include="Views\Booking\History.cshtml" />
     <Content Include="Views\Booking\HistoryTicket.cshtml" />
+    <Content Include="Views\FOODs\FoodEmployee.cshtml" />
+    <Content Include="Views\FOODs\Successful.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

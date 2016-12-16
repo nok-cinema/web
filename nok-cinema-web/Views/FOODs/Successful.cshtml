@@ -1,0 +1,45 @@
+﻿@model nok_cinema_web.ViewModels.FoodListViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Successful</title>
+</head>
+<body>
+<div>
+    @if (@Model.status)
+    {
+        @:Successful !! :)
+        <table>
+            <tr>
+                <th>Food Name</th>
+                <th>Price</th>
+                <th>Count</th>
+                <th>Total</th>
+            </tr>
+            @foreach (var foodViewModel in Model.FOODS)
+            {
+            <tr>
+                <td>@foodViewModel.Name</td>
+                <td>@foodViewModel.Price</td>
+                <td>@foodViewModel.Count</td>
+                <td>@(foodViewModel.Count * foodViewModel.Price)</td>
+            </tr>
+            }
+        </table>
+        <br/>
+    }
+    else
+    {
+        @:Unsuccessful !! :(
+    }
+    <br/>
+    @Html.ActionLink("Go back to FOOD", "Food")
+</div>
+</body>
+</html>

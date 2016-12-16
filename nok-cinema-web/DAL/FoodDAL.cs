@@ -26,5 +26,22 @@ namespace nok_cinema_web.DAL
 
             return foodlist;
         }
+
+        public bool InsertFood(int foodId, int empId, int amount)
+        {
+            if (foodId == 0) return false;
+            var db = new CinemaEntities();
+            var nowDateTime = DateTime.Now;
+            var s = new SELL
+            {
+                EMPID = empId,
+                FOODID = foodId,
+                AMOUNT = amount,
+                SDATE = nowDateTime
+            };
+            db.SELL.Add(s);
+            if (db.SaveChanges() > 0) return true;
+            else return false;
+        }
     }
 }

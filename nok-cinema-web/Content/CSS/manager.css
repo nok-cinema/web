@@ -99,9 +99,9 @@ body {
 .top3 {
 	padding-top: 2px;
 	float: left;
-	width: 57.4%;
+	/*width: 57.4%;*/
 	color: white;
-	font-size: 20px;
+	/*font-size: 20px;*/
 }
 
 .top3 img {

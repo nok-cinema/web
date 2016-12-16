@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="@Url.Content("~/Content/CSS/w3.css")">
 </head>
 <body>
+    @{ EmployeeUserProfile emp = (EmployeeUserProfile)TempData["UserProfileData"];}
     <div>
         <div class="header">
             <div class="menu">
@@ -29,12 +30,16 @@
                     <div class="dropdown">
                         <button class="dropbtn">Management</button>
                         <div class="dropdown-content">
-                            <a>Profile</a>
-                            <a>Setting</a>
+                            @Html.ActionLink("Profile", "Edit", "People")
+                            @Html.ActionLink("Ticket", "History", "Booking")
+                            @if (emp.JOBPOSITION == "Manager")
+                            {
+                                @Html.ActionLink("Manager", "IndexManager", "Statistics")
+                            }                           
                             @Html.ActionLink("Logout", "Logout", "Authentication")
                         </div>
                     </div>
-                    @{ EmployeeUserProfile emp = (EmployeeUserProfile)TempData["UserProfileData"];}
+                    
                     <div class="type3">Hello, @emp.USERNAME <img src="~/Content/Images/logo2.png"></div>
                 </div>
             </div>

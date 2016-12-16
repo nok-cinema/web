@@ -34,7 +34,7 @@
                         <button class="dropbtn">Management</button>
                         <div class="dropdown-content">
                             @Html.ActionLink("Profile", "Edit", "People")
-                            <a>Setting</a>
+                            @Html.ActionLink("Ticket", "History", "Booking")
                             @Html.ActionLink("Logout", "Logout", "Authentication")
                         </div>
                     </div>
@@ -47,11 +47,13 @@
             <div class="greenspace"></div>
             <div class="back">
                 <ul id="breadcrumb">
-                    <li><a>Select movie</a></li>
-                    <li><a class="menu_ack">Select showtime</a></li>
-                    <li><a>Select seat</a></li>
-                    <li><a>Pay</a></li>
-                    <li><a>Complete</a></li>
+                    <ul id="breadcrumb">
+                        <li><a>Select movie</a></li>
+                        <li><a class="menu_ack">Select showtime</a></li>
+                        <li><a>Select seat</a></li>
+                        <li><a>Pay</a></li>
+                        <li><a>Complete</a></li>
+                    </ul>
                 </ul>
                 <div class="greenspace"></div>
                 <div class="header1"> Movie: Deepwater Horizon</div>

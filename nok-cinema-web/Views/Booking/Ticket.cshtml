@@ -18,24 +18,31 @@
 </head>
 <body>
 	<div>
-		<div class="header">
-			<div class="menu">
-				<div class="top1"><img src="@Url.Content("~/Content/Images/logo15.png")"> NOK CINEMA</div>
-				<div class="top2">Home</div>
-				<div class="top2">Food & Drink</div>
-				<div class="content1">
-					<div class="dropdown">
-						<button class="dropbtn">Management</button>
-						<div class="dropdown-content">
-							<a>Profile</a>
-							<a>Setting</a>
-							<a>Logout</a>
-						</div>
-					</div>
-					<div class="top3">Hello, Username <img src="@Url.Content("~/Content/Images/logo2.png")"></div>
-				</div>
-			</div>
-		</div>
+        <div class="header">
+            <div class="menu">
+                @using (Html.BeginForm("Index", "Home"))
+            {<button class="top1" type="submit"><img src="~/Content/Images/logo1.png"> NOK CINEMA</button>}
+                @using (Html.BeginForm("Index", "Home"))
+            {<button class="top2" type="submit">Home</button>}
+                @*@using (Html.BeginForm("SelectMovie", "Movies"))
+                {<button class="top2" type="submit">ShowTime</button>}
+                @using (Html.BeginForm("Movie", "Movies"))
+                {<button class="top2" type="submit">Movies</button>}*@
+                @using (Html.BeginForm("Food", "FOODs"))
+            {<button class="top2" type="submit">Food & Drink</button>}
+                <div class="content1">
+                    <div class="dropdown">
+                        <button class="dropbtn">Management</button>
+                        <div class="dropdown-content">
+                            @Html.ActionLink("Profile", "Edit", "People")
+                            @Html.ActionLink("Ticket", "History", "Booking")
+                            @Html.ActionLink("Logout", "Logout", "Authentication")
+                        </div>
+                    </div>
+                    <div class="type3">Welcome<img src="~/Content/Images/logo2.png"></div>
+                </div>
+            </div>
+        </div>
 		<div class="body">
 			<div class="bluespace"></div>
 				<div class="back">
@@ -47,7 +54,7 @@
 						<li><a class="menu_ack">Complete</a></li>
 					</ul>
 					<div class="bluespace"></div>
-					<div class="header2"><img src="logo16.png"> Complete</div>
+					<div class="header2"><img src="~/Content/Images/logo16.png"> Complete</div>
 					<div class="box2">
 						<div class="whitespace"></div>
 						@foreach (var ticketViewModel in Model.Tickets)

@@ -18,17 +18,14 @@
     <link rel="stylesheet" href="@Url.Content("~/Content/CSS/w3.css")">
 </head>
 <body>
+    @{ EmployeeUserProfile user = (EmployeeUserProfile)TempData["UserProfileData"];}
     <div>
         <div class="header">
             <div class="menu">
-                @using (Html.BeginForm("Index", "Home"))
-                {<button class="top1" type="submit"><img src="~/Content/Images/logo15.png"> NOK CINEMA</button>}
-                @using (Html.BeginForm("Index", "Home"))
-                {<button class="top2" type="submit">Home</button>}
                 @using (Html.BeginForm("SelectMovie", "Movies"))
-                {<button class="top2" type="submit">ShowTime</button>}
-                @using (Html.BeginForm("Movie", "Movies"))
-                {<button class="top2" type="submit">Movies</button>}
+                {<button class="top1" type="submit"><img src="~/Content/Images/logo1.png"> NOK CINEMA</button>}
+                @using (Html.BeginForm("SelectMovie", "Movies"))
+                {<button class="top2" type="submit">Home</button>}
                 @using (Html.BeginForm("Food", "FOODs"))
                 {<button class="top2" type="submit">Food & Drink</button>}
                 <div class="content1">
@@ -36,14 +33,17 @@
                         <button class="dropbtn">Management</button>
                         <div class="dropdown-content">
                             @Html.ActionLink("Profile", "Edit", "People")
-                            <a>Setting</a>
+                            @if (user.JOBPOSITION == "Manager")
+                            {
+                                @Html.ActionLink("Manager", "IndexManager", "Statistics")
+                            }
                             @Html.ActionLink("Logout", "Logout", "Authentication")
                         </div>
                     </div>
 
                 </div>
                 <div class="top3">
-                    @{ EmployeeUserProfile user = (EmployeeUserProfile)TempData["UserProfileData"];}
+                    
                     <div class="type3">
                         Welcome, @user.USERNAME <img src="~/Content/Images/logo2.png">
                     </div>
@@ -53,7 +53,7 @@
         <div class="body">
             <div class="bluespace"></div>
             <div class="back">
-                <div class="header2"><img src="logo21.png"> Food & Drink</div>
+                <div class="header2"><img src="~/Content/Images/logo21.png"> Food & Drink</div>
                 <div class="box2">
                     <div class="bot1">
                         <div class="bot11">

@@ -28,16 +28,21 @@
     <div>
         <div class="header">
             <div class="menu">
-                @using (Html.BeginForm("Index", "Home"))
-                {<button class="top1" type="submit"><img src="~/Content/Images/logo1.png"> NOK CINEMA</button>}
-                @using (Html.BeginForm("Index", "Home"))
-                {<button class="top2" type="submit">Home</button>}
-                @using (Html.BeginForm("Index", "Home"))
-                {<button class="top2" type="submit">ShowTime</button>}
-                @using (Html.BeginForm("Movie", "Movies"))
-                {<button class="top2" type="submit">Movies</button>}
-                @using (Html.BeginForm("Index", "Home"))
-                {<button class="top2" type="submit">Food & Drink</button>}
+                <a href="@Url.Action("Index", "Home")">
+                    <div class="top1"><img src="~/Content/Images/logo1.png"> NOK CINEMA</div>
+                </a>
+                <a href="@Url.Action("Index", "Home")">
+                    <div class="top2">Home</div>
+                </a>
+                <a href="@Url.Action("SelectMovie", "Movies")">
+                    <div class="top2">ShowTime</div>
+                </a>
+                <a href="@Url.Action("MovieDetail", "Movies")">
+                    <div class="top2">Movies</div>
+                </a>
+                <a href="@Url.Action("Index", "Home")">
+                    <div class="top2">Food & Drink</div>
+                </a>
                 <div class="content1">
                     <div class="dropdown">
                         <button class="dropbtn">Management</button>
@@ -72,88 +77,100 @@
                             @Html.HiddenFor(model => model.BIRTHDATE)
                             <div class="body">
                                 <div class="bootstrap-iso">
-                                    <div class="container-fluid">
-                                        <div class="row">
-                                            <div class="col-md-6 col-md-6 col-xs-12">
+                                    <div class="container">
+                                        <div class="row clearfix">
+                                            <div class="col-md-12 column">
                                                 <form class="form-horizontal" method="post">
                                                     <div class="control-group">
-                                                        <label class="control-label col-md-6" for="FNAME">
+                                                        <label class="control-label col-md-4" for="FNAME">
                                                             FNAME
                                                         </label>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             @Html.EditorFor(model => model.FNAME, new { htmlAttributes = new { @class = "form-control", @maxlenght = "35", @required = "required" } })
                                                             @Html.ValidationMessageFor(model => model.FNAME, "", new { @class = "text-danger" })
                                                         </div>
                                                     </div>
                                                     <div class="control-group">
-                                                        <label class="control-label col-md-6" for="LNAME">
+                                                        <label class="control-label col-md-4" for="LNAME">
                                                             LNAME
                                                         </label>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             @Html.EditorFor(model => model.LNAME, new { htmlAttributes = new { @class = "form-control", @maxlenght = "35", @required = "required" } })
                                                             @Html.ValidationMessageFor(model => model.LNAME, "", new { @class = "text-danger" })
                                                         </div>
                                                     </div>
 
-                                                    <div class="form-group" id="div_radio">
-                                                        <label class="control-label col-md-6" for="GENDER">
+                                                    <div class="control-group" id="div_radio">
+                                                        <label class="control-label col-md-4" for="GENDER">
                                                             GENDER
                                                         </label>
-                                                        <div class="col-md-6">
-                                                            <label class="radio-inline">
+                                                        <div class="col-md-4">
+                                                            @if (Model.GENDER == "M")
+                                                            {
+                                                                <label class="radio-inline">
+                                                                    <input name="GENDER" type="radio" value="M" readonly disabled checked />
+                                                                    MALE
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <input name="GENDER" type="radio" value="F" readonly disabled />
+                                                                    FEMALE
+                                                                </label>
+                                                            }
+                                                            else
+                                                            {<label class="radio-inline">
                                                                 <input name="GENDER" type="radio" value="M" readonly disabled />
                                                                 MALE
                                                             </label>
                                                             <label class="radio-inline">
-                                                                <input name="GENDER" type="radio" value="F" readonly disabled />
+                                                                <input name="GENDER" type="radio" value="F" readonly disabled checked />
                                                                 FEMALE
                                                             </label>
+                                                            }
                                                         </div>
                                                     </div>
-                                                    &nbsp;
 
                                                     <div class="control-group ">
-                                                        <label class="control-label col-md-6" for="BIRTHDATE">
+                                                        <label class="control-label col-md-4" for="BIRTHDATE">
                                                             BIRTHDATE
                                                         </label>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             @Html.TextBoxFor(m => m.BIRTHDATE, new { @class = "form-control text-box single-line", @disabled = "disabled" })
                                                         </div>
                                                     </div>
 
                                                     <div class="control-group">
-                                                        <label class="control-label col-md-6" for="ADDRESS">
+                                                        <label class="control-label col-md-4" for="ADDRESS">
                                                             ADDRESS
                                                         </label>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             @Html.EditorFor(model => model.ADDRESS, new { htmlAttributes = new { @class = "form-control", @maxlenght = "95" } })
                                                             @Html.ValidationMessageFor(model => model.ADDRESS, "", new { @class = "text-danger" })
                                                         </div>
                                                     </div>
 
                                                     <div class="control-group">
-                                                        <label class="control-label col-md-6" for="EMAIL">
+                                                        <label class="control-label col-md-4" for="EMAIL">
                                                             EMAIL
                                                         </label>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             @Html.TextBoxFor(m => m.EMAIL, new { @class = "form-control text-box single-line", @disabled = "disabled" })
                                                         </div>
                                                     </div>
 
                                                     <div class="control-group">
-                                                        <label class="control-label col-md-6" for="USERNAME">
+                                                        <label class="control-label col-md-4" for="USERNAME">
                                                             USERNAME
                                                         </label>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             @Html.TextBoxFor(m => m.USERNAME, new { @class = "form-control text-box single-line", @disabled = "disabled" })
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label class="control-label col-md-6" for="PASSWORD">
+                                                        <label class="control-label col-md-4" for="PASSWORD">
                                                             CURRENT PASSWORD
                                                         </label>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             @Html.PasswordFor(model => model.PASSWORD, new { @class = "form-control text-box single-line", @maxlenght = "20", @required = "required" })
                                                             @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
                                                         </div>
@@ -161,33 +178,35 @@
                                                         <br />
                                                     </div>
                                                     <div class="control-group">
-                                                        <label class="control-label col-md-6" for="newpassword">
+                                                        <label class="control-label col-md-4" for="newpassword">
                                                             PASSWORD
                                                         </label>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <input class="form-control text-box single-line" id="newpassword" name="newpassword" type="password" value="" required maxlength="20">
                                                         </div>
                                                     </div>
 
                                                     <div class="control-group ">
-                                                        <label class="control-label col-md-6" for="PASSWORDAGAIN">
+                                                        <label class="control-label col-md-4" for="PASSWORDAGAIN">
                                                             CONFIRM PASSWORD
                                                         </label>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <input class="form-control text-box single-line" type="password" data-validation-match-match="newpassword" name="NEWPASSWORD" data-validation-match-message="The password and its confirm are not the same" required maxlength="20" />
                                                             <p class="help-block"></p>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <div class="control-label col-md-12 col-md-10">
+                                                        <div class="control-label col-md-6">
                                                             <input type="submit" value="Confirm" class="btn btn-default" />
                                                         </div>
+                                                        <br />
+                                                        <br />
                                                     </div>
                                                     <div class="form-group">
-                                                        <div class="control-label col-md-12 col-md-10">
+                                                        <div class="control-label col-md-6">
                                                             @Html.ActionLink("Back to List", "Index")
-                                                        </div>
+                                                            </div>
                                                     </div>
                                                 </form>
                                             </div>
@@ -197,6 +216,8 @@
                             </div>
                             <div class="boxbg"></div>
                         </div>
+
+
                     }
                 </div>
             </div>

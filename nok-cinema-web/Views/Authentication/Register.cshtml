@@ -95,43 +95,44 @@
 
                             <div class="body">
                                 <div class="bootstrap-iso">
-                                    <div class="container-fluid">
-                                        <div class="row">
-                                            <div class="col-md-6 col-md-6 col-xs-12">
+                                    <div class="container">
+                                        <div class="row clearfix">
+                                            <div class="col-md-12 column">
                                                 <form class="form-horizontal" method="post">
                                                     <div class="form-group ">
-                                                        <label class="control-label col-md-6" for="CITIZENID">
+                                                        <label class="control-label col-md-4" for="CITIZENID">
                                                             CITIZENID
                                                         </label>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             @Html.TextBoxFor(m => m.CITIZENID, new { @class = "form-control text-box single-line", @maxlength = "13", @required = "required" })
                                                             @Html.ValidationMessageFor(m => m.CITIZENID, null, new { @class = "text-danger" })
-                                                            <br />
                                                         </div>
+                                                        <br />
+                                                        <br />
                                                     </div>
                                                     <div class="control-group ">
-                                                        <label class="control-label col-md-6" for="FNAME">
+                                                        <label class="control-label col-md-4" for="FNAME">
                                                             FNAME
                                                         </label>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <input class="form-control text-box single-line" id="FNAME" name="FNAME" type="text" value="" required maxlength="35">
                                                             <p class="help-block"></p>
                                                         </div>
                                                     </div>
                                                     <div class="control-group ">
-                                                        <label class="control-label col-md-6" for="LNAME">
+                                                        <label class="control-label col-md-4" for="LNAME">
                                                             LNAME
                                                         </label>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <input class="form-control text-box single-line" id="LNAME" name="LNAME" type="text" value="" required maxlength="35">
                                                             <p class="help-block"></p>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group" id="div_radio">
-                                                        <label class="control-label col-md-6" for="GENDER">
+                                                    <div class="control-group" id="div_radio">
+                                                        <label class="control-label col-md-4" for="GENDER">
                                                             GENDER
                                                         </label>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <label class="radio-inline">
                                                                 <input name="GENDER" type="radio" value="M" required />
                                                                 MALE
@@ -141,74 +142,80 @@
                                                                 FEMALE
                                                             </label>
                                                         </div>
+                                                        <br />
                                                     </div>
                                                     &nbsp;
-                                                    <div class="control-group ">
-                                                        <label class="control-label col-md-6" for="BIRTHDATE">
+                                                    <div class="control-group">
+                                                        <label class="control-label col-md-4" for="BIRTHDATE">
                                                             BIRTHDATE
                                                         </label>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <input class="form-control text-box single-line" id="BIRTHDATE" name="BIRTHDATE" type="text" value="" required>
                                                             <p class="help-block"></p>
                                                         </div>
 
                                                     </div>
                                                     <div class="control-group ">
-                                                        <label class="control-label col-md-6" for="ADDRESS">
+                                                        <label class="control-label col-md-4" for="ADDRESS">
                                                             ADDRESS
                                                         </label>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <input class="form-control text-box single-line" id="ADDRESS" name="ADDRESS" type="text" value="" maxlength="95">
                                                             <p class="help-block"></p>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group ">
-                                                        <label class="control-label col-md-6" for="EMAIL">
+                                                        <label class="control-label col-md-4" for="EMAIL">
                                                             EMAIL
                                                         </label>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             @Html.TextBoxFor(m => m.EMAIL, new { @class = "form-control text-box single-line", @type = "email", @maxlenght = "62", @required = "required" })
                                                             @Html.ValidationMessageFor(m => m.EMAIL, null, new { @class = "text-danger" })
-                                                            <br />
                                                         </div>
+                                                        <br />
+                                                        <br />
                                                     </div>
                                                     <div class="form-group ">
-                                                        <label class="control-label col-md-6" for="USERNAME">
+                                                        <label class="control-label col-md-4" for="USERNAME">
                                                             USERNAME
                                                         </label>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             @Html.TextBoxFor(m => m.USERNAME, new { @class = "form-control text-box single-line", @maxlength = "20", @required = "required" })
                                                             @Html.ValidationMessageFor(m => m.USERNAME, null, new { @class = "text-danger" })
-                                                            <br />
+                                                           
                                                         </div>
+                                                        <br />
+                                                        <br />
                                                     </div>
 
                                                     <div class="control-group ">
-                                                        <label class="control-label col-md-6" for="PASSWORD">
+                                                        <label class="control-label col-md-4" for="PASSWORD">
                                                             PASSWORD
                                                         </label>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <input class="form-control text-box single-line" id="PASSWORD" name="PASSWORD" type="password" value="" required maxlength="20">
                                                             <p class="help-block"></p>
                                                         </div>
                                                     </div>
                                                     <div class="control-group ">
-                                                        <label class="control-label col-md-6" for="PASSWORDAGAIN">
+                                                        <label class="control-label col-md-4" for="PASSWORDAGAIN">
                                                             CONFIRM PASSWORD
                                                         </label>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <input class="form-control text-box single-line" type="password" data-validation-match-match="PASSWORD" name="checkpassword" data-validation-match-message="The password and its confirm are not the same" required maxlength="20" />
                                                             <p class="help-block"></p>
                                                         </div>
                                                     </div>
-                                                    <div class="control-group">
-                                                        <div class="control-label col-md-12 col-md-10">
+                                                    <div class="form-group">
+                                                        <div class="control-label col-md-6">
                                                             <input type="submit" value="Register" class="btn btn-default" />
                                                         </div>
+                                                        <br />
+                                                        <br />
                                                     </div>
-                                                    <div class="control-group">
-                                                        <div class="control-label col-md-12 col-md-10">
+                                                    <div class="form-group">
+                                                        <div class="control-label col-md-6">
                                                             <div>
                                                                 @Html.ActionLink("Already has an account?", "Login")
                                                             </div>
@@ -240,8 +247,6 @@
                                 })
                             </script>
                     }
-
-
 
                 </div>
                 <div class="darkgreyspace"></div>

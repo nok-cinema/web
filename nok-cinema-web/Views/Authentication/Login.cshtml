@@ -55,49 +55,52 @@
             <div class="back">
                 <div class="header2"><img src="~/Content/Images/logo26.png"> Login</div>
                 <div class="boxbg">
-                    <div @*class="box2"*@>
-                        <br /><br />
                         @using (Html.BeginForm("DoLogin", "Authentication", FormMethod.Post))
             {
                            
                             <div class="form-horizontal">
                                 <div class="body">
                                     <div class="bootstrap-iso">
-                                        <div class="container-fluid">
-                                            <div class="row">
-                                                <div class="col-md-6 col-md-6 col-xs-12">
+                                        <div class="container">
+                                            <div class="row clearfix">
+                                                <div class="col-md-12 column">
                                                     <form class="form-horizontal" method="post">
                                                         <div class="control-group">
-                                                            <div class="control-label col-md-12 col-md-11">
+                                                            <div class="control-label col-md-7">
+                                                            <div class="col-md-11">
                                                                 @Html.ValidationMessage("CredentialError", new { @style = "color:red" })
                                                             </div>
+                                                                </div>
+                                                            <br />
+                                                            <br />
                                                         </div>
-                                                        <div class="control-group ">
-                                                            <label class="control-label col-md-6" for="USERNAME">
-                                                                USERNAME
-                                                            </label>
-                                                            <div class="col-md-6">
-                                                                <input class="form-control text-box single-line" id="USERNAME" name="USERNAME" type="text" value="" required>
-                                                                <p class="help-block"></p>
-                                                                <br />
+                                                            <div class="control-group ">
+                                                                <label class="control-label col-md-4" for="USERNAME">
+                                                                    USERNAME
+                                                                </label>
+                                                                <div class="col-md-3">
+                                                                    <input class="form-control text-box single-line" id="USERNAME" name="USERNAME" type="text" value="" required>
+                                                                    <p class="help-block"></p>
+                                                                    <br />
+                                                                </div>
                                                             </div>
-                                                        </div>
 
-                                                        <div class="control-group ">
-                                                            <label class="control-label col-md-6" for="USERNAME">
-                                                                PASSWORD
-                                                            </label>
-                                                            <div class="col-md-6">
-                                                                <input class="form-control text-box single-line" id="PASSWORD" name="PASSWORD" type="password" value="" required>
-                                                                <br />
+                                                            <div class="control-group ">
+                                                                <label class="control-label col-md-4" for="USERNAME">
+                                                                    PASSWORD
+                                                                </label>
+                                                                <div class="col-md-3">
+                                                                    <input class="form-control text-box single-line" id="PASSWORD" name="PASSWORD" type="password" value="" required>
+                                                                    <p class="help-block"></p>
+                                                                    <br />
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <div class="control-label col-md-12 col-md-10">
-                                                                <input type="submit" value="Login" class="btn btn-default" name="BtnSubmit" />
+                                                            <div class="form-group">
+                                                                <div class="control-label col-md-6">
+                                                                    <input type="submit" value="Login" class="btn btn-default" name="BtnSubmit" />
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </form>
+</form>
                                                 </div>
                                             </div>
                                         </div>
@@ -115,7 +118,6 @@
                 <div class="copyr"><img src="~/Content/Images/logo3.png"> <img src="~/Content/Images/logo4.png"> <img src="~/Content/Images/logo5.png"> 02-222-2222 Copyright<img src="~/Content/Images/logo6.png"> 2016 By NOKCINEMA</div>
             </div>
         </div>
-    </div>
 </body>
 </html>
 

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<nok_cinema_web.Models.MOVIE>
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -17,9 +17,6 @@
     </p>
     <br />
     @Html.ActionLink("Logout", "Logout", "Authentication")
-    @Html.ActionLink("Action category", "Browse", new { category = "action" })
-    @Html.ActionLink("Drama category", "Browse", new { category = "drama" })
-    @Html.ActionLink("Comedy category", "Browse", new { category = "comedy" })
     <table class="table">
         <tr>
             <th>
@@ -49,22 +46,27 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MOVIENAME)
-                </td>
-                <td>
-                    <ul>
-                        @foreach (var eachCategory in item.CATEGORY)
-                        {
-                            <li>@Html.DisplayFor(modelItem => eachCategory.CATEGORYNAME)</li>
-                        }
-                    </ul>
-                </td>
-                <td>
-                    <ul>
-                        @foreach (var eachActor in item.ACTOR)
+            <td>
+                @Html.DisplayFor(modelItem => item.MOVIENAME)
+            </td>
+            <td>
+                <ul>
+                    @foreach (var eachCategory in item.CATEGORY)
+                    {
+                        <li>@Html.DisplayFor(modelItem => eachCategory.CATEGORYNAME)</li>
+                    }
+                </ul>
+            </td>
+            <td>
+            <ul>
+            @{int count = 0;}
+                @foreach (var eachActor in item.ACTOR)
                         {
                             <li>@Html.DisplayFor(modelItem => eachActor.ACTORNAME)</li>
+                            if (count <= 3)
+                            {
+                                break;
+                            }
                         }
                     </ul>
                 </td>

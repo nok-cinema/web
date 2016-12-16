@@ -49,18 +49,18 @@ namespace nok_cinema_web.Controllers
 
                     var employeeDAL = new EmployeeDAL();
                     employee = employeeDAL.GetEmployeeByCitizenId(person.CITIZENID);
-                    if (employee.JOBPOSITION != null/*"Manager"*/)
+                    if (employee.JOBPOSITION != "Manager")
                     {
                         employeeuserProfile = new EmployeeUserProfile(employee, person);
                         TempData["UserProfileData"] = employeeuserProfile;
                         return RedirectToAction("IndexEmployee");
                     }
-                    //else
-                    //{
-                    //    employeeuserProfile = new EmployeeUserProfile(employee, person);
-                    //    TempData["UserProfileData"] = employeeuserProfile;
-                    //    return RedirectToAction("IndexManager");
-                    //}
+                    else
+                    {
+                        employeeuserProfile = new EmployeeUserProfile(employee, person);
+                        TempData["UserProfileData"] = employeeuserProfile;
+                        return RedirectToAction("IndexManager", "Statistics");
+                    }
                     return View();
                 }
             }

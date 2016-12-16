@@ -186,6 +186,7 @@
     <Compile Include="BLL\MoviesBLL.cs" />
     <Compile Include="BLL\PeopleBLL.cs" />
     <Compile Include="BLL\SeatsBLL.cs" />
+    <Compile Include="BLL\SellBLL.cs" />
     <Compile Include="BLL\ShowtimeBLL.cs" />
     <Compile Include="BLL\TheatreBLL.cs" />
     <Compile Include="BLL\TicketBLL.cs" />
@@ -211,6 +212,7 @@
     <Compile Include="DAL\MovieDAL.cs" />
     <Compile Include="DAL\PersonDAL.cs" />
     <Compile Include="DAL\SeatDAL.cs" />
+    <Compile Include="DAL\SellDAL.cs" />
     <Compile Include="DAL\ShowtimeDAL.cs" />
     <Compile Include="DAL\TheatreDAL.cs" />
     <Compile Include="DAL\TicketDAL.cs" />
@@ -277,6 +279,8 @@
     <Compile Include="ViewModels\BookingShowtimeViewModel.cs" />
     <Compile Include="ViewModels\BookingTicketViewModel.cs" />
     <Compile Include="ViewModels\FoodListViewModel.cs" />
+    <Compile Include="ViewModels\FoodStatisticListViewModel.cs" />
+    <Compile Include="ViewModels\FoodStatisticViewModel.cs" />
     <Compile Include="ViewModels\FoodViewModel.cs" />
     <Compile Include="ViewModels\MemberUserProfile.cs" />
     <Compile Include="ViewModels\MovieListViewModel.cs" />
@@ -301,6 +305,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CSS\boxofficestyle.css" />
     <Content Include="Content\CSS\cusfood.css" />
+    <Content Include="Content\CSS\datatable.css" />
     <Content Include="Content\CSS\defaultemployee.css" />
     <Content Include="Content\CSS\defaultlogin.css" />
     <Content Include="Content\CSS\defaultmember.css" />
@@ -536,9 +541,7 @@
     <Content Include="Views\Booking\Payment.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\MOVIEs\SelectMovieByEmployee.cshtml" />
-    <Content Include="Views\Statistics\IndexManager.cshtml" />
     <Content Include="Views\Home\IndexMember.cshtml" />
-    <Content Include="Views\Statistics\Statistic.cshtml" />
     <Content Include="Views\Booking\Ticket.cshtml" />
     <Content Include="Views\MOVIEs\Movie.cshtml" />
     <Content Include="Views\MOVIEs\MovieDetail.cshtml" />
@@ -552,6 +555,9 @@
     <Content Include="Views\SHOWTIMEs\SelectShowtimeByEmployee.cshtml" />
     <Content Include="Views\FOODs\Food.cshtml" />
     <Content Include="Views\FOODs\FoodMember.cshtml" />
+    <Content Include="Views\Statistics\StatisticFood.cshtml" />
+    <Content Include="Views\Statistics\StatisticMovie.cshtml" />
+    <Content Include="Views\Statistics\IndexManager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -23,9 +23,9 @@
                 {<button class="top1" type="submit"><img src="~/Content/Images/logo1.png"> NOK CINEMA</button>}
                 @using (Html.BeginForm("Index", "Home"))
                 {<button class="top2" type="submit">Home</button>}
-                @using (Html.BeginForm("Statistic", "Statistics"))
+                @using (Html.BeginForm("IndexManager", "Statistics"))
                 {<button class="top2" type="submit">Statistics</button>}
-                @using (Html.BeginForm("Index", "Home"))
+                @using (Html.BeginForm("IndexManager", "Statistics"))
                 {<button class="top2" type="submit">Income</button>}
                 <div class="content1">
                     <div class="dropdown">
@@ -46,29 +46,67 @@
                 <div class="box2">
                     <div class="bot1">
                         <ul>
-                            <div class="bot11">Statistics</div>
+                            <div class="bot11">Movie Statistics</div>
                             <br />
-                            <div class="bot12">Today</div>
+                            <div class="bot12">@Html.ActionLink("Today", "StatisticMovie", new { controller = "Statistics", option = "Today" }) </div>
                             <br />
-                            <div class="bot12">Month</div>
+                            <div class="bot12">@Html.ActionLink("Month", "StatisticMovie", new { controller = "Statistics", option = "Month" }) </div>
                             <br />
-                            <div class="bot12">Year</div>
-                            <br />
-                            <div class="bot12">Movie categories</div>
-                            <br />
-                            <div class="bot12">Rating</div>
+                            @using (Html.BeginForm("StatisticMovie", "Statistics", FormMethod.Post))
+                            {
+                                <div class="bot12">
+                                    Category
+                                    <div class="category">
+                                        <select class="form-control" id="option" name="option" style="width: 50%;">
+                                            <option selected>category</option>
+                                            <option>action</option>
+                                            <option>adventure</option>
+                                            <option>animation</option>
+                                            <option>comedy</option>
+                                            <option>crime</option>
+                                            <option>documentary</option>
+                                            <option>drama</option>
+                                            <option>horror</option>
+                                            <option>musical</option>
+                                            <option>mystery</option>
+                                            <option>romance</option>
+                                            <option>sci-fi</option>
+                                            <option>thriller</option>
+                                            <option>fantasy</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="bot12">
+                                    <input type="submit" value="Search" />
+                                </div>
+                            }
                         </ul>
                     </div>
                     <div class="bot2">
                         <ul>
-                            <div class="bot21">Income</div>
+                            <div class="bot21">Food Statistics</div>
                             <br />
-                            <div class="bot22">Today</div>
+                            <div class="bot22">@Html.ActionLink("Today", "StatisticFood", new { option = "Today" }) </div>
                             <br />
-                            <div class="bot22">Month</div>
+                            <div class="bot22">@Html.ActionLink("Month", "StatisticFood", new { option = "Month" }) </div>
                             <br />
-                            <div class="bot22">Year</div>
                         </ul>
+                    </div>
+                    <div class="bot1">
+                        <div class="bot11">Manage </div>
+                        <br />
+                        <div class="bot12">
+                            @Html.ActionLink("Employee", "Index", "EMPLOYEEs")
+                        </div>
+                        <div class="bot12">
+                            @Html.ActionLink("Movie", "Index", "MOVIEs")
+                        </div>
+                        <div class="bot12">
+                           @Html.ActionLink("Showtime", "Index", "SHOWTIMEs")
+                        </div>
+                        <div class="bot12">
+                            @Html.ActionLink("Manage Showtime", "ManageShowtime", "MOVIEs")
+                        </div>
                     </div>
                 </div>
             </div>

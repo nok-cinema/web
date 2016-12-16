@@ -76,5 +76,28 @@ namespace nok_cinema_web.DAL
             }
             return tickets;
         }
+        public List<TICKET> GetTicketByCategory(string category)
+        {
+            var db = new CinemaEntities();
+            var tickets = new List<TICKET>();
+            IQueryable<TICKET> ticketQuery = from ticketTmp in db.TICKET
+                                             select ticketTmp;
+            var movieBLL = new MoviesBLL();
+            var movieList = new List<MovieViewModel>();
+            movieList = movieBLL.GetMovieListByCategory(category);
+            foreach (var ticketTuple in ticketQuery)
+            {
+                int chk = movieList.FindIndex(x => x.MovieId.Equals(ticketTuple.MOVIEID));
+                if (chk != -1)
+                {
+                    var ticket = new TICKET();
+                    ticket.MOVIEID = ticketTuple.MOVIEID;
+                    ticket.SEATROW = ticketTuple.SEATROW;
+                    ticket.SHOWDATE = ticketTuple.SHOWDATE;
+                    tickets.Add(ticket);
+                }
+            }
+            return tickets;
+        }
     }
 }

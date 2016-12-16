@@ -294,7 +294,7 @@ namespace nok_cinema_web.Controllers
                 }
             }
         }
-        
+
         public ActionResult SelectMovie()
         {
             var movieBLL = new MoviesBLL();
@@ -336,6 +336,27 @@ namespace nok_cinema_web.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
+        }
+
+        public async Task<ActionResult> ManageShowtime()
+        {
+            var movieQuery = db.MOVIE.Select(m => m);            
+            foreach (var movietuple in movieQuery)
+            {
+                var chk = movietuple.SHOWDATE.AddDays(7);      
+                if (chk > DateTime.Now & movietuple.SHOWDATE <= DateTime.Now)
+                {
+                    movietuple.STATUS = "true";
+                    db.Entry(movietuple).State = EntityState.Modified;
+                }
+                else
+                {
+                    movietuple.STATUS = "false";
+                    db.Entry(movietuple).State = EntityState.Modified;
+                }
+            }
+            await db.SaveChangesAsync();
+            return RedirectToAction("IndexManager", "Statistics");
         }
     }
 }

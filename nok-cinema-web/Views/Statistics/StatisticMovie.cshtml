@@ -1,0 +1,39 @@
+﻿@using nok_cinema_web.ViewModels
+@model MovieStatisticListViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Content/CSS/datatable.css">
+    <title>Statistic</title>
+</head>
+<body>
+    <div class="table-title">
+        <h3>Movie Statistics</h3>
+    </div>
+    <table class="table-fill">
+        <thead>
+            <tr>
+                <th class="text-left">MovieName</th>
+                <th class="text-left">Totalcout</th>
+                <th class="text-left">Totalincome</th>
+            </tr>
+        </thead>
+        <tbody class="table-hover">
+            @foreach (var item in Model.MoviesStatistic)
+            {
+                <tr>
+                    <td class="text-left">@item.Moviename</td>
+                <td class="text-left">@item.Totalcount</td>
+                <td class="text-left">฿ @item.Totalincom</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,40 @@
+﻿@using nok_cinema_web.ViewModels
+@model FoodStatisticListViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Content/CSS/datatable.css">
+    <title>Statistic</title>
+</head>
+<body>
+    <div class="table-title">
+        <h3>Food Statistics</h3>
+    </div>
+    <table class="table-fill">
+        <thead>
+            <tr>
+                <th class="text-left">FoodName</th>
+                <th class="text-left">Totalamount</th>
+                <th class="text-left">Totalincome</th>
+            </tr>
+        </thead>
+        <tbody class="table-hover">
+            @foreach (var item in Model.FoodsStatistic)
+            {
+                <tr>
+                    <td class="text-left">@item.Foodname</td>
+                    <td class="text-left">@item.Totalamount</td>
+                    <td class="text-left">฿ @item.Totalincom</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
+

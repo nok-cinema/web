@@ -266,6 +266,7 @@ namespace nok_cinema_web.Controllers
             var movieBLL = new MoviesBLL();
             var movie = new MovieViewModel();
             movie = movieBLL.GetMovieByMovieID(id);
+            movie.Reviews = movieBLL.GetReviewListByMovieID(id);
 
             HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             if (authCookie == null)
@@ -358,5 +359,6 @@ namespace nok_cinema_web.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("IndexManager", "Statistics");
         }
+
     }
 }

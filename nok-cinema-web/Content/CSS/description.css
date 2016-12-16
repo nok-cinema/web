@@ -34,7 +34,6 @@
 .back {
 	background-color: #ebebeb;
 	width: 95%;
-	height: 850px;
 	margin: 0 auto;
 }
 
@@ -64,7 +63,6 @@
 	background-color: white;
 	/*padding-left: 20px;*/
 	width: 90%;
-	height: 740px;
 	margin: 0 auto;
 	/*z-index: 1;*/
 	/*text-align-last: center;*/
@@ -95,7 +93,7 @@
 
 .bot3 {
 	padding-left: 10px;
-	width: 15%;
+	width: 55%;
 	height: 580px;
 	float: left;
 	text-decoration: none;

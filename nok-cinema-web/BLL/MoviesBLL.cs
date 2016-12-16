@@ -101,5 +101,15 @@ namespace nok_cinema_web.BLL
             movie.Category = _movie.CATEGORY;
             return movie;
         }
+
+        public ReviewListViewModel GetReviewListByMovieID(int id)
+        {
+            var movieDAL = new MovieDAL();
+            var reviewListViewModel = new ReviewListViewModel()
+            {
+                Reviews = movieDAL.GetReviewsByMovieId(id)
+            };
+            return reviewListViewModel;
+        }
     }
 }

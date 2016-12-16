@@ -289,6 +289,7 @@
     <Compile Include="ViewModels\MovieStatisticListViewModel.cs" />
     <Compile Include="ViewModels\MovieStatisticViewModel.cs" />
     <Compile Include="ViewModels\MovieViewModel.cs" />
+    <Compile Include="ViewModels\ReviewListViewModel.cs" />
     <Compile Include="ViewModels\SeatListViewModel.cs" />
     <Compile Include="ViewModels\SeatViewModel.cs" />
     <Compile Include="ViewModels\SelectedSeatListViewModel.cs" />
@@ -306,6 +307,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CSS\boxofficestyle.css" />
+    <Content Include="Content\CSS\comment.css" />
     <Content Include="Content\CSS\cusfood.css" />
     <Content Include="Content\CSS\datatable.css" />
     <Content Include="Content\CSS\defaultemployee.css" />
@@ -317,6 +319,7 @@
     <Content Include="Content\CSS\empfood.css" />
     <Content Include="Content\CSS\homestyle.css" />
     <Content Include="Content\CSS\homestyle2.css" />
+    <Content Include="Content\CSS\Lato.css" />
     <Content Include="Content\CSS\login.css" />
     <Content Include="Content\CSS\manager.css" />
     <Content Include="Content\CSS\page1.css" />
@@ -375,6 +378,8 @@
     <Content Include="Content\Images\seat-red.png" />
     <Content Include="Content\Images\seat.png" />
     <Content Include="Content\Images\uncle.jpg" />
+    <Content Include="Content\Images\whitestar.gif" />
+    <Content Include="Content\Images\yellowstar.gif" />
     <Content Include="Content\Images\yourname.jpg" />
     <Content Include="Content\Movie\1.jpg" />
     <Content Include="Content\Movie\10.jpg" />
@@ -570,6 +575,7 @@
     <Content Include="Views\Booking\HistoryTicket.cshtml" />
     <Content Include="Views\FOODs\FoodEmployee.cshtml" />
     <Content Include="Views\FOODs\Successful.cshtml" />
+    <Content Include="Views\Shared\_VoteNow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

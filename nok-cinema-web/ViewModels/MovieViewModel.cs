@@ -16,5 +16,6 @@ namespace nok_cinema_web.ViewModels
         public string ShortDiscription { get; set; }
         public Nullable<short> Duration { get; set; }
         public ICollection<ACTOR> Actor { get; set; }
+        public ReviewListViewModel Reviews { get; set; }
     }
 }

@@ -8,6 +8,49 @@ namespace nok_cinema_web.DAL
 {
     public class MovieDAL
     {
+
+        public List<REVIEW> GetReviewsByMovieId(int movieId)
+        {
+            var reviewList = new List<REVIEW>();
+            var db = new CinemaEntities();
+            IQueryable<REVIEW> reviewQuery = (from reviewTmp in db.REVIEW
+                                              where reviewTmp.MOVIEID.Equals(movieId)
+                                            select reviewTmp);
+            var memberDAL = new MemberDAL();
+            if (reviewQuery.Any())
+            {
+                foreach (var reviewTuple in reviewQuery)
+                {
+                    var review = new REVIEW
+                    {
+                        MOVIEID = movieId,
+                        COMMENTS = reviewTuple.COMMENTS,
+                        MEMBERID = reviewTuple.MEMBERID,
+                        RATING = reviewTuple.RATING,
+                    };
+                    IQueryable<MEMBER> personQuery = (from memberTmp in db.MEMBER
+                                                      where memberTmp.MEMBERID.Equals(reviewTuple.MOVIEID)
+                                                      select memberTmp);
+                    if (personQuery.Any())
+                    {
+                        foreach (var personTuple in personQuery)
+                        {
+                            var member = memberDAL.GetMemberByMemberId(review.MEMBERID);
+                            review.MEMBER = new MEMBER
+                            {
+                                PERSON = new PERSON
+                                {
+                                    USERNAME = member.PERSON.USERNAME
+                                }
+                            };
+                        }
+                    }
+                    reviewList.Add(review);
+                }
+            }
+            return reviewList;
+        }
+
         public MOVIE GetMovieByShowtime(SHOWTIME showtime)
         {
             var db = new CinemaEntities();

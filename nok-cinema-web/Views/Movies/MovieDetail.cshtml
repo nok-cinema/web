@@ -14,6 +14,8 @@
     <link rel="stylesheet" type="text/css" href="~/Content/CSS/defaultlogin.css">
     <link rel="stylesheet" type="text/css" href="~/Content/CSS/description.css">
     <link rel="stylesheet" href="@Url.Content("~/Content/CSS/w3.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/CSS/Lato.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/CSS/comment.css")">*
 </head>
 <body>
     <div>
@@ -88,7 +90,19 @@
                         <div class="reserve">Get ticket</div>
                     </div>
                 </div>
-                <div class="darkgreyspace"></div>
+                <div class="darkgreyspace">
+                    <div class="coment">
+                        @foreach (var item in Model.Reviews.Reviews)
+                        {
+                            <p>@item.MEMBER.PERSON.FNAME @item.MEMBER.PERSON.LNAME:</p>
+                            <div class="ccfield-prepend">
+                                <span class="ccform-addon"><i class="fa fa-comment fa-2x"></i></span>
+                                <textarea class="ccformfield" name="comments" rows="8" placeholder="Message" disabled="disabled">@item.COMMENTS</textarea>
+                            </div>
+                        }
+                    </div>
+                </div>
+
             </div>
         </div>
         <div class="content3">

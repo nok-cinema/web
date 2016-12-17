@@ -39,7 +39,9 @@
                             @Html.ActionLink("Logout", "Logout", "Authentication")
                         </div>
                     </div>
-                    <div class="type3">Welcome<img src="~/Content/Images/logo2.png"></div>
+                    @*@{ MemberUserProfile user = (MemberUserProfile) TempData["UserProfileData"];}
+                    <div class="type3">Welcome, @user.USERNAME <img src="~/Content/Images/logo2.png">
+                    </div>*@
                 </div>
             </div>
         </div>
@@ -56,7 +58,7 @@
 					<div class="bluespace"></div>
 					<div class="header2"><img src="~/Content/Images/logo16.png"> Complete</div>
 					<div class="box2">
-						<div class="whitespace"></div>
+						@*<div class="whitespace"></div>*@
 						@foreach (var ticketViewModel in Model.Tickets)
 						{
 							<text><div class="frame">
@@ -91,7 +93,7 @@
 									<div class="bot31"><img src="@Url.Content("~/Content/Images/logo1.png")">
 									</div>
 								</div>
-								<div class="whitespace"></div>
+								@*<div class="whitespace"></div>*@
 							</div></text>
 						}
 					</div>

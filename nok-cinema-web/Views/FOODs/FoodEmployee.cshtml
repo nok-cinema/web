@@ -65,14 +65,25 @@
 
                         @using (Html.BeginForm("CalculateFood", "FOODs", FormMethod.Post))
                         {
-                            <table>
-                                <input type="hidden" name="employeename" id="employeename" value="@user.USERNAME" />
+                            <table style="padding-top: 20px">
+                                <input type="hidden" name="employeename" id="employeename" value="@user.USERNAME"/>
+                                <tr>
+                                    <th>
+                                        Menu
+                                    </th>
+                                    <th style="padding-left: 30px">
+                                        Price
+                                    </th>
+                                    <th style="padding-left: 50px">
+                                        Amount
+                                    </th>
+                                </tr>
                                 @foreach (var item in Model.FOODS)
                                 {
                                 <tr>
                                     <td><div class="bot21">@item.Name</div></td>
-                                    <td><div class="bot22">- Price: ฿@item.Price</div></td>
-                                    <td><input type="number" name="food_@item.FoodID" id="food_@item.FoodID" value="0" size="3"></td>
+                                    <td style="padding-left: 30px"><div class="bot22"> Price: ฿@item.Price</div></td>
+                                    <td style="padding-left: 50px"><input type="number" name="food_@item.FoodID" id="food_@item.FoodID" value="0" min="0" max="10"></td>
                                 </tr>
                                 }
                             </table>
@@ -87,7 +98,7 @@
         </div>
         <div class="content3">
             <div class="deep">
-                <div class="copyr"><img src="logo3.png"> <img src="logo4.png"> <img src="logo5.png"> 02-222-2222 Copyright<img src="logo6.png"> 2016 By NOKCINEMA</div>
+                <div class="copyr"><img src="@Url.Content("~/Content/Images/logo3.png")"> <img src="@Url.Content("~/Content/Images/logo4.png")"> <img src="@Url.Content("~/Content/Images/logo5.png")"> 02-222-2222 Copyright<img src="@Url.Content("~/Content/Images/logo6.png")"> 2016 By NOKCINEMA</div>
             </div>
         </div>
     </div>
